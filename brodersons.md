@@ -4,6 +4,8 @@ title: Broderson Awards 2025
 class: broderson-page
 ---
 
+<div class="brodersons-stripes"></div>
+
 <div class="brodersons-art">
   <div class="art-inner">
     <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">

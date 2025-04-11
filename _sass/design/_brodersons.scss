@@ -18,9 +18,25 @@
   background-color: var(--theme-page);
   color: var(--theme-ink);
   
+  // No pseudo-element needed, we'll use an actual element
+  
   // Apply Good Sans to everything on this page
   * {
     font-family: var(--font-good-sans);
+  }
+  
+  // Top decorative stripe
+  .brodersons-stripes {
+    height: 0.25rem;
+    background-image: url('/assets/images/brodersons/brodersons-stripes.svg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
   }
   
   // Make footer match theme
