@@ -4,17 +4,40 @@ title: Broderson Awards 2025
 class: broderson-page
 ---
 
-# Broderson Awards 2025
+<div class="brodersons-art">
+  <div class="art-inner">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+  </div>
+</div>
 
-## Celebrating excellence in Maine's creative community
-
-Thursday, June 5, 2025  
-6:00–9:00 pm  
-UNE Innovation Hall, Portland, Maine
-
-<a href="https://made.memberful.com/register" class="cta">Sign up for email updates</a>
-
-<link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-2/theme.css" type="text/css" media="all" /><script type="text/javascript" src="https://cdn.addevent.com/libs/atc/1.6.1/atc.min.js"></script><div title="Add to Calendar" class="addeventatc" data-styling="none" data-id="nD25454934">	Add to Calendar	<span class="addeventatc_icon"></span></div><style>.addeventatc {background-color:#ffffff!important;color:#000000!important;}.addeventatc:hover {background-color:#ffffff!important;filter:brightness(105%);}.addeventatc:active {background-color:#ffffff!important;filter:brightness(110%);}</style>
+<div class="header-content">
+  <h1>Broderson Awards 2025</h1>
+  <h2>Celebrating excellence in Maine's creative community</h2>
+  <div class="meta">
+    <div>Thursday, June 5, 2025<br>
+    6:00–9:00 pm<br>
+    UNE Innovation Hall, Portland, Maine</div>
+    
+    <div class="actions">
+      <a href="https://made.memberful.com/register" class="cta">Sign up for email updates</a>
+      <link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-2/theme.css" type="text/css" media="all" /><script type="text/javascript" src="https://cdn.addevent.com/libs/atc/1.6.1/atc.min.js"></script><div title="Add to Calendar" class="addeventatc" data-styling="none" data-id="nD25454934">	Add to Calendar	<span class="addeventatc_icon"></span></div><style>.addeventatc {background-color:#ffffff!important;color:#000000!important;}.addeventatc:hover {background-color:#ffffff!important;filter:brightness(105%);}.addeventatc:active {background-color:#ffffff!important;filter:brightness(110%);}</style>
+    </div>
+  </div>
+</div>
 
 {% capture lede_content %}
 For nearly 50 years, the Broderson Awards have honored exceptional creative work enriching Maine's cultural and business landscape. Named in memory of Dick Broderson — a pioneering force in Maine advertising and media — these awards recognize talent, dedication, and creative excellence across the state.
@@ -22,11 +45,14 @@ For nearly 50 years, the Broderson Awards have honored exceptional creative work
 Every two years, Maine's creative professionals, agencies, and in-house teams gather to celebrate the best recent work and connect with the broader creative community. It's an inspiring night of recognition, conversation, and discovery.
 {% endcapture %}
 
-<div class="lede">
-{{ lede_content | markdownify }}
+<div class="lede-with-image">
+  <div class="lede">
+    {{ lede_content | markdownify }}
+  </div>
+  <div class="brodersons-photos">
+    <img src="/assets/images/brodersons/Brodersons photos.png" alt="Broderson Awards photos">
+  </div>
 </div>
-
----
 
 {% capture sponsorship_content %}
 Supporting the Broderson Awards puts your brand in front of Maine's top creative shops, agencies, freelancers, and in-house teams. Your sponsorship helps:
@@ -67,8 +93,6 @@ Help us foster the next generation of creatives by underwriting a $1,000 Student
   </div>
 </div>
 
----
-
 {% capture submission_content %}
 **Submissions for 2025 closed on April 8.** Thank you to everyone who submitted work this year! Please see below for submission guidelines, which may be useful in preparing for future Broderson Awards.
 
@@ -106,8 +130,6 @@ Freelance: $80 • Standard: $100
     {{ submission_content | markdownify }}
   </div>
 </div>
-
----
 
 {% capture categories_content %}
 
@@ -190,8 +212,6 @@ Assets created for education, outreach or awareness for a client, event, cause o
     {{ categories_content | markdownify }}
   </div>
 </div>
-
----
 
 {% capture faq_content %}
 **Do I need to be a MADE member to submit work?**  

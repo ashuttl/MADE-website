@@ -2,19 +2,145 @@
 .broderson-page {
   font-family: var(--font-good-sans);
   font-weight: 400;
+  font-size: 0.92em;
   
+  // Custom Broderson color theme
+  --theme-page: #f9e7e7;
+  --theme-ink: #010101;
+  --theme-link: #4e5ca5;
+  --theme-current-link: #cb6643;
+  
+  --theme-page-rgb: 249, 231, 231;
+  --theme-ink-rgb: 1, 1, 1;
+  --theme-link-rgb: 78, 92, 165;
+  --theme-current-link-rgb: 203, 102, 67;
+  
+  background-color: var(--theme-page);
+  color: var(--theme-ink);
+  
+  // Apply Good Sans to everything on this page
+  * {
+    font-family: var(--font-good-sans);
+  }
+  
+  // Make footer match theme
+  footer {
+    background-color: var(--theme-page);
+    
+    .contact .lede {
+      font-family: var(--font-good-sans);
+      font-weight: 400;
+    }
+    
+    .contact-info dt {
+      font-family: var(--font-good-sans);
+      font-weight: 500;
+    }
+    
+    a, p, dd, li, dt, .fineprint p, .contact .lede {
+      font-family: var(--font-good-sans);
+    }
+  }
+  
+  p {
+    max-width: 60ch;
+  }
+  
+  a:not(.button):not(.cta) {
+    color: var(--theme-link);
+    
+    &.current {
+      color: var(--theme-current-link);
+    }
+  }
+  
+  // Make header use reverse colors
+  header {
+    background-color: var(--theme-ink);
+    color: var(--theme-page);
+    position: relative;
+    z-index: 10;
+    
+    a, .logo svg {
+      color: var(--theme-page) !important;
+      
+      &.current {
+        color: var(--theme-current-link) !important;
+      }
+    }
+    
+    .logo svg {
+      fill: var(--theme-page);
+    }
+  }
+  
+  // SVG art pattern between header and content
+  .brodersons-art {
+    display: flex;
+    overflow: hidden;
+    margin: -2rem -50vw 2rem -50vw;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    background-color: var(--theme-ink);
+    padding: 0 0 0.5rem 0;
+    z-index: 1;
+    
+    .art-inner {
+      display: flex;
+      margin-left: -5%;
+      width: 150%;
+      
+      img {
+        height: 22em;
+        max-height: 70vh;
+        width: auto;
+        flex-shrink: 0;
+      }
+    }
+  }
+  
+  // Main heading styles
   h1 {
     font-family: var(--font-good-sans);
     font-weight: 700;
     letter-spacing: -0.01em;
     font-size: 2.75em;
+    text-transform: uppercase;
+    display: inline-block;
+    background-color: var(--theme-ink);
+    color: white;
+    padding: 0.1em 0.3em;
+    margin-right: 1rem;
   }
   
-  h2 {
-    font-family: var(--font-good-sans);
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    margin-top: 2em;
+  // Header content layout
+  .header-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+    
+    h1, h2 {
+      margin: 0;
+    }
+    
+    h2 {
+      font-family: var(--font-good-sans);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      flex-grow: 1;
+      margin-bottom: 0.2em;
+    }
+    
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 0.2em;
+    }
   }
   
   h3, h4, h5, h6 {
@@ -31,7 +157,7 @@
       font-weight: 500;
       font-size: 1.1em;
       letter-spacing: 0;
-      color: var(--seadogs);
+      color: var(--theme-link);
     }
     
     p {
@@ -40,25 +166,71 @@
     }
   }
   
-  // Make expander toggles use Good Sans
+  // Custom expander styling for Brodersons
+  .expander {
+    border: none;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease;
+    
+    &:hover {
+      box-shadow: var(--shadow-lg);
+    }
+  }
+  
   .expander-toggle {
     font-family: var(--font-good-sans);
+    background-color: white;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+      background-color: white;
+    }
     
     h2 {
       text-transform: uppercase;
       letter-spacing: 0.03em;
       font-size: 1.5em;
       font-weight: 700;
+      color: var(--theme-ink);
     }
   }
   
-  // Special lede styling
+  .expander-content {
+    background-color: white;
+  }
+  
+  // Special lede styling with image
+  .lede-with-image {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    
+    .lede {
+      flex: 1;
+      min-width: 20rem;
+    }
+    
+    .brodersons-photos {
+      flex: 0 0 auto;
+      max-width: 20rem;
+      width: 100%;
+      
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: var(--border-radius);
+      }
+    }
+  }
+  
   .lede {
     font-family: var(--font-good-sans);
     font-weight: 300;
     font-size: 1.3em;
     line-height: 1.5;
-    color: rgba(var(--ink-rgb), 0.85);
+    color: rgba(var(--theme-ink-rgb), 0.85);
   }
   
   // Buttons styling
@@ -68,11 +240,17 @@
     letter-spacing: 0.02em;
     text-transform: none;
     font-size: 1em;
+    background-color: var(--theme-link);
+    color: var(--theme-page);
+    
+    &:hover {
+      background-color: var(--theme-current-link);
+    }
   }
   
   // Special first paragraph styling
   > h2 + p {
     font-size: 1.1em;
-    color: rgba(var(--ink-rgb), 0.85);
+    color: rgba(var(--theme-ink-rgb), 0.85);
   }
 }

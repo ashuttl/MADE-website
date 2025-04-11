@@ -1,0 +1,1 @@
+SVG files will be copied here from the asset sources folder
