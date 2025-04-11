@@ -1,0 +1,27 @@
+{% comment %}
+  Include usage:
+  {% include duotone-image.html
+     image_src="/path/to/image.jpg"
+     image_alt="Alt text"
+     theme="harbor"
+     intensity="medium"
+     blend_mode="multiply"
+  %}
+
+  Parameters:
+  - image_src: Path to the image
+  - image_alt: Alt text for the image
+  - theme: (Optional) Theme to apply (default, harbor, midnight, teal, sunshine, langostino, wintermint, orchid, pumpkin,
+            blue-red, purple-teal, orange-blue)
+  - intensity: (Optional) Intensity of the effect (subtle, medium, intense)
+  - blend_mode: (Optional) Blend mode for custom styling (multiply, screen, overlay, soft-light, hard-light, color)
+  - class: (Optional) Additional CSS classes
+{% endcomment %}
+
+{% assign theme = include.theme | default: "default" %}
+{% assign intensity = include.intensity | default: "" %}
+{% assign blend_mode = include.blend_mode | default: "" %}
+
+<div class="duotone-image theme-{{ theme }} {{ intensity }} {{ blend_mode }} {{ include.class }}">
+  <img src="{{ include.image_src }}" alt="{{ include.image_alt }}">
+</div>

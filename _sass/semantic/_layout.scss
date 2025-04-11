@@ -18,15 +18,28 @@ body {
 // Container
 .container {
   width: 100%;
-  max-width: 75rem; // 1200px
   margin: 0 auto;
-  padding: 0 1.5rem;
+  // Fluid padding that increases with viewport width
+  // Minimum of 1.5rem (24px), scales up to about 5% of viewport width on larger screens
+  padding: 0 calc(1.5rem + 3vw);
+  
+  // Add top and bottom padding for main content containers
+  .main-content > & {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  // But not for containers with hero
+  body.has-hero .main-content > &:first-child {
+    padding-top: 0;
+  }
 }
 
 // Header
 header {
   padding: 1.5rem 0;
-  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  position: relative;
+  font-family: var(--font-heading);
   
   .container {
     display: flex;
@@ -42,7 +55,7 @@ header {
     svg {
       height: 3rem;
       width: auto;
-      color: var(--ink);
+      color: var(--theme-ink, var(--ink));
     }
   }
   
@@ -52,25 +65,60 @@ header {
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 1.5rem;
+      gap: 0.5rem 1.5rem;
       flex-wrap: wrap;
     }
     
     a {
-      color: var(--ink);
-      font-weight: 500;
+      color: var(--theme-ink, var(--ink));
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      font-size: 0.95em;
+      position: relative;
       
-      &:hover, &:focus, &[aria-current="page"] {
-        color: var(--currentlinktext);
+      &:hover, &:focus, &[aria-current="page"], &.current {
+        color: var(--theme-current-link, var(--currentlinktext));
+      }
+      
+      &:hover, &:focus {
+        text-decoration: none;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.35rem;
+          left: 0;
+          right: 0;
+          height: 0.15rem;
+          background-color: var(--theme-current-link, var(--currentlinktext));
+          border-radius: 99px;
+          opacity: 0.7;
+        }
+      }
+      
+      &.current {
+        font-weight: 700;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.35rem;
+          left: 0;
+          right: 0;
+          height: 0.15rem;
+          background-color: var(--theme-current-link, var(--currentlinktext));
+          border-radius: 99px;
+          opacity: 1;
+        }
       }
     }
   }
 }
 
-// Main content
+// Main content area
 main {
   flex: 1;
-  padding: 3rem 0;
   
   img {
     max-width: 100%;
@@ -82,11 +130,20 @@ main {
 .home {
   text-align: center;
   
+  .secondary-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin: 3rem 0;
+  }
+  
+  // For when a hero section is not used
   h1 {
     margin-bottom: 2rem;
   }
   
-  img {
+  > img {
     border-radius: var(--border-radius);
     margin-bottom: 2rem;
     max-height: 60vh;
@@ -94,20 +151,20 @@ main {
     width: 100%;
   }
   
-  .primary-ctas {
+  > .primary-ctas {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 2rem;
     flex-wrap: wrap;
   }
-  
-  .secondary-ctas {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
+}
+
+// Main content area
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 // Page layout
@@ -130,7 +187,7 @@ main {
 // Board members grid
 .board-members {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -138,19 +195,26 @@ main {
 // Membership tiers
 .membership-tiers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
 // Footer
 footer {
-  background-color: rgba(var(--ink-rgb), 0.05);
+  background-color: var(--page);
   padding: 3rem 0;
   margin-top: 3rem;
   
+  // Theme adjustments for footer
+  .theme-harbor &, .theme-midnight &, .theme-teal &, .theme-sunshine & {
+    background-color: var(--theme-page);
+  }
+  
   hr {
     margin: 2rem 0;
+    border-color: var(--theme-ink);
+    opacity: 0.1;
   }
   
   .contact {
@@ -158,6 +222,9 @@ footer {
     
     .lede {
       margin-bottom: 1.5rem;
+      font-family: var(--font-heading);
+      font-weight: 400;
+      color: var(--theme-ink, var(--ink));
     }
   }
   
@@ -168,32 +235,81 @@ footer {
     margin-bottom: 1.5rem;
     
     dt {
-      font-weight: 600;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.9em;
+      letter-spacing: 0.02em;
+      color: var(--theme-ink, var(--ink));
+    }
+    
+    dd a {
+      color: var(--theme-link, var(--linktext));
+      
+      &:hover, &:focus {
+        color: var(--theme-current-link, var(--currentlinktext));
+      }
     }
   }
   
   nav {
+    font-family: var(--font-heading);
+    
     ul {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 1.5rem;
+      gap: 0.5rem 1.5rem;
     }
     
     a {
-      color: var(--ink);
+      color: var(--theme-ink, var(--ink));
       font-size: 0.9em;
+      letter-spacing: 0.01em;
+      position: relative;
+      
+      &:hover, &:focus, &.current {
+        color: var(--theme-current-link, var(--currentlinktext));
+      }
       
       &:hover, &:focus {
-        color: var(--currentlinktext);
+        text-decoration: none;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.35rem;
+          left: 0;
+          right: 0;
+          height: 0.15rem;
+          background-color: var(--theme-current-link, var(--currentlinktext));
+          border-radius: 99px;
+          opacity: 0.7;
+        }
+      }
+      
+      &.current {
+        font-weight: 600;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -0.35rem;
+          left: 0;
+          right: 0;
+          height: 0.15rem;
+          background-color: var(--theme-current-link, var(--currentlinktext));
+          border-radius: 99px;
+        }
       }
     }
   }
   
   .fineprint {
     font-size: 0.875em;
-    color: rgba(var(--ink-rgb), 0.7);
+    color: var(--theme-ink, var(--ink));
+    font-family: var(--font-sans);
   }
 }

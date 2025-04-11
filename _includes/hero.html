@@ -1,0 +1,48 @@
+{% comment %}
+  Include usage:
+  {% include hero.html 
+     image_src="/path/to/image.jpg" 
+     title="Hero Title" 
+     content="Additional content (optional)" 
+     overlay_color="var(--harbor-rgb)"
+     overlay_opacity="0.7"
+     image_position="top center"
+     theme="harbor" %}
+
+  Parameters:
+  - image_src: Path to the background image
+  - title: The main title for the hero
+  - content: (Optional) Additional content for the hero
+  - overlay_color: (Optional) RGB variable for flat color overlay (default: "var(--harbor-rgb)")
+  - overlay_opacity: (Optional) Opacity value for overlay (default: "0.7")
+  - image_position: (Optional) CSS background-position value (default: "top center")
+  - cta_links: (Optional) Array of cta links [{url: "/about", text: "About us"}]
+  - theme: (Optional) Theme to apply to the hero content (default, harbor, midnight, teal, sunshine)
+{% endcomment %}
+
+{% assign image_position = include.image_position | default: "top center" %}
+{% assign theme = include.theme | default: "default" %}
+
+<div class="hero-section theme-{{ theme }}">
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background-color: rgba(6, 33, 56, 0.5);"></div>
+  <div class="hero-image" style="background-image: url('{{ include.image_src }}'); background-position: {{ image_position }};">
+    <!-- NO OVERLAY -->
+  </div>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <h1>{{ include.title }}</h1>
+      
+      {% if include.content %}
+        {{ include.content | markdownify }}
+      {% endif %}
+      
+      {% if include.cta_links %}
+        <div class="primary-ctas">
+          {% for cta in include.cta_links %}
+            <a href="{{ cta.url }}" class="cta">{{ cta.text }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

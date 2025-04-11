@@ -142,6 +142,101 @@ function example() {
   </div>
 </div>
 
+## Theme System
+
+Apply theme classes to any container element to change the color scheme within that section. The theme will be applied to all child elements, including text, links, buttons, and background images.
+
+### Default Theme
+
+<div class="theme-demo theme-default">
+  <h3>Default Theme</h3>
+  <p>This is the default theme, using the standard page and ink colors.</p>
+  <p>Here is <a href="#">a link</a> and <a href="#" class="current">a current link</a>.</p>
+  <a href="#" class="cta">CTA Button</a>
+</div>
+
+### Harbor Theme
+
+<div class="theme-demo theme-harbor">
+  <h3>Harbor Theme</h3>
+  <p>This theme uses harbor as the page color and wintermint as the ink color.</p>
+  <p>Here is <a href="#">a link</a> and <a href="#" class="current">a current link</a>.</p>
+  <a href="#" class="cta">CTA Button</a>
+</div>
+
+### Midnight Theme
+
+<div class="theme-demo theme-midnight">
+  <h3>Midnight Theme</h3>
+  <p>This theme uses ink as the page color and page as the ink color.</p>
+  <p>Here is <a href="#">a link</a> and <a href="#" class="current">a current link</a>.</p>
+  <a href="#" class="cta">CTA Button</a>
+</div>
+
+### Teal Theme
+
+<div class="theme-demo theme-teal">
+  <h3>Teal Theme</h3>
+  <p>This theme uses wintermint as the page color and harbor as the ink color.</p>
+  <p>Here is <a href="#">a link</a> and <a href="#" class="current">a current link</a>.</p>
+  <a href="#" class="cta">CTA Button</a>
+</div>
+
+### Sunshine Theme
+
+<div class="theme-demo theme-sunshine">
+  <h3>Sunshine Theme</h3>
+  <p>This theme uses sunshine as the page color and ink as the ink color.</p>
+  <p>Here is <a href="#">a link</a> and <a href="#" class="current">a current link</a>.</p>
+  <a href="#" class="cta">CTA Button</a>
+</div>
+
+## Themed Components
+
+### Hero with Harbor Theme
+
+{% include hero.html
+  image_src="/assets/images/home-page-photo.jpg"
+  title="Harbor Theme Hero"
+  content="This hero demonstrates the harbor theme with duotoning."
+  image_position="top center"
+  theme="harbor"
+%}
+
+### Hero with Teal Theme
+
+{% include hero.html
+  image_src="/assets/images/party-for-join-page.jpg"
+  title="Teal Theme Hero"
+  content="This hero demonstrates the teal theme with duotoning."
+  image_position="center center"
+  theme="teal"
+%}
+
+### Content with Image (Midnight Theme)
+
+{% capture markdown_content %}
+## Midnight Theme Content
+
+This demonstrates a content-with-image component with the midnight theme applied.
+
+- Text and links use theme colors
+- Images use theme duotoning
+- The entire component inherits the theme
+{% endcapture %}
+
+{% capture processed_content %}
+{{ markdown_content | markdownify }}
+{% endcapture %}
+
+{% include content-with-image.html
+   image_src="/assets/images/party-for-join-page.jpg"
+   image_alt="MADE event"
+   content=processed_content
+   image_position="right"
+   theme="midnight"
+%}
+
 ## Components
 
 ### Board Member Card

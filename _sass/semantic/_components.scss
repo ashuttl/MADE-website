@@ -1,25 +1,22 @@
 // Lede text component
 .lede {
-  font-size: 1.25em;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  max-width: 60ch;
 }
 
 // Callout component
 .callout {
-  background-color: rgba(var(--seadogs-rgb), 0.1);
+  border: 0.0625rem solid var(--seadogs);
   border-radius: var(--border-radius);
   padding: 1.5rem;
   margin: 2rem 0;
+  max-width: var(--text-max-width);
   
   p:last-child {
     margin-bottom: 0;
   }
   
   &.callout-highlight {
-    background-color: rgba(var(--sunshine-rgb), 0.2);
-    border-left: 4px solid var(--sunshine);
+    border: 0.0625rem solid var(--sunshine);
+    border-left-width: 0.25rem;
   }
 }
 
@@ -44,23 +41,23 @@
   p {
     margin: 0.25rem 0 0.5rem;
     font-size: 0.9em;
-    color: rgba(var(--ink-rgb), 0.7);
+    color: var(--ink);
   }
 }
 
 // Membership tier card
 .tier {
-  background-color: rgba(var(--page-rgb), 0.8);
-  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  background-color: var(--page);
+  border: 0.0625rem solid var(--ink);
   border-radius: var(--border-radius);
   padding: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  // box-shadow removed to avoid transparency
+  // transition: box-shadow 0.3s ease, transform 0.3s ease;
   
-  &:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-3px);
-  }
+  // &:hover {
+  //   box-shadow: var(--shadow-md);
+  //   transform: translateY(-0.1875rem);
+  // }
   
   h2 {
     font-size: 1.5em;
@@ -82,5 +79,52 @@
   .cta {
     margin-top: auto;
     align-self: flex-start;
+  }
+}
+
+// Award categories multi-column layout
+.award-categories {
+  column-count: 1;
+  column-gap: 2rem;
+  font-size: 0.75em;
+  column-fill: balance; // Ensure columns balance content evenly
+  
+  @media (min-width: 48em) {
+    column-count: 2;
+  }
+  
+  @media (min-width: 64em) {
+    column-count: 3;
+  }
+  
+  h3 {
+    font-size: 1em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    break-after: avoid; // Don't break between heading and content
+    page-break-after: avoid; // For older browsers
+    display: inline-block;
+    width: 100%;
+  }
+  
+  p {
+    margin-top: 0;
+    margin-bottom: 1.5em;
+    break-inside: avoid; // Keep paragraphs together
+    page-break-inside: avoid; // For older browsers
+    display: inline-block;
+    width: 100%;
+  }
+  
+  // Creating block containers for each heading + paragraph pair
+  h3 + p {
+    margin-top: 0.25em;
+  }
+  
+  // Ensure columns have enough space in expander
+  .expander & {
+    height: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

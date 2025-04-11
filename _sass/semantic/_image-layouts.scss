@@ -1,0 +1,527 @@
+// Hero section with duotone image
+.hero-section {
+  position: relative;
+  min-height: 70vh;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  overflow: hidden;
+  width: 100%;
+  
+  /* Ensure the hero content is above all layers */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+  }
+  
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-position is set inline */
+    z-index: 1;
+    
+    /* NO FILTER AT ALL */
+    
+    .lighten-layer {
+      display: none;
+    }
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 10; /* Make sure content is on top of all image layers */
+    padding: 2rem calc(1.5rem + 3vw);
+    width: 100%;
+    color: var(--theme-ink, white);
+    
+    .hero-inner {
+      padding: 0;
+      max-width: 45rem;
+      
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        margin-bottom: 2rem;
+        line-height: 1.2;
+        text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.3);
+        color: var(--theme-ink, white);
+      }
+      
+      .primary-ctas {
+        display: flex;
+        justify-content: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+    }
+  }
+  
+  // Harbor theme specific styles for hero
+  &.theme-harbor {
+    color: var(--wintermint);
+    
+    .hero-image {
+      background-color: rgba(6, 33, 56, 0.4); /* Harbor blue with opacity */
+    }
+    
+    .hero-content .hero-inner {
+      h1 {
+        color: var(--wintermint);
+      }
+      
+      .primary-ctas .cta {
+        background-color: var(--wintermint);
+        color: var(--harbor);
+        border: 0.125rem solid var(--wintermint);
+        
+        &:hover {
+          background-color: transparent;
+          color: var(--wintermint);
+        }
+      }
+    }
+  }
+  
+  // Midnight theme specific styles for hero
+  &.theme-midnight {
+    color: var(--page);
+    
+    .hero-image {
+      &::before {
+        background-color: var(--ink);
+        opacity: 0.85;
+      }
+    }
+    
+    .hero-content .hero-inner {
+      h1 {
+        color: var(--page);
+      }
+      
+      .primary-ctas .cta {
+        background-color: var(--page);
+        color: var(--ink);
+        border: 0.125rem solid var(--page);
+        
+        &:hover {
+          background-color: transparent;
+          color: var(--page);
+        }
+      }
+    }
+  }
+  
+  // Teal theme specific styles for hero
+  &.theme-teal {
+    color: var(--harbor);
+    
+    .hero-image {
+      &::before {
+        background-color: var(--seadogs);
+        opacity: 0.7;
+      }
+    }
+    
+    .hero-content .hero-inner {
+      h1 {
+        color: var(--harbor);
+        text-shadow: none;
+      }
+      
+      .primary-ctas .cta {
+        background-color: var(--harbor);
+        color: var(--wintermint);
+        border: 0.125rem solid var(--harbor);
+        
+        &:hover {
+          background-color: transparent;
+          color: var(--harbor);
+        }
+      }
+    }
+  }
+  
+  // Sunshine theme specific styles for hero
+  &.theme-sunshine {
+    color: var(--ink);
+    
+    .hero-image {
+      &::before {
+        background-color: var(--sunshine);
+        opacity: 0.8;
+      }
+    }
+    
+    .hero-content .hero-inner {
+      h1 {
+        color: var(--ink);
+        text-shadow: none;
+      }
+      
+      .primary-ctas .cta {
+        background-color: var(--harbor);
+        color: var(--sunshine);
+        border: 0.125rem solid var(--harbor);
+        
+        &:hover {
+          background-color: transparent;
+          color: var(--harbor);
+        }
+      }
+    }
+  }
+}
+
+// Content with side-by-side image
+.content-with-image {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  
+  @media (min-width: 48em) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  
+  // For image on the left
+  &.image-left {
+    @media (min-width: 48em) {
+      grid-template-areas: "image content";
+      
+      .image-part {
+        grid-area: image;
+      }
+      
+      .content-part {
+        grid-area: content;
+      }
+    }
+  }
+  
+  .content-part {
+    .lede {
+      margin-bottom: 0;
+    }
+  }
+  
+  .image-part {
+    position: relative;
+    height: 100%;
+    min-height: 20rem;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* object-position: set inline */
+      border-radius: var(--border-radius);
+      
+      /* Override the default page image margins */
+      margin: 0 !important;
+    }
+  }
+}
+
+// Image with caption
+.image-with-caption {
+  margin: 2rem 0;
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+  }
+  
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.875em;
+    color: var(--ink);
+    font-style: italic;
+  }
+}
+
+// Image gallery
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15.625rem, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+  
+  figure {
+    margin: 0;
+    
+    img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+    
+    figcaption {
+      margin-top: 0.5rem;
+      font-size: 0.875em;
+      color: var(--ink);
+    }
+  }
+}
+
+// Background image section
+.bg-image-section {
+  position: relative;
+  padding: 4rem 2rem;
+  margin: 3rem 0;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  color: var(--theme-ink, white);
+  
+  .bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    
+    // SIMPLIFIED COLOR OVERLAY APPROACH
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Single color overlay with opacity */
+      background-color: var(--theme-ink, var(--harbor));
+      opacity: 0.6;
+      z-index: 2;
+    }
+    
+    /* Removed second color layer */
+    
+    // We don't need the lighten-layer element with our new approach
+    .lighten-layer {
+      display: none; /* Hide by default */
+    }
+  }
+  
+  .content {
+    position: relative;
+    z-index: 10; /* Make sure content is on top of all image layers */
+    max-width: 37.5rem;
+  }
+  
+  // Theme-specific styles
+  &.theme-harbor, &.theme-midnight, &.theme-teal, &.theme-sunshine {
+    .bg-image::before {
+      opacity: 0.85;
+    }
+  }
+}
+
+// Enhanced duotone image effect using two-layer technique
+.duotone-image {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Enhance contrast without grayscale */
+  filter: brightness(1.2) contrast(1.3);
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Ensure image displays correctly */
+    position: relative;
+    z-index: 1;
+  }
+  
+  &.content-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: var(--border-radius);
+    
+    img {
+      border-radius: var(--border-radius);
+    }
+  }
+  
+  // SIMPLIFIED COLOR OVERLAY APPROACH
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Single color overlay with opacity */
+    background-color: var(--theme-ink, var(--ink));
+    opacity: 0.7;
+    z-index: 2;
+  }
+  
+  &::after {
+    display: none; /* Remove second layer */
+  }
+  
+  // Theme variations - simplified
+  &.theme-default {
+    &::before {
+      background-color: var(--ink);
+      opacity: 0.7;
+    }
+  }
+  
+  &.theme-harbor {
+    &::before {
+      background-color: var(--harbor);
+      opacity: 0.7;
+    }
+  }
+  
+  &.theme-midnight {
+    &::before {
+      background-color: var(--ink);
+      opacity: 0.75;
+    }
+  }
+  
+  &.theme-teal {
+    &::before {
+      background-color: var(--seadogs);
+      opacity: 0.6;
+    }
+  }
+  
+  &.theme-sunshine {
+    &::before {
+      background-color: var(--sunshine);
+      opacity: 0.7;
+    }
+  }
+  
+  &.theme-langostino {
+    &::before {
+      background-color: var(--langostino);
+      opacity: 0.65;
+    }
+  }
+  
+  &.theme-wintermint {
+    &::before {
+      background-color: var(--wintermint);
+      opacity: 0.7;
+    }
+  }
+  
+  &.theme-orchid {
+    &::before {
+      background-color: var(--orchid);
+      opacity: 0.65;
+    }
+  }
+  
+  &.theme-pumpkin {
+    &::before {
+      background-color: var(--pumpkin);
+      opacity: 0.7;
+    }
+  }
+  
+  // Custom color combinations - simplified 
+  &.blue-red {
+    &::before {
+      background-color: #df565f; // Red
+      opacity: 0.7;
+    }
+  }
+  
+  &.purple-teal {
+    &::before {
+      background-color: #7400b8; // Purple
+      opacity: 0.7;
+    }
+  }
+  
+  &.orange-blue {
+    &::before {
+      background-color: #0077b6; // Blue
+      opacity: 0.7;
+    }
+  }
+  
+  // Special case for exact match to reference example
+  &.exact-match {
+    filter: grayscale(100%) contrast(1.2);
+    
+    &::before {
+      display: block;
+      background-color: #df565f; // Red
+      mix-blend-mode: darken;
+      opacity: 1;
+    }
+    
+    &::after {
+      display: block;
+      background-color: #4230a3; // Blue
+      mix-blend-mode: lighten;
+      opacity: 1;
+    }
+  }
+  
+  // Intensity variations - simplified
+  &.subtle {
+    filter: contrast(1.1) brightness(1.1);
+    
+    &::before {
+      opacity: 0.4;
+    }
+  }
+  
+  &.medium {
+    filter: contrast(1.3) brightness(1.1);
+    
+    &::before {
+      opacity: 0.7;
+    }
+  }
+  
+  &.intense {
+    filter: contrast(1.5) brightness(1.05); 
+    
+    &::before {
+      opacity: 0.9;
+    }
+  }
+  
+  // No duotone effect - just show the original image
+  &.no-effect {
+    filter: none;
+    
+    &::before, &::after {
+      display: none;
+    }
+  }
+}

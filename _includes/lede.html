@@ -1,8 +1,15 @@
 {% comment %}
   Include usage:
-  {% include lede.html content="Your lede paragraph text with **markdown** support." %}
+  {% include lede.html content="Your lede paragraph text with **markdown** support." theme="harbor" %}
+  
+  Available themes:
+  - theme-default (default, no need to specify)
+  - theme-harbor
+  - theme-midnight
+  - theme-teal
+  - theme-sunshine
 {% endcomment %}
 
-<div class="lede">
+<div class="lede{% if include.theme %} theme-{{ include.theme }}{% endif %}">
   {{ include.content | markdownify }}
 </div>

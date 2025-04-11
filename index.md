@@ -1,19 +1,22 @@
 ---
 layout: home
 title: Home
+has_hero: true
+theme: harbor
 ---
 
-# Building community for Maine creatives since 1923
+{% 
+  include hero.html
+  image_src="/assets/images/home-page-photo.jpg"
+  title="Building community for Maine creatives since 1923"
+  cta_links=site.data.home_ctas
+  image_position="top center"
+  theme="harbor"
+%}
 
-![Maine Ad + Design community](/assets/images/home-page-photo.jpg)
-
-<div class="primary-ctas">
-    <a href="/about" class="cta">About us</a>
-    <a href="/membership" class="cta">Become a member</a>
-    <a href="/brodersons" class="cta">Broderson Awards</a>
-</div>
-
-<div class="secondary-ctas">
-    <a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a>
-    <a href="https://made.memberful.com/auth/sign_in" class="external" target="_blank">Member account login</a>
-</div>
+<!-- <div class="container home">
+  <div class="secondary-ctas">
+      <a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a>
+      <a href="https://made.memberful.com/auth/sign_in" class="external" target="_blank">Member account login</a>
+  </div>
+</div> -->

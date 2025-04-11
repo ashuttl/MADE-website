@@ -17,26 +17,9 @@
 
 // Fluid typography
 :root {
-  // Base values
-  --fluid-min-width: 320;
-  --fluid-max-width: 1200;
-  --fluid-min-size: 16;
-  --fluid-max-size: 24;
-  
-  // Calculate the fluid base font size
-  --fluid-screen: 100vw;
-  --fluid-bp: calc(
-    (var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) /
-      (var(--fluid-max-width) - var(--fluid-min-width))
-  );
-  
-  // Set the font-size
-  --fluid-size: calc(
-    var(--fluid-min-size) / 16 * 1rem + (var(--fluid-max-size) - var(--fluid-min-size)) *
-      var(--fluid-bp)
-  );
-  
-  font-size: var(--fluid-size);
+  // Set a simpler, more direct fluid typography calculation
+  // This uses viewport units directly without the complexity of custom properties
+  font-size: calc(16px + 0.5 * (0.7vw + 0.3vh));
 }
 
 // Spacing variables
@@ -50,13 +33,18 @@
 
 // Border variables
 :root {
-  --border-radius: 4px;
-  --border-width: 1px;
+  --border-radius: 0.25rem;
+  --border-width: 0.0625rem;
 }
 
 // Shadow variables
 :root {
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0.625rem 0.9375rem rgba(0, 0, 0, 0.1);
+}
+
+// Text variables
+:root {
+  --text-max-width: 70ch;
 }

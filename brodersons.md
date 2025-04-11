@@ -1,7 +1,10 @@
 ---
 layout: page
 title: Broderson Awards 2025
+class: broderson-page
 ---
+
+# Broderson Awards 2025
 
 ## Celebrating excellence in Maine's creative community
 
@@ -107,6 +110,7 @@ Freelance: $80 • Standard: $100
 ---
 
 {% capture categories_content %}
+
 ### TV Campaign, Spot or Video - Short Form
 Individual under 60-second spots, viral, pre-roll, post-roll or long format content. This includes commercials produced by and/or for television stations, commercials for businesses (retail, service or merchandising businesses) or creative of any length that was produced for use online. Can include up to 150 words of descriptive text.
 
@@ -175,13 +179,14 @@ Individual over 60-second spots, viral, pre-roll, post-roll or long format conte
 
 ### Annual Reports, Brochures, Corporate Collateral, Corporate Event Design
 Assets created for education, outreach or awareness for a client, event, cause or campaign. Should represent real world work and may include descriptive paragraph underscoring the strategy or inspiration behind the execution.
+
 {% endcapture %}
 
 <div class="expander" id="award-categories">
   <div class="expander-toggle">
     <h2>Award categories</h2>
   </div>
-  <div class="expander-content">
+  <div class="expander-content award-categories">
     {{ categories_content | markdownify }}
   </div>
 </div>

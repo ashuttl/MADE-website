@@ -10,12 +10,12 @@ th {
   text-align: left;
   background-color: rgba(var(--ink-rgb), 0.05);
   font-weight: 600;
-  border-bottom: 2px solid rgba(var(--ink-rgb), 0.1);
+  border-bottom: 0.125rem solid rgba(var(--ink-rgb), 0.1);
 }
 
 th, td {
   padding: 0.75rem 1rem;
-  border-bottom: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-bottom: 0.0625rem solid rgba(var(--ink-rgb), 0.1);
   vertical-align: top;
 }
 
@@ -24,8 +24,24 @@ tr:last-child td {
 }
 
 // Responsive tables
-@media (max-width: 768px) {
-  .table-responsive {
+// Always make tables in expanders responsive
+.expander table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  
+  // Ensure minimum width for cells to prevent squishing
+  th, td {
+    min-width: 8rem;
+    white-space: normal;
+  }
+}
+
+// Make responsive tables at smaller screen sizes
+@media (max-width: 48em) {
+  .table-responsive,
+  table {
     display: block;
     width: 100%;
     overflow-x: auto;
@@ -42,10 +58,10 @@ tr:last-child td {
 
 // Bordered tables
 .table-bordered {
-  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border: 0.0625rem solid rgba(var(--ink-rgb), 0.1);
   
   th, td {
-    border: 1px solid rgba(var(--ink-rgb), 0.1);
+    border: 0.0625rem solid rgba(var(--ink-rgb), 0.1);
   }
 }
 

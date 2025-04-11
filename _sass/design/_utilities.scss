@@ -119,7 +119,7 @@
 
 // Misc utilities
 .rounded { border-radius: var(--border-radius); }
-.rounded-full { border-radius: 9999px; }
+.rounded-full { border-radius: 62.5rem; /* Effectively a circle */ }
 
 .shadow-sm { box-shadow: var(--shadow-sm); }
 .shadow-md { box-shadow: var(--shadow-md); }
@@ -146,12 +146,12 @@
 
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip: rect(0, 0, 0, 0); /* Zero values don't need units */
   white-space: nowrap;
   border-width: 0;
 }

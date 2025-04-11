@@ -11,6 +11,19 @@
   --sunshine-rgb: 240, 200, 109;
   --orchid-rgb: 76, 10, 102;
   --pumpkin-rgb: 237, 112, 64;
+
+  // Default color variables
+  --ink: rgb(var(--ink-rgb));
+  --page: rgb(var(--page-rgb));
+  --linktext: rgb(var(--linktext-rgb));
+  --currentlinktext: rgb(var(--currentlinktext-rgb));
+  --seadogs: rgb(var(--seadogs-rgb));
+  --wintermint: rgb(var(--wintermint-rgb));
+  --harbor: rgb(var(--harbor-rgb));
+  --langostino: rgb(var(--langostino-rgb));
+  --sunshine: rgb(var(--sunshine-rgb));
+  --orchid: rgb(var(--orchid-rgb));
+  --pumpkin: rgb(var(--pumpkin-rgb));
 }
 
 // Color utility classes
@@ -49,16 +62,106 @@
   .bg-pumpkin-#{$i} { background-color: rgba(var(--pumpkin-rgb), $alpha); }
 }
 
-// Color swatches for pattern library
+// Theme classes
+.theme-default {
+  --theme-page: var(--page);
+  --theme-ink: var(--ink);
+  --theme-link: var(--linktext);
+  --theme-current-link: var(--currentlinktext);
+  
+  --theme-page-rgb: var(--page-rgb);
+  --theme-ink-rgb: var(--ink-rgb);
+  --theme-link-rgb: var(--linktext-rgb);
+  --theme-current-link-rgb: var(--currentlinktext-rgb);
+  
+  background-color: var(--theme-page);
+  color: var(--theme-ink);
+  
+  a:not(.button):not(.cta) {
+    color: var(--theme-link);
+    
+    &.current {
+      color: var(--theme-current-link);
+    }
+  }
+  
+  // Special handling for buttons
+  .cta {
+    background-color: var(--theme-link);
+    color: var(--theme-page);
+    
+    &:hover {
+      background-color: var(--theme-current-link);
+    }
+  }
+}
+
+.theme-harbor {
+  --theme-page: var(--harbor);
+  --theme-ink: var(--wintermint);
+  --theme-link: var(--seadogs);
+  --theme-current-link: var(--pumpkin);
+  
+  --theme-page-rgb: var(--harbor-rgb);
+  --theme-ink-rgb: var(--wintermint-rgb);
+  --theme-link-rgb: var(--seadogs-rgb);
+  --theme-current-link-rgb: var(--pumpkin-rgb);
+  
+  @extend .theme-default;
+}
+
+.theme-midnight {
+  --theme-page: var(--ink);
+  --theme-ink: var(--page);
+  --theme-link: var(--seadogs);
+  --theme-current-link: var(--pumpkin);
+  
+  --theme-page-rgb: var(--ink-rgb);
+  --theme-ink-rgb: var(--page-rgb);
+  --theme-link-rgb: var(--seadogs-rgb);
+  --theme-current-link-rgb: var(--pumpkin-rgb);
+  
+  @extend .theme-default;
+}
+
+.theme-teal {
+  --theme-page: var(--wintermint);
+  --theme-ink: var(--harbor);
+  --theme-link: var(--orchid);
+  --theme-current-link: var(--pumpkin);
+  
+  --theme-page-rgb: var(--wintermint-rgb);
+  --theme-ink-rgb: var(--harbor-rgb);
+  --theme-link-rgb: var(--orchid-rgb);
+  --theme-current-link-rgb: var(--pumpkin-rgb);
+  
+  @extend .theme-default;
+}
+
+.theme-sunshine {
+  --theme-page: var(--sunshine);
+  --theme-ink: var(--ink);
+  --theme-link: var(--harbor);
+  --theme-current-link: var(--langostino);
+  
+  --theme-page-rgb: var(--sunshine-rgb);
+  --theme-ink-rgb: var(--ink-rgb);
+  --theme-link-rgb: var(--harbor-rgb);
+  --theme-current-link-rgb: var(--langostino-rgb);
+  
+  @extend .theme-default;
+}
+
+// Color swatches and theme demos for pattern library
 .color-swatches {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
   gap: 1rem;
   margin: 2rem 0;
 }
 
 .color-swatch {
-  height: 100px;
+  height: 6.25rem;
   border-radius: var(--border-radius);
   display: flex;
   align-items: flex-end;
@@ -70,4 +173,33 @@
     font-family: var(--font-mono);
     font-size: 0.875em;
   }
+}
+
+.theme-demo {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  
+  h3 {
+    margin-top: 0;
+  }
+  
+  p {
+    margin-bottom: 1rem;
+  }
+  
+  a.cta {
+    display: inline-block;
+  }
+}
+
+// Add padding to markdown themed sections
+.theme-harbor[markdown], 
+.theme-midnight[markdown], 
+.theme-teal[markdown], 
+.theme-sunshine[markdown], 
+.theme-default[markdown] {
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: var(--border-radius);
 }

@@ -11,9 +11,7 @@ In 1923, forty years before the heyday of Don Draper, one of America's first ad 
 (Not a member yet? [Please join us!](/membership))
 {% endcapture %}
 
-<div class="lede">
-{{ lede_content | markdownify }}
-</div>
+{% include lede.html content=lede_content %}
 
 ---
 
@@ -37,6 +35,17 @@ We are fundamentally a network of members. Our members include people working in
 — in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).
 
 Maine Ad + Design is a community of tolerance and pride. We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
+
+---
+
+## Our values
+
+Maine Ad + Design is dedicated to fostering creativity, supporting professional growth, and building community throughout Maine's commercial arts industry. We believe in:
+
+- The power of creative collaboration
+- Lifelong learning and professional development
+- Celebrating excellence in our industry
+- Supporting the next generation of creative professionals
 
 ---
 

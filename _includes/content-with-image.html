@@ -1,0 +1,69 @@
+{% comment %}
+  Include usage:
+  
+  Recommended approach for full markdown support:
+  
+  {% capture markdown_content %}
+  Your content with **markdown** formatting
+  {% endcapture %}
+  
+  {% capture processed_content %}
+  <div class="lede">
+  {{ markdown_content | markdownify }}
+  </div>
+  {% endcapture %}
+  
+  {% include content-with-image.html 
+     image_src="/path/to/image.jpg" 
+     image_alt="Alt text" 
+     content=processed_content
+     image_position="right" 
+     object_position="top"
+     theme="harbor" %}
+
+  Parameters:
+  - image_src: Path to the image
+  - image_alt: Alt text for the image
+  - content: The content to display (pre-processed HTML)
+  - image_position: (Optional) "left" or "right", defaults to "right"
+  - object_position: (Optional) CSS object-position for the image, defaults to "center"
+  - theme: (Optional) Theme to apply (default, harbor, midnight, teal, sunshine)
+  
+  Note: This include does not apply markdownify to content. Process your markdown 
+  before passing it to this include for best results.
+{% endcomment %}
+
+{% assign position = include.image_position | default: "right" %}
+{% assign object_position = include.object_position | default: "center" %}
+
+<div class="content-with-image {% if position == 'left' %}image-left{% endif %}{% if include.theme %} theme-{{ include.theme }}{% endif %}">
+  {% if position == "left" %}
+  <div class="image-part">
+    <!-- Use duotone-image component -->
+    {% capture image_class %}content-image{% if include.no_effect %} no-effect{% endif %}{% endcapture %}
+    {% include duotone-image.html
+      image_src=include.image_src
+      image_alt=include.image_alt
+      theme=include.theme
+      class=image_class
+    %}
+  </div>
+  {% endif %}
+
+  <div class="content-part">
+    {{ include.content }}
+  </div>
+
+  {% if position == "right" %}
+  <div class="image-part">
+    <!-- Use duotone-image component -->
+    {% capture image_class %}content-image{% if include.no_effect %} no-effect{% endif %}{% endcapture %}
+    {% include duotone-image.html
+      image_src=include.image_src
+      image_alt=include.image_alt
+      theme=include.theme
+      class=image_class
+    %}
+  </div>
+  {% endif %}
+</div>

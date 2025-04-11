@@ -1,0 +1,41 @@
+{% comment %}
+  Include usage:
+  {% include bg-image-section.html 
+     image_src="/path/to/image.jpg" 
+     title="Section Title" 
+     content="Additional content (optional)" 
+     image_position="center"
+     theme="harbor" %}
+
+  Parameters:
+  - image_src: Path to the background image
+  - title: The main title for the section
+  - content: (Optional) Additional content
+  - image_position: (Optional) CSS background-position value (default: "center")
+  - cta_links: (Optional) Array of cta links [{url: "/about", text: "About us"}]
+  - theme: (Optional) Theme to apply to the section (default, harbor, midnight, teal, sunshine)
+{% endcomment %}
+
+{% assign image_position = include.image_position | default: "center" %}
+{% assign theme = include.theme | default: "default" %}
+
+<div class="bg-image-section theme-{{ theme }}">
+  <div class="bg-image" style="background-image: url('{{ include.image_src }}'); background-position: {{ image_position }};">
+    <!-- Simplified color overlay approach -->
+  </div>
+  <div class="content">
+    <h2>{{ include.title }}</h2>
+    
+    {% if include.content %}
+      {{ include.content | markdownify }}
+    {% endif %}
+    
+    {% if include.cta_links %}
+      <div class="primary-ctas">
+        {% for cta in include.cta_links %}
+          <a href="{{ cta.url }}" class="cta">{{ cta.text }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>

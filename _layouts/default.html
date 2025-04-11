@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
-<body>
+<body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
     <header>
         <div class="container">
             <a href="/" class="logo">
@@ -14,19 +15,17 @@
             </a>
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/membership">Membership</a></li>
-                    <li><a href="/brodersons">Brodersons</a></li>
+                    <li><a href="/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
+                    <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About</a></li>
+                    <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Membership</a></li>
+                    <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Brodersons</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <div class="container">
-            {{ content }}
-        </div>
+    <main class="main-content">
+        {{ content }}
     </main>
 
     <footer>
@@ -34,31 +33,31 @@
             <hr>
 
             <div class="contact">
-                <p class="lede">Thoughts? Questions? Ideas? Jokes? Drop us a line and we’ll get back to you asap.</p>
+                <p class="lede">{{ site.data.footer.contact.lede }}</p>
 
                 <dl class="contact-info">
                     <dt>Email</dt>
-                    <dd><a href="mailto:board@maineaddesign.com">board@maineaddesign.com</a></dd>
+                    <dd><a href="mailto:{{ site.data.footer.contact.email }}">{{ site.data.footer.contact.email }}</a></dd>
                     <dt>LinkedIn</dt>
-                    <dd><a href="https://www.linkedin.com/in/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                    <dd><a href="https://www.linkedin.com/in/{{ site.data.footer.contact.linkedin }}" target="_blank">@{{ site.data.footer.contact.linkedin }}</a></dd>
                     <dt>Instagram</dt>
-                    <dd><a href="https://www.instagram.com/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                    <dd><a href="https://www.instagram.com/{{ site.data.footer.contact.instagram }}" target="_blank">@{{ site.data.footer.contact.instagram }}</a></dd>
                     <dt>Facebook</dt>
-                    <dd><a href="https://www.facebook.com/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                    <dd><a href="https://www.facebook.com/{{ site.data.footer.contact.facebook }}" target="_blank">@{{ site.data.footer.contact.facebook }}</a></dd>
                 </dl>
 
-                <a href="https://made.memberful.com/register" class="external">Sign up for email updates</a>
+                <a href="{{ site.data.footer.contact.signup_url }}" class="external">{{ site.data.footer.contact.signup_text }}</a>
             </div>
             
             <hr>
 
             <nav>
                 <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About MADE</a></li>
-                    <li><a href="/brodersons">Broderson Awards</a></li>
-                    <li><a href="/membership">Become a member</a></li>
-                    <li><a href="/code-of-conduct">Code of conduct</a></li>
+                    <li><a href="/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
+                    <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About MADE</a></li>
+                    <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Broderson Awards</a></li>
+                    <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Become a member</a></li>
+                    <li><a href="/code-of-conduct"{% if page.url == "/code-of-conduct/" %} class="current"{% endif %}>Code of conduct</a></li>
                     <li><a href="/login" class="external" target="_blank">Member account login</a></li>
                     <li><a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a></li>
                 </ul>
@@ -67,8 +66,8 @@
             <hr>
 
             <div class="fineprint">
-                <p>MADE (Maine Ad + Design) is the oldest advertising club in the United States. For more than a century, it has championed creativity and professional growth for Maine's designers, marketers, and creative professionals. Through the Broderson Awards and year-round programming, MADE supports agencies, freelancers, and students working in and for Maine.</p>
-                <p>© 1923–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} The Advertising Club of Greater Portland d/b/a Maine Ad + Design</p>
+                {{ site.data.footer.fineprint | markdownify }}
+                <p>© {{ site.data.footer.copyright_start_year }}–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} {{ site.data.footer.copyright_name }}</p>
             </div>
         </div>
     </footer>
