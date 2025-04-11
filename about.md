@@ -34,11 +34,11 @@ We are fundamentally a network of members. Our members include people working in
 
 — in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).
 
-Maine Ad + Design is a community of tolerance and pride. We stand against oppression in all its forms, at large scales and at small ones, and are committed to ==cultivating diversity, inclusivity, equality, and kindness== where we live and work.
-
 ---
 
 ## Our values
+
+==Maine Ad + Design is a community of tolerance and pride.== We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
 
 Maine Ad + Design is dedicated to fostering creativity, supporting professional growth, and building community throughout Maine's commercial arts industry. We believe in:
 
@@ -55,8 +55,7 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
     <div class="board-member">
         <img src="/assets/images/board/dustyn.jpeg" alt="Dustyn Bailey">
         <h3>Dustyn Bailey</h3>
-        <p>President</p>
-        <a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank">LinkedIn</a>
+        <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn</a></p>
     </div>
     <div class="board-member">
         <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">

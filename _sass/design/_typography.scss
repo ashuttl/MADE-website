@@ -104,6 +104,10 @@ ul, ol {
   }
 }
 
+ul {
+  list-style-type: square;
+}
+
 dl {
   dt {
     font-weight: 700;
@@ -132,15 +136,21 @@ code, pre {
   background-color: var(--page);
   border: 0.0625rem solid var(--ink);
   border-radius: var(--border-radius);
+  max-width: 100%;
 }
 
 code {
   padding: 0.2em 0.4em;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 pre {
   padding: 1em;
   overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-width: 100%;
   
   code {
     background-color: transparent;
@@ -159,8 +169,7 @@ hr {
 // Highlighted text
 mark {
   background-color: var(--theme-mark, var(--mark-color));
-  padding: 0.1em 0.2em;
-  border-radius: 0.2em;
+  padding: 0;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }

@@ -13,6 +13,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 // Container
@@ -22,10 +24,12 @@ body {
   // Fluid padding that increases with viewport width
   // Minimum of 1.5rem (24px), scales up to about 5% of viewport width on larger screens
   padding: 0 calc(1.5rem + 3vw);
+  box-sizing: border-box;
+  max-width: 100%;
   
-  // Add bottom padding for main content containers (top padding removed)
+  // No padding needed for main content containers
   .main-content > & {
-    padding-bottom: 3rem;
+    /* padding-bottom removed */
   }
   
   // But not for containers with hero
@@ -73,7 +77,7 @@ header {
       font-weight: 400;
       letter-spacing: 0.01em;
       text-transform: uppercase;
-      font-size: 0.95em;
+      font-size: 0.875em;
       position: relative;
       
       &:hover, &:focus, &[aria-current="page"], &.current {
@@ -118,6 +122,7 @@ header {
 // Main content area
 main {
   flex: 1;
+  overflow-x: visible; /* Changed from hidden to visible */
   
   img {
     max-width: 100%;
@@ -194,16 +199,21 @@ main {
 // Membership tiers
 .membership-tiers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
   margin: 2rem 0;
+  
+  @media (min-width: 40em) {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 2rem;
+  }
 }
 
 // Footer
 footer {
   background-color: var(--page);
   padding: 3rem 0;
-  margin-top: 3rem;
+  /* margin-top removed to avoid redundancy with padding */
   
   // Theme adjustments for footer
   .theme-harbor &, .theme-midnight &, .theme-teal &, .theme-sunshine & {
@@ -229,9 +239,19 @@ footer {
   
   .contact-info {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 0.5rem 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
     margin-bottom: 1.5rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    
+    @media (min-width: 36em) {
+      grid-template-columns: auto 1fr;
+      gap: 0.5rem 1.5rem;
+    }
     
     dt {
       font-family: var(--font-heading);
@@ -242,11 +262,24 @@ footer {
       color: var(--theme-ink, var(--ink));
     }
     
-    dd a {
-      color: var(--theme-link, var(--linktext));
+    dd {
+      margin: 0;
+      padding-bottom: 0.75rem;
       
-      &:hover, &:focus {
-        color: var(--theme-current-link, var(--currentlinktext));
+      @media (min-width: 36em) {
+        padding-bottom: 0;
+      }
+      
+      a {
+        color: var(--theme-link, var(--linktext));
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        
+        &:hover, &:focus {
+          color: var(--theme-current-link, var(--currentlinktext));
+        }
       }
     }
   }
