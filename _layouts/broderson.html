@@ -1,0 +1,25 @@
+---
+layout: default
+---
+
+<article class="broderson-entry">
+    <header>
+        <h1>{{ page.title }}</h1>
+        {% if page.category %}<p class="category">{{ page.category }}</p>{% endif %}
+    </header>
+    
+    <div class="content">
+        {{ content }}
+    </div>
+    
+    {% if page.images %}
+    <div class="gallery">
+        {% for image in page.images %}
+        <figure>
+            <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}">
+            {% if image.caption %}<figcaption>{{ image.caption }}</figcaption>{% endif %}
+        </figure>
+        {% endfor %}
+    </div>
+    {% endif %}
+</article>

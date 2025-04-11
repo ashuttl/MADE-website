@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                {% include svg/made-logo.svg %}
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/membership">Membership</a></li>
+                    <li><a href="/brodersons">Brodersons</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {{ content }}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <hr>
+
+            <div class="contact">
+                <p class="lede">Thoughts? Questions? Ideas? Jokes? Drop us a line and we’ll get back to you asap.</p>
+
+                <dl class="contact-info">
+                    <dt>Email</dt>
+                    <dd><a href="mailto:board@maineaddesign.com">board@maineaddesign.com</a></dd>
+                    <dt>LinkedIn</dt>
+                    <dd><a href="https://www.linkedin.com/in/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                    <dt>Instagram</dt>
+                    <dd><a href="https://www.instagram.com/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                    <dt>Facebook</dt>
+                    <dd><a href="https://www.facebook.com/MaineAdDesign" target="_blank">@MaineAdDesign</a></dd>
+                </dl>
+
+                <a href="https://made.memberful.com/register" class="external">Sign up for email updates</a>
+            </div>
+            
+            <hr>
+
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About MADE</a></li>
+                    <li><a href="/brodersons">Broderson Awards</a></li>
+                    <li><a href="/membership">Become a member</a></li>
+                    <li><a href="/code-of-conduct">Code of conduct</a></li>
+                    <li><a href="/login" class="external" target="_blank">Member account login</a></li>
+                    <li><a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a></li>
+                </ul>
+            </nav>
+
+            <hr>
+
+            <div class="fineprint">
+                <p>MADE (Maine Ad + Design) is the oldest advertising club in the United States. For more than a century, it has championed creativity and professional growth for Maine's designers, marketers, and creative professionals. Through the Broderson Awards and year-round programming, MADE supports agencies, freelancers, and students working in and for Maine.</p>
+                <p>© 1923–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} The Advertising Club of Greater Portland d/b/a Maine Ad + Design</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

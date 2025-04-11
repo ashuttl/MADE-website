@@ -1,0 +1,8 @@
+{% comment %}
+  Include usage:
+  {% include lede.html content="Your lede paragraph text with **markdown** support." %}
+{% endcomment %}
+
+<div class="lede">
+  {{ include.content | markdownify }}
+</div>

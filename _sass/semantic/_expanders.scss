@@ -1,0 +1,73 @@
+// Expandable content sections
+.expander {
+  margin: 2rem 0;
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.expander-toggle {
+  padding: 1.25rem 1.5rem;
+  background-color: rgba(var(--page-rgb), 0.8);
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease;
+  
+  &:hover {
+    background-color: rgba(var(--seadogs-rgb), 0.05);
+  }
+  
+  &::after {
+    content: "+";
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.25em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+}
+
+.expander-content {
+  padding: 0 1.5rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+// JavaScript will add this class to open the expander
+.expander.is-open {
+  .expander-toggle::after {
+    content: "−"; // Minus sign (not hyphen)
+    transform: translateY(-50%);
+  }
+  
+  .expander-content {
+    max-height: 1000px; // Arbitrary large value
+    padding: 1.5rem;
+    padding-top: 0;
+  }
+}
+
+// Default open state for no-JS experience
+.expander-content {
+  &:target {
+    max-height: 1000px;
+    padding: 1.5rem;
+    padding-top: 0;
+    
+    + .expander-toggle::after {
+      content: "−"; // Minus sign
+      transform: translateY(-50%);
+    }
+  }
+}

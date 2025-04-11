@@ -1,0 +1,73 @@
+// Convert color variables to RGB values for opacity
+:root {
+  --ink-rgb: 26, 25, 25;
+  --page-rgb: 245, 245, 245;
+  --linktext-rgb: 93, 161, 145;
+  --currentlinktext-rgb: 237, 112, 64;
+  --seadogs-rgb: 104, 180, 162;
+  --wintermint-rgb: 158, 204, 191;
+  --harbor-rgb: 6, 33, 56;
+  --langostino-rgb: 202, 88, 60;
+  --sunshine-rgb: 240, 200, 109;
+  --orchid-rgb: 76, 10, 102;
+  --pumpkin-rgb: 237, 112, 64;
+}
+
+// Color utility classes
+.bg-page { background-color: var(--page); }
+.bg-ink { background-color: var(--ink); color: var(--page); }
+.bg-seadogs { background-color: var(--seadogs); }
+.bg-wintermint { background-color: var(--wintermint); }
+.bg-harbor { background-color: var(--harbor); color: var(--page); }
+.bg-langostino { background-color: var(--langostino); }
+.bg-sunshine { background-color: var(--sunshine); }
+.bg-orchid { background-color: var(--orchid); color: var(--page); }
+.bg-pumpkin { background-color: var(--pumpkin); }
+
+.text-page { color: var(--page); }
+.text-ink { color: var(--ink); }
+.text-seadogs { color: var(--seadogs); }
+.text-wintermint { color: var(--wintermint); }
+.text-harbor { color: var(--harbor); }
+.text-langostino { color: var(--langostino); }
+.text-sunshine { color: var(--sunshine); }
+.text-orchid { color: var(--orchid); }
+.text-pumpkin { color: var(--pumpkin); }
+
+// Color modifiers with transparency
+@for $i from 1 through 9 {
+  $alpha: $i * 0.1;
+  
+  .bg-ink-#{$i} { background-color: rgba(var(--ink-rgb), $alpha); }
+  .bg-page-#{$i} { background-color: rgba(var(--page-rgb), $alpha); }
+  .bg-seadogs-#{$i} { background-color: rgba(var(--seadogs-rgb), $alpha); }
+  .bg-wintermint-#{$i} { background-color: rgba(var(--wintermint-rgb), $alpha); }
+  .bg-harbor-#{$i} { background-color: rgba(var(--harbor-rgb), $alpha); }
+  .bg-langostino-#{$i} { background-color: rgba(var(--langostino-rgb), $alpha); }
+  .bg-sunshine-#{$i} { background-color: rgba(var(--sunshine-rgb), $alpha); }
+  .bg-orchid-#{$i} { background-color: rgba(var(--orchid-rgb), $alpha); }
+  .bg-pumpkin-#{$i} { background-color: rgba(var(--pumpkin-rgb), $alpha); }
+}
+
+// Color swatches for pattern library
+.color-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.color-swatch {
+  height: 100px;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  
+  p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+}

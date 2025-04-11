@@ -1,0 +1,15 @@
+{% comment %}
+  Include usage:
+  {% include expander.html title="Expander Title" %}
+    Content goes here (Markdown)
+  {% endinclude %}
+{% endcomment %}
+
+<div class="expander" id="{{ include.title | slugify }}">
+  <div class="expander-toggle">
+    <h2>{{ include.title }}</h2>
+  </div>
+  <div class="expander-content">
+    {{ include.content | markdownify }}
+  </div>
+</div>

@@ -1,0 +1,86 @@
+// Lede text component
+.lede {
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 60ch;
+}
+
+// Callout component
+.callout {
+  background-color: rgba(var(--seadogs-rgb), 0.1);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  
+  p:last-child {
+    margin-bottom: 0;
+  }
+  
+  &.callout-highlight {
+    background-color: rgba(var(--sunshine-rgb), 0.2);
+    border-left: 4px solid var(--sunshine);
+  }
+}
+
+// Board member card
+.board-member {
+  display: flex;
+  flex-direction: column;
+  
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.75rem;
+  }
+  
+  h3 {
+    font-size: 1.125em;
+    margin: 0;
+  }
+  
+  p {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.9em;
+    color: rgba(var(--ink-rgb), 0.7);
+  }
+}
+
+// Membership tier card
+.tier {
+  background-color: rgba(var(--page-rgb), 0.8);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+  
+  h2 {
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .price {
+    font-size: 1.25em;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--seadogs);
+  }
+  
+  p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .cta {
+    margin-top: auto;
+    align-self: flex-start;
+  }
+}

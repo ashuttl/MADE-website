@@ -1,2 +1,27 @@
+# Jekyll build output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler files
+.bundle/
+vendor/
+
+# Ruby dependency management
+Gemfile.lock
+
+# Mac OS X files
 .DS_Store
+
+# VS Code files
+.vscode/
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Claude instructions
 CLAUDE.md
