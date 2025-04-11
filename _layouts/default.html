@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="{{ site.baseurl }}/">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
@@ -10,14 +11,14 @@
 <body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
     <header>
         <div class="container">
-            <a href="/" class="logo">
+            <a href="{{ site.baseurl }}/" class="logo">
                 {% include svg/made-logo.svg %}
             </a>
             <nav>
                 <ul>
-                    <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About</a></li>
-                    <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Membership</a></li>
-                    <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Brodersons</a></li>
+                    <li><a href="{{ site.baseurl }}/about"{% if page.url == "/about/" %} class="current"{% endif %}>About</a></li>
+                    <li><a href="{{ site.baseurl }}/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Membership</a></li>
+                    <li><a href="{{ site.baseurl }}/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Brodersons</a></li>
                 </ul>
             </nav>
         </div>
@@ -52,11 +53,11 @@
 
             <nav>
                 <ul>
-                    <li><a href="/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
-                    <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About MADE</a></li>
-                    <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Broderson Awards</a></li>
-                    <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Become a member</a></li>
-                    <li><a href="/code-of-conduct"{% if page.url == "/code-of-conduct/" %} class="current"{% endif %}>Code of conduct</a></li>
+                    <li><a href="{{ site.baseurl }}/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
+                    <li><a href="{{ site.baseurl }}/about"{% if page.url == "/about/" %} class="current"{% endif %}>About MADE</a></li>
+                    <li><a href="{{ site.baseurl }}/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Broderson Awards</a></li>
+                    <li><a href="{{ site.baseurl }}/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Become a member</a></li>
+                    <li><a href="{{ site.baseurl }}/code-of-conduct"{% if page.url == "/code-of-conduct/" %} class="current"{% endif %}>Code of conduct</a></li>
                     <li><a href="/login" class="external" target="_blank">Member account login</a></li>
                     <li><a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a></li>
                 </ul>

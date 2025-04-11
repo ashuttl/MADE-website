@@ -8,7 +8,7 @@ title: About Maine Ad + Design
 {% capture lede_content %}
 In 1923, forty years before the heyday of Don Draper, one of America's first ad clubs was dreamed up in a hotel room in cosmopolitan Portland, Maine. In the century since — first as the Portland Advertising Club, then the Advertising Club of Greater Portland (and then of Maine), and now as Maine Ad + Design — generations of Maine creative professionals have come together to connect, create, and celebrate everything that makes us tick.
 
-Not a member yet? [Please join us!](/membership)
+Not a member yet? [Please join us!]({{ site.baseurl }}/membership)
 {% endcapture %}
 
 {% include lede.html content=lede_content %}
@@ -53,56 +53,56 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
 
 <div class="board-members">
     <div class="board-member">
-        <img src="/assets/images/board/dustyn.jpeg" alt="Dustyn Bailey">
+        <img src="{{ site.baseurl }}/assets/images/board/dustyn.jpeg" alt="Dustyn Bailey">
         <h3>Dustyn Bailey</h3>
         <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn</a></p>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">
+        <img src="{{ site.baseurl }}/assets/images/board/abby.jpeg" alt="Abby Lank">
         <h3>Abby Lank</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/alphan.jpeg" alt="Alphan Günaydın">
+        <img src="{{ site.baseurl }}/assets/images/board/alphan.jpeg" alt="Alphan Günaydın">
         <h3>Alphan Günaydın</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/andrew.jpeg" alt="Andrew Shuttleworth Fowler">
+        <img src="{{ site.baseurl }}/assets/images/board/andrew.jpeg" alt="Andrew Shuttleworth Fowler">
         <h3>Andrew Shuttleworth Fowler</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/anna.jpeg" alt="Anna McDonough">
+        <img src="{{ site.baseurl }}/assets/images/board/anna.jpeg" alt="Anna McDonough">
         <h3>Anna McDonough</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/christine.jpeg" alt="Christine Puopolo">
+        <img src="{{ site.baseurl }}/assets/images/board/christine.jpeg" alt="Christine Puopolo">
         <h3>Christine Puopolo</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/devon.jpeg" alt="Devon Naylor">
+        <img src="{{ site.baseurl }}/assets/images/board/devon.jpeg" alt="Devon Naylor">
         <h3>Devon Naylor</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/elsie.jpeg" alt="Elsie Widing">
+        <img src="{{ site.baseurl }}/assets/images/board/elsie.jpeg" alt="Elsie Widing">
         <h3>Elsie Widing</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/gerrit.jpeg" alt="Gerrit Petersons">
+        <img src="{{ site.baseurl }}/assets/images/board/gerrit.jpeg" alt="Gerrit Petersons">
         <h3>Gerrit Petersons</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/helena.jpeg" alt="Helena Olson">
+        <img src="{{ site.baseurl }}/assets/images/board/helena.jpeg" alt="Helena Olson">
         <h3>Helena Olson</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/kes.jpeg" alt="Kes Lavoie">
+        <img src="{{ site.baseurl }}/assets/images/board/kes.jpeg" alt="Kes Lavoie">
         <h3>Kes Lavoie</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/sokvonny.jpeg" alt="Sokvonny Chhouk">
+        <img src="{{ site.baseurl }}/assets/images/board/sokvonny.jpeg" alt="Sokvonny Chhouk">
         <h3>Sokvonny Chhouk</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/stanzi.jpeg" alt="Stanzi Littlefield">
+        <img src="{{ site.baseurl }}/assets/images/board/stanzi.jpeg" alt="Stanzi Littlefield">
         <h3>Stanzi Littlefield</h3>
     </div>
 </div>
