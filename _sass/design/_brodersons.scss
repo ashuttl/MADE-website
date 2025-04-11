@@ -108,11 +108,25 @@
     letter-spacing: -0.01em;
     font-size: 2.75em;
     text-transform: uppercase;
-    display: inline-block;
+    margin-right: 1rem;
+    margin-left: 0; // Reset margin
+    display: inline; // Allow text to wrap naturally
+    line-height: 1.2; // Tighter spacing between lines when wrapping
+    color: var(--theme-ink); // Default text color
+    background-color: transparent; // No background by default
+    padding: 0; // No padding by default
+  }
+  
+  // Use a span inside h1 for the background highlight effect
+  h1 .highlight {
     background-color: var(--theme-ink);
     color: white;
     padding: 0.1em 0.3em;
-    margin-right: 1rem;
+    padding-bottom: 0.15em; // Slightly more padding at bottom to ensure no gaps
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    margin-left: -0.3em; // Negative margin to align with content edge
+    line-height: 1.15; // Very tight line height to eliminate any gap
   }
   
   // Header content layout
@@ -124,7 +138,8 @@
     margin-bottom: 2rem;
     
     h1, h2 {
-      margin: 0;
+      margin-top: 0;
+      margin-bottom: 0.2em;
     }
     
     h2 {

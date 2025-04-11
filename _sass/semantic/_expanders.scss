@@ -1,9 +1,22 @@
 // Expandable content sections
 .expander {
   margin: 2rem 0;
-  border: 0.0625rem solid rgba(var(--ink-rgb), 0.1);
+  border: 0.0625rem solid rgba(var(--ink-rgb), 0.05);
   border-radius: var(--border-radius);
   overflow: hidden;
+  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.01);
+  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  
+  &.is-open {
+    box-shadow: var(--shadow-xl);
+    border-color: rgba(var(--ink-rgb), 0.1);
+  }
+  
+  &:hover {
+    &:not(.is-open) {
+      transform: translateY(-1px);
+    }
+  }
 }
 
 .expander-toggle {
@@ -11,9 +24,19 @@
   background-color: rgba(var(--page-rgb), 0.8);
   cursor: pointer;
   position: relative;
+  transition: all 0.3s ease-in-out;
   
   &:hover {
-    background-color: rgba(var(--seadogs-rgb), 0.05);
+    background-color: rgba(var(--seadogs-rgb), 0.08);
+  }
+  
+  .expander.is-open & {
+    background-color: var(--ink);
+    color: var(--page);
+    
+    h2, h3, h4, h5, h6 {
+      color: var(--page);
+    }
   }
   
   &::after {
@@ -28,6 +51,7 @@
     height: 1.25rem;
     text-align: center;
     line-height: 1.25rem;
+    transition: transform 0.3s ease-in-out;
   }
   
   h2, h3, h4, h5, h6 {
@@ -36,21 +60,42 @@
 }
 
 .expander-content {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem; 
   max-height: 0;
   overflow: hidden;
-  will-change: max-height, padding; /* Hint to browser that these properties will animate */
+  opacity: 0;
+  will-change: max-height, opacity, padding-top; /* Hint to browser that these properties will animate */
   
   /* Ensure tables don't break layout */
   table {
     max-width: 100%;
     margin: 1.5rem 0;
+    overflow-x: auto;
+    display: block;
   }
   
   /* Only apply transitions after the page has fully loaded */
   .js-expanders-ready & {
-    transition: max-height 0.5s cubic-bezier(0, 0, 0.2, 1), 
-                padding 0.2s ease;
+    transition: max-height 0.7s cubic-bezier(0, 0, 0.2, 1),
+                opacity 0.25s ease-in-out,
+                padding-top 0.25s ease-in-out;
+  }
+  
+  /* Faster transitions when closing */
+  .expander:not(.is-open) & {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 1, 1),
+                opacity 0.2s ease-out,
+                padding-top 0.15s ease-out;
+  }
+}
+
+/* Special handling for complex layouts */
+.expander.is-open {
+  &.is-column-layout .expander-content,
+  &.has-tables .expander-content {
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 }
 
@@ -58,17 +103,28 @@
 .expander.is-open {
   .expander-toggle::after {
     content: "−"; // Minus sign (not hyphen)
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(180deg);
+    color: var(--page);
   }
   
   .expander-content {
-    max-height: var(--content-height, 100rem); // Use CSS variable if available, fallback to large value
+    max-height: var(--content-height, 9999px); // Use CSS variable if available, fallback to large value
     padding: 1.5rem;
-    padding-top: 0;
+    padding-top: 1.5rem; 
+    opacity: 1;
+    overflow: visible; // Allow content to flow naturally when open
     
     .js-expanders-ready & {
-      transition: max-height 0.5s cubic-bezier(0, 0, 0.2, 1), 
-                  padding 0.2s ease;
+      transition: max-height 0.7s cubic-bezier(0, 0, 0.2, 1),
+                  opacity 0.4s ease-in-out,
+                  padding-top 0.3s ease-in-out;
+    }
+    
+    /* When closing, respect the faster transitions */
+    .expander:not(.is-open) & {
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 1, 1),
+                  opacity 0.2s ease-out,
+                  padding-top 0.15s ease-out;
     }
   }
 }
@@ -76,13 +132,23 @@
 // Default open state for no-JS experience
 .expander-content {
   &:target {
-    max-height: var(--content-height, 100rem);
+    max-height: var(--content-height, 9999px);
     padding: 1.5rem;
-    padding-top: 0;
+    padding-top: 1.5rem;
+    opacity: 1;
+    overflow: visible;
     
     .js-expanders-ready & {
-      transition: max-height 0.5s cubic-bezier(0, 0, 0.2, 1), 
-                  padding 0.2s ease;
+      transition: max-height 0.7s cubic-bezier(0, 0, 0.2, 1),
+                  opacity 0.4s ease-in-out,
+                  padding-top 0.3s ease-in-out;
+    }
+    
+    /* When closing, respect the faster transitions */
+    .expander:not(.is-open) & {
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 1, 1),
+                  opacity 0.2s ease-out,
+                  padding-top 0.15s ease-out;
     }
     
     + .expander-toggle::after {

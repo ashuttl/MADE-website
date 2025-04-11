@@ -25,8 +25,8 @@ class: broderson-page
 </div>
 
 <div class="header-content">
-  <h1>Broderson Awards 2025</h1>
-  <h2>Celebrating excellence in Maine's creative community</h2>
+  <h1><span class="highlight">Broderson Awards 2025</span></h1>
+  <h2>Celebrating excellence in Maine’s creative community</h2>
   <div class="meta">
     <div>Thursday, June 5, 2025<br>
     6:00–9:00 pm<br>
@@ -132,76 +132,120 @@ Freelance: $80 • Standard: $100
 </div>
 
 {% capture categories_content %}
+<div class="category-container">
+  <h3>TV Campaign, Spot or Video - Short Form</h3>
+  <p>Individual under 60-second spots, viral, pre-roll, post-roll or long format content. This includes commercials produced by and/or for television stations, commercials for businesses (retail, service or merchandising businesses) or creative of any length that was produced for use online. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### TV Campaign, Spot or Video - Short Form
-Individual under 60-second spots, viral, pre-roll, post-roll or long format content. This includes commercials produced by and/or for television stations, commercials for businesses (retail, service or merchandising businesses) or creative of any length that was produced for use online. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>The Cumberland Award - Free Submissions!</h3>
+  <p>Work must have been created by a Maine resident for a Maine-based company under a budget of less than $5,000. Award may represent any type of advertising or marketing creative, but must be submitted as a PDF. Cumberland award submissions are free. (For packaging design or other three dimensional elements, please submit photography of the piece in a PDF format.)</p>
+</div>
 
-### The Cumberland Award - Free Submissions!
-Work must have been created by a Maine resident for a Maine-based company under a budget of less than $5,000. Award may represent any type of advertising or marketing creative, but must be submitted as a PDF. Cumberland award submissions are free. (For packaging design or other three dimensional elements, please submit photography of the piece in a PDF format.)
+<div class="category-container">
+  <h3>Student Work - Free Submissions!</h3>
+  <p>Award entry must be submitted by a student currently enrolled in an educational program, and should not have been created as a paid project for a client or business. Award may represent any type of advertising or marketing creative, but must be submitted as a PDF. (For packaging design or other three dimensional elements, please submit photography of the piece in a PDF format.) Student award submissions are free. All entries will be submitted for monetary award consideration, five total monetary awards will be awarded at the June 2025 event. Valid for students graduating in 2024 or later.</p>
+</div>
 
-### Student Work - Free Submissions!
-Award entry must be submitted by a student currently enrolled in an educational program, and should not have been created as a paid project for a client or business. Award may represent any type of advertising or marketing creative, but must be submitted as a PDF. (For packaging design or other three dimensional elements, please submit photography of the piece in a PDF format.) Student award submissions are free. All entries will be submitted for monetary award consideration, five total monetary awards will be awarded at the June 2025 event. Valid for students graduating in 2024 or later.
+<div class="category-container">
+  <h3>Self Promotion</h3>
+  <p>Any ad or collateral piece used for the purpose of self-promotion. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Self Promotion
-Any ad or collateral piece used for the purpose of self-promotion. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>Freelance - Illustration</h3>
+  <p>Any illustration used in the context of an advertisement or collateral piece. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Freelance - Illustration
-Any illustration used in the context of an advertisement or collateral piece. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>In-house Award</h3>
+  <p>An award dedicated to any work developed by an in-house team alone. Be it a campaign, photography, videography, design, or more. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### In-house Award
-An award dedicated to any work developed by an in-house team alone. Be it a campaign, photography, videography, design, or more. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>AI and Emerging Technology</h3>
+  <p>This award recognizes outstanding advertising initiatives that utilize artificial intelligence in innovative and impactful ways. Entries may encompass written content, visual designs, video productions, audio compositions, or any combination of media that has been created or significantly enhanced through AI technologies.</p>
+</div>
 
-### AI and Emerging Technology
-This award recognizes outstanding advertising initiatives that utilize artificial intelligence in innovative and impactful ways. Entries may encompass written content, visual designs, video productions, audio compositions, or any combination of media that has been created or significantly enhanced through AI technologies.
+<div class="category-container">
+  <h3>Freelance - Photography</h3>
+  <p>Any photography used in the context of an advertisement or collateral piece. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Freelance - Photography
-Any photography used in the context of an advertisement or collateral piece. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>Pitched but Ditched</h3>
+  <p>Advertising or marketing work that you loved, but that didn't make the real world cut. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Pitched but Ditched
-Advertising or marketing work that you loved, but that didn't make the real world cut. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>Animation</h3>
+  <p>Any animation used in the context of an advertisement or branding. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Animation
-Any animation used in the context of an advertisement or branding. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>Integrated Marketing Campaign Category above $50,000</h3>
+  <p>Advertising + marketing work that integrates multiple media, channels or activities to relay a message, create brand awareness or drive a result. Entrants may include a video explanation or description of strategy + results and up to 5 examples of the campaign.</p>
+</div>
 
-### Integrated Marketing Campaign Category above $50,000
-Advertising + marketing work that integrates multiple media, channels or activities to relay a message, create brand awareness or drive a result. Entrants may include a video explanation or description of strategy + results and up to 5 examples of the campaign.
+<div class="category-container">
+  <h3>Cause-driven Campaign / Asset</h3>
+  <p>Any website, campaign, and or asset created/produced for a non-profit, pro-bono or for a corporation intended for the promotion of a cause, movement or collection of donations. Any category where your entry itself is interactive or contains interactive content, you will need to provide a URL link to the website, mobile application or game.</p>
+</div>
 
-### Cause-driven Campaign / Asset
-Any website, campaign, and or asset created/produced for a non-profit, pro-bono or for a corporation intended for the promotion of a cause, movement or collection of donations. Any category where your entry itself is interactive or contains interactive content, you will need to provide a URL link to the website, mobile application or game.
+<div class="category-container">
+  <h3>Integrated Marketing Campaign Category below $50,000</h3>
+  <p>Advertising and marketing work that integrates multiple media, channels or activities to relay a message, create brand awareness or drive a result. Entrants may include a video explanation or description of strategy + results and up to 5 examples of the campaign.</p>
+</div>
 
-### Integrated Marketing Campaign Category below $50,000
-Advertising and marketing work that integrates multiple media, channels or activities to relay a message, create brand awareness or drive a result. Entrants may include a video explanation or description of strategy + results and up to 5 examples of the campaign.
+<div class="category-container">
+  <h3>Outdoor Advertising (signage, posters, etc.)</h3>
+  <p>Large scale or small - promotional outdoor advertising posters, signage, POS displays or banner design created for promotion of a client, event, cause or campaign. Should represent real world work and may include descriptive paragraph underscoring the strategy or inspiration behind the execution.</p>
+</div>
 
-### Outdoor Advertising (signage, posters, etc.)
-Large scale or small - promotional outdoor advertising posters, signage, POS displays or banner design created for promotion of a client, event, cause or campaign. Should represent real world work and may include descriptive paragraph underscoring the strategy or inspiration behind the execution.
+<div class="category-container">
+  <h3>Web Design</h3>
+  <p>All encompassing Web design and App development category to include - E-commerce websites for a business or corporation intended for the purchase and sale of products, lead generation websites intended for the collection of contact information, and or app development for a unique digital mobile experience. Any category where your entry itself is interactive or contains interactive content, you will need to provide a URL link to the website, mobile application or game.</p>
+</div>
 
-### Web Design
-All encompassing Web design and App development category to include - E-commerce websites for a business or corporation intended for the purchase and sale of products, lead generation websites intended for the collection of contact information, and or app development for a unique digital mobile experience. Any category where your entry itself is interactive or contains interactive content, you will need to provide a URL link to the website, mobile application or game.
+<div class="category-container">
+  <h3>Social Media Campaigns</h3>
+  <p>Paid or organic social media campaigns - Paid social media advertising, which received paid placement, boosts, paid social media influencers or paid "native" content advertising on social media channels. Generally intended to support brand, cause or product awareness, lead generation, sales or similar objectives. Can include a single creative execution or up to five examples from a campaign. OR Organic social media programs that did not receive paid placement or a budget, and received only organic reach. Generally intended to support community-building, engagement, brand, cause or product awareness or similar objectives. Includes crowdsourced, hashtag or social movement campaigns, user generated content campaigns, influencer campaigns and other similar activations.</p>
+</div>
 
-### Social Media Campaigns
-Paid or organic social media campaigns - Paid social media advertising, which received paid placement, boosts, paid social media influencers or paid "native" content advertising on social media channels. Generally intended to support brand, cause or product awareness, lead generation, sales or similar objectives. Can include a single creative execution or up to five examples from a campaign. OR Organic social media programs that did not receive paid placement or a budget, and received only organic reach. Generally intended to support community-building, engagement, brand, cause or product awareness or similar objectives. Includes crowdsourced, hashtag or social movement campaigns, user generated content campaigns, influencer campaigns and other similar activations.
+<div class="category-container">
+  <h3>Digital Advertising and Rich Media</h3>
+  <p>Digital Ads (Interactive +/or creative use of online ads: clickable banners, floating ads, etc.), Video (Viral, pre-roll, post-roll or long form content. Should include creative of any length that was produced for use online.), Interactive and/or Rich media (Promo elements or digital ads that include an interactive or rich media experience. Includes in-app, page takeovers or other elements.)</p>
+</div>
 
-### Digital Advertising and Rich Media
-Digital Ads (Interactive +/or creative use of online ads: clickable banners, floating ads, etc.), Video (Viral, pre-roll, post-roll or long form content. Should include creative of any length that was produced for use online.), Interactive and/or Rich media (Promo elements or digital ads that include an interactive or rich media experience. Includes in-app, page takeovers or other elements.)
+<div class="category-container">
+  <h3>Package Design</h3>
+  <p>Single packages and product lines accepted. Please submit as a single PDF or up to five images in a line. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### Package Design
-Single packages and product lines accepted. Please submit as a single PDF or up to five images in a line. Can include up to 150 words of descriptive text.
+<div class="category-container">
+  <h3>Audio, Podcast, Audio Design</h3>
+  <p>Any audio only production including commercials, podcasts, audiobooks, or content either for broadcast or streaming. All submissions should be in MP3 with the script.</p>
+</div>
 
-### Audio, Podcast, Audio Design
-Any audio only production including commercials, podcasts, audiobooks, or content either for broadcast or streaming. All submissions should be in MP3 with the script.
+<div class="category-container">
+  <h3>Freelance - Logos and Marks</h3>
+  <p>Visual assets created to represent a corporation or brand. Work submitted can include consumer, trade or B2B logotypes, logos and trademarks, up to 150 words describing strategy and inspiration behind execution.</p>
+</div>
 
-### Freelance - Logos and Marks
-Visual assets created to represent a corporation or brand. Work submitted can include consumer, trade or B2B logotypes, logos and trademarks, up to 150 words describing strategy and inspiration behind execution.
+<div class="category-container">
+  <h3>Corporate or Brand Identity</h3>
+  <p>A series of visual assets created to represent a corporation or brand. Work submitted can include consumer, trade or B2B logotypes, logos and trademarks, brand standards manuals or other visual assets and up to 150 words describing strategy and inspiration behind execution.</p>
+</div>
 
-### Corporate or Brand Identity
-A series of visual assets created to represent a corporation or brand. Work submitted can include consumer, trade or B2B logotypes, logos and trademarks, brand standards manuals or other visual assets and up to 150 words describing strategy and inspiration behind execution.
+<div class="category-container">
+  <h3>TV Campaign, Spot or Video - Long Form</h3>
+  <p>Individual over 60-second spots, viral, pre-roll, post-roll or long format content. This includes commercials produced by and/or for television stations, commercials for businesses (retail, service or merchandising businesses) or creative of any length that was produced for use online. Can include up to 150 words of descriptive text.</p>
+</div>
 
-### TV Campaign, Spot or Video - Long Form
-Individual over 60-second spots, viral, pre-roll, post-roll or long format content. This includes commercials produced by and/or for television stations, commercials for businesses (retail, service or merchandising businesses) or creative of any length that was produced for use online. Can include up to 150 words of descriptive text.
-
-### Annual Reports, Brochures, Corporate Collateral, Corporate Event Design
-Assets created for education, outreach or awareness for a client, event, cause or campaign. Should represent real world work and may include descriptive paragraph underscoring the strategy or inspiration behind the execution.
-
+<div class="category-container">
+  <h3>Annual Reports, Brochures, Corporate Collateral, Corporate Event Design</h3>
+  <p>Assets created for education, outreach or awareness for a client, event, cause or campaign. Should represent real world work and may include descriptive paragraph underscoring the strategy or inspiration behind the execution.</p>
+</div>
 {% endcapture %}
 
 <div class="expander" id="award-categories">
