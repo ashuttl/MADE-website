@@ -7,7 +7,7 @@ theme: harbor
 
 {% 
   include hero.html
-  image_src="{{ site.baseurl }}/assets/images/home-page-photo.jpg"
+  image_src="/assets/images/home-page-photo.jpg"
   title="Building community for Maine creatives since 1923"
   cta_links=site.data.home_ctas
   image_position="top center"

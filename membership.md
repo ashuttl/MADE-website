@@ -11,7 +11,7 @@ title: Join Maine Ad + Design
 {% endcapture %}
 
 {% include content-with-image.html 
-   image_src="{{ site.baseurl }}/assets/images/party-for-join-page.jpg" 
+   image_src="/assets/images/party-for-join-page.jpg" 
    image_alt="MADE community event" 
    content=processed_content
    image_position="right"
