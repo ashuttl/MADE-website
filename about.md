@@ -34,7 +34,7 @@ We are fundamentally a network of members. Our members include people working in
 
 — in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).
 
-Maine Ad + Design is a community of tolerance and pride. We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
+Maine Ad + Design is a community of tolerance and pride. We stand against oppression in all its forms, at large scales and at small ones, and are committed to ==cultivating diversity, inclusivity, equality, and kindness== where we live and work.
 
 ---
 

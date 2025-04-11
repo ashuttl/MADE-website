@@ -31,10 +31,8 @@ title: Join Maine Ad + Design
 <div>
 <h2>Small business membership</h2>
 <p class="price">$300/year</p>
+<p>Includes MADE memberships for <nobr>1–14</nobr> employees at your organization</p>
 </div>
-
-Includes MADE memberships for 1–14 employees at your organization
-
 <a href="https://made.memberful.com/checkout?plan=109069" class="cta">Join</a>
 </div>
 
@@ -42,10 +40,8 @@ Includes MADE memberships for 1–14 employees at your organization
 <div>
 <h2>Large business membership</h2>
 <p class="price">$600/year</p>
+<p>Includes MADE memberships for 15+ employees at your organization</p>
 </div>
-
-Includes MADE memberships for 15+ employees at your organization
-
 <a href="https://made.memberful.com/checkout?plan=109070" class="cta">Join</a>
 </div>
 </div>
@@ -59,8 +55,8 @@ Includes MADE memberships for 15+ employees at your organization
 - The ability to submit work for consideration for the Broderson Awards
 - Good feelings and support for a good cause
 
-<div class="callout">
-<p>We don't want the cost of membership to prevent anyone from joining.</p>
+<div class="callout" markdown="1">
+We don't want the cost of membership to ==prevent anyone from joining==.
 
-<p><a href="https://made.memberful.com/checkout?plan=109068&coupon=Education">Students or educators can join free</a> with coupon code "Education". Need a different accommodation? <a href="mailto:board@maineaddesign.com">Contact our volunteer board</a> and we'll get right in touch.</p>
+[Students or educators can join free](https://made.memberful.com/checkout?plan=109068&coupon=Education) with coupon code "Education". Need a different accommodation? [Contact our volunteer board](mailto:board@maineaddesign.com) and we'll get right in touch.
 </div>

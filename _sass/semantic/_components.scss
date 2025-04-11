@@ -4,19 +4,36 @@
 
 // Callout component
 .callout {
-  border: 0.0625rem solid var(--seadogs);
+  border: none;
   border-radius: var(--border-radius);
   padding: 1.5rem;
   margin: 2rem 0;
   max-width: var(--text-max-width);
+  background-color: rgba(var(--seadogs-rgb), 0.1);
   
   p:last-child {
     margin-bottom: 0;
   }
   
   &.callout-highlight {
-    border: 0.0625rem solid var(--sunshine);
-    border-left-width: 0.25rem;
+    background-color: rgba(var(--sunshine-rgb), 0.15);
+  }
+  
+  // Theme-based styling
+  .theme-harbor & {
+    background-color: rgba(var(--theme-link-rgb), 0.1);
+  }
+  
+  .theme-midnight & {
+    background-color: rgba(var(--theme-link-rgb), 0.1);
+  }
+  
+  .theme-teal & {
+    background-color: rgba(var(--theme-link-rgb), 0.1);
+  }
+  
+  .theme-sunshine & {
+    background-color: rgba(var(--theme-link-rgb), 0.1);
   }
 }
 
@@ -47,17 +64,19 @@
 
 // Membership tier card
 .tier {
-  background-color: var(--page);
-  border: 0.0625rem solid var(--ink);
+  background-color: var(--white);
+  border: none;
   border-radius: var(--border-radius);
   padding: 1.5rem;
-  // box-shadow removed to avoid transparency
-  // transition: box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
   
-  // &:hover {
-  //   box-shadow: var(--shadow-md);
-  //   transform: translateY(-0.1875rem);
-  // }
+  .theme-midnight & {
+    background-color: var(--black);
+  }
   
   h2 {
     font-size: 1.5em;
@@ -67,18 +86,28 @@
   
   .price {
     font-size: 1.25em;
-    font-weight: 700;
+    font-weight: 400;
     margin-bottom: 1rem;
-    color: var(--seadogs);
+    color: var(--theme-ink, var(--ink));
+    font-family: var(--font-heading);
   }
   
   p {
     margin-bottom: 1.5rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   
   .cta {
-    margin-top: auto;
+    margin-top: 1rem;
     align-self: flex-start;
+  }
+  
+  // Wrap content except button
+  > div {
+    margin-bottom: auto;
   }
 }
 

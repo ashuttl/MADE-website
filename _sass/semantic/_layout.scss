@@ -23,9 +23,8 @@ body {
   // Minimum of 1.5rem (24px), scales up to about 5% of viewport width on larger screens
   padding: 0 calc(1.5rem + 3vw);
   
-  // Add top and bottom padding for main content containers
+  // Add bottom padding for main content containers (top padding removed)
   .main-content > & {
-    padding-top: 3rem;
     padding-bottom: 3rem;
   }
   
@@ -84,7 +83,7 @@ header {
       &:hover, &:focus {
         text-decoration: none;
         
-        &::after {
+        &::before {
           content: '';
           position: absolute;
           bottom: -0.35rem;
@@ -100,7 +99,7 @@ header {
       &.current {
         font-weight: 700;
         
-        &::after {
+        &::before {
           content: '';
           position: absolute;
           bottom: -0.35rem;
@@ -187,7 +186,7 @@ main {
 // Board members grid
 .board-members {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -195,7 +194,7 @@ main {
 // Membership tiers
 .membership-tiers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -262,6 +261,7 @@ footer {
       margin: 0;
       padding: 0;
       gap: 0.5rem 1.5rem;
+      max-width: none; /* Override the default max-width constraint */
     }
     
     a {
@@ -277,7 +277,7 @@ footer {
       &:hover, &:focus {
         text-decoration: none;
         
-        &::after {
+        &::before {
           content: '';
           position: absolute;
           bottom: -0.35rem;
@@ -293,7 +293,7 @@ footer {
       &.current {
         font-weight: 600;
         
-        &::after {
+        &::before {
           content: '';
           position: absolute;
           bottom: -0.35rem;

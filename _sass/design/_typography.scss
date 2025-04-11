@@ -155,3 +155,12 @@ hr {
   opacity: 0.1;
   margin: 2em 0;
 }
+
+// Highlighted text
+mark {
+  background-color: var(--theme-mark, var(--mark-color));
+  padding: 0.1em 0.2em;
+  border-radius: 0.2em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}

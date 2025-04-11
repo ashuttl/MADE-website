@@ -68,6 +68,7 @@
   --theme-ink: var(--ink);
   --theme-link: var(--linktext);
   --theme-current-link: var(--currentlinktext);
+  --theme-mark: var(--mark-color);
   
   --theme-page-rgb: var(--page-rgb);
   --theme-ink-rgb: var(--ink-rgb);
@@ -101,6 +102,7 @@
   --theme-ink: var(--wintermint);
   --theme-link: var(--seadogs);
   --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.4);
   
   --theme-page-rgb: var(--harbor-rgb);
   --theme-ink-rgb: var(--wintermint-rgb);
@@ -115,6 +117,7 @@
   --theme-ink: var(--page);
   --theme-link: var(--seadogs);
   --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.3);
   
   --theme-page-rgb: var(--ink-rgb);
   --theme-ink-rgb: var(--page-rgb);
@@ -129,6 +132,7 @@
   --theme-ink: var(--harbor);
   --theme-link: var(--orchid);
   --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.4);
   
   --theme-page-rgb: var(--wintermint-rgb);
   --theme-ink-rgb: var(--harbor-rgb);
@@ -143,6 +147,7 @@
   --theme-ink: var(--ink);
   --theme-link: var(--harbor);
   --theme-current-link: var(--langostino);
+  --theme-mark: rgba(var(--harbor-rgb), 0.2);
   
   --theme-page-rgb: var(--sunshine-rgb);
   --theme-ink-rgb: var(--ink-rgb);
