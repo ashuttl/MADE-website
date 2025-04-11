@@ -196,6 +196,10 @@ main {
   margin: 2rem 0;
 }
 
+.board-member {
+  max-width: 10rem;
+}
+
 // Membership tiers
 .membership-tiers {
   display: grid;
@@ -204,7 +208,7 @@ main {
   margin: 2rem 0;
   
   @media (min-width: 40em) {
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: 2rem;
   }
 }
@@ -212,8 +216,6 @@ main {
 // Footer
 footer {
   background-color: var(--page);
-  padding: 3rem 0;
-  /* margin-top removed to avoid redundancy with padding */
   
   // Theme adjustments for footer
   .theme-harbor &, .theme-midnight &, .theme-teal &, .theme-sunshine & {

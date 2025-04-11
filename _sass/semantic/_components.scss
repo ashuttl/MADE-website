@@ -48,6 +48,7 @@
     object-fit: cover;
     border-radius: var(--border-radius);
     margin-bottom: 0.75rem;
+    margin-top: 0;
   }
   
   h3 {
@@ -72,7 +73,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
   
   .theme-midnight & {
     background-color: var(--black);

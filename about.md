@@ -8,7 +8,7 @@ title: About Maine Ad + Design
 {% capture lede_content %}
 In 1923, forty years before the heyday of Don Draper, one of America's first ad clubs was dreamed up in a hotel room in cosmopolitan Portland, Maine. In the century since — first as the Portland Advertising Club, then the Advertising Club of Greater Portland (and then of Maine), and now as Maine Ad + Design — generations of Maine creative professionals have come together to connect, create, and celebrate everything that makes us tick.
 
-(Not a member yet? [Please join us!](/membership))
+Not a member yet? [Please join us!](/membership)
 {% endcapture %}
 
 {% include lede.html content=lede_content %}
@@ -38,14 +38,14 @@ We are fundamentally a network of members. Our members include people working in
 
 ## Our values
 
-==Maine Ad + Design is a community of tolerance and pride.== We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
-
 Maine Ad + Design is dedicated to fostering creativity, supporting professional growth, and building community throughout Maine's commercial arts industry. We believe in:
 
 - The power of creative collaboration
 - Lifelong learning and professional development
 - Celebrating excellence in our industry
 - Supporting the next generation of creative professionals
+
+==Maine Ad + Design is a community of tolerance and pride.== We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
 
 ---
 
