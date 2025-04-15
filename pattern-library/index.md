@@ -12,6 +12,8 @@ This page documents the design system and components used on the Maine Ad + Desi
   <a href="#typography" class="cta">Typography</a>
   <a href="#colors" class="cta" style="margin-top: 0.5rem;">Colors</a>
   <a href="#components" class="cta" style="margin-top: 0.5rem;">Components</a>
+  <a href="#events" class="cta" style="margin-top: 0.5rem;">Events</a>
+  <a href="#icons" class="cta" style="margin-top: 0.5rem;">Icons</a>
 </div>
 
 ## Overview
@@ -82,12 +84,12 @@ Regular paragraph text is set in Golos Text. It's clean, contemporary, and highl
 
 Straplines and headlines are custom elements used to introduce sections:
 
-<strapline>This is a strapline</strapline>
-<headline>This is a headline that follows the strapline</headline>
+<span class="strapline">This is a strapline</span>
+<h2 class="headline">This is a headline that follows the strapline</h2>
 
 ```html
-<strapline>This is a strapline</strapline>
-<headline>This is a headline that follows the strapline</headline>
+<span class="strapline">This is a strapline</span>
+<h2 class="headline">This is a headline that follows the strapline</h2>
 ```
 
 <a id="colors"></a>
@@ -191,8 +193,8 @@ Mini panels are floating content sections that can contain a call to action:
 Panels are content containers that can have different color themes:
 
 <div class="panel panel-sunshine" style="margin: 2rem 0;">
-  <strapline>Our mission</strapline>
-  <headline>To celebrate, cultivate, and connect Maine's professional creative community</headline>
+  <span class="strapline">Our mission</span>
+  <h2 class="headline">To celebrate, cultivate, and connect Maine's professional creative community</h2>
   
   <div class="two-up">
     <div>
@@ -213,20 +215,20 @@ Panels are content containers that can have different color themes:
 </div>
 
 <div class="panel panel-tomato" style="margin: 2rem 0;">
-  <strapline>Inclusion</strapline>
+  <span class="strapline">Inclusion</span>
   <p><mark>Maine Ad + Design is a community of tolerance and pride.</mark> We stand against oppression in all its forms.</p>
 </div>
 
 <div class="panel panel-harbor" style="margin: 2rem 0; color: white;">
-  <strapline>Join us</strapline>
+  <span class="strapline">Join us</span>
   <p>Become part of Maine's vibrant creative community.</p>
   <a href="#" class="cta">Become a member</a>
 </div>
 
 ```html
 <div class="panel panel-sunshine">
-  <strapline>Our mission</strapline>
-  <headline>To celebrate, cultivate, and connect</headline>
+  <span class="strapline">Our mission</span>
+  <h2 class="headline">To celebrate, cultivate, and connect</h2>
   
   <div class="two-up">
     <!-- Two-column content -->
@@ -323,6 +325,40 @@ Board members are displayed in a grid of cards with photos:
 </div>
 ```
 
+<a id="events"></a>
+### Event Cards
+
+Events are displayed in a responsive grid with cards that have rounded corners and a distinctive style:
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+  <div class="event-card">
+    <div class="event-image" style="background-image: url('/assets/images/event-placeholder.jpg');">
+      <a href="#" class="event-ticket-link cta cta-sunshine cta-small">RSVP</a>
+    </div>
+    <div class="event-content">
+      <h3 class="event-title text-seadogs">MADE Mixer</h3>
+      <div class="event-date">
+        <time datetime="2025-04-17">Thursday, April 17</time>
+        <span class="event-time">5:30 PM–7:30 PM</span>
+      </div>
+      <div class="event-location">
+        <div class="location-name">Factory 3</div>
+        <div class="location-address">105 St James St, Portland, ME</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+```html
+{% include event-card.html event=event %}
+```
+
+To display a list of upcoming events:
+
+```html
+{% include upcoming-events.html theme="seadogs" %}
+```
+
 ### Global Banner
 
 The site features a configurable global banner at the top:
@@ -339,6 +375,116 @@ The banner is configured in `_data/banner.yml` and can be:
 - Enabled/disabled
 - Customized with different text and links
 - Themed with different colors
+
+<a id="icons"></a>
+## Icons
+
+### SVG Icons
+
+SVG icons are included as inline SVG for better styling control:
+
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0;">
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="linkedin" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">LinkedIn</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="instagram" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Instagram</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="facebook" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Facebook</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="external-link" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">External Link</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="wave" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Wave</p>
+  </div>
+</div>
+
+Size variations:
+
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0; align-items: center;">
+  {% include icon.html name="linkedin" class="icon-sm" %}
+  {% include icon.html name="linkedin" %}
+  {% include icon.html name="linkedin" class="icon-lg" %}
+  {% include icon.html name="linkedin" class="icon-xl" %}
+</div>
+
+```html
+<!-- Default SVG icon -->
+{% include icon.html name="linkedin" %}
+
+<!-- Size variations -->
+{% include icon.html name="linkedin" class="icon-sm" %}
+{% include icon.html name="linkedin" class="icon-lg" %}
+{% include icon.html name="linkedin" class="icon-xl" %}
+
+<!-- Available icons -->
+{% include icon.html name="linkedin" %}
+{% include icon.html name="instagram" %}
+{% include icon.html name="facebook" %}
+{% include icon.html name="external-link" %}
+{% include icon.html name="wave" %}
+```
+
+### Emoji Icons
+
+For simpler cases, emoji icons are also available:
+
+<div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0;">
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="wave" type="emoji" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Wave</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="external" type="emoji" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">External</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="social-linkedin" type="emoji" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">LinkedIn</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="social-instagram" type="emoji" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Instagram</p>
+  </div>
+  
+  <div style="text-align: center; width: 80px;">
+    {% include icon.html name="social-facebook" type="emoji" %}
+    <p style="margin-top: 0.5rem; font-size: 0.875em;">Facebook</p>
+  </div>
+</div>
+
+```html
+<!-- Emoji icons -->
+{% include icon.html name="wave" type="emoji" %}
+{% include icon.html name="external" type="emoji" %}
+{% include icon.html name="social-linkedin" type="emoji" %}
+{% include icon.html name="social-instagram" type="emoji" %}
+{% include icon.html name="social-facebook" type="emoji" %}
+```
+
+### Direct Link Icons
+
+External links can automatically include an icon:
+
+<a href="https://example.com" class="external">External link example</a>
+
+```html
+<a href="https://example.com" class="external">External link example</a>
+```
 
 ## Responsive Behavior
 

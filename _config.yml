@@ -17,6 +17,9 @@ collections:
   brodersons:
     output: true
     permalink: /brodersons/:name/
+  events:
+    output: true
+    permalink: /events/:name/
 
 # Exclude from processing
 exclude:

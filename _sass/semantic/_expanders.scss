@@ -4,7 +4,7 @@
   border: 0.0625rem solid rgba(var(--ink-rgb), 0.05);
   border-radius: var(--border-radius);
   overflow: hidden;
-  box-shadow: 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.01);
+  box-shadow: none;
   transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
   
   &.is-open {

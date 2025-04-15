@@ -29,45 +29,77 @@
     </main>
 
     <footer>
-        <div class="container">
-            <hr>
+        <div class="footer-contact">
+            <div class="container">
+                <span class="strapline">Contact</span>
+                <h2 class="headline">{{ site.data.footer.contact.lede }}</h2>
 
-            <div class="contact">
-                <p class="lede">{{ site.data.footer.contact.lede }}</p>
-
-                <dl class="contact-info">
-                    <dt>Email</dt>
-                    <dd><a href="mailto:{{ site.data.footer.contact.email }}">{{ site.data.footer.contact.email }}</a></dd>
-                    <dt>LinkedIn</dt>
-                    <dd><a href="https://www.linkedin.com/in/{{ site.data.footer.contact.linkedin }}" target="_blank">@{{ site.data.footer.contact.linkedin }}</a></dd>
-                    <dt>Instagram</dt>
-                    <dd><a href="https://www.instagram.com/{{ site.data.footer.contact.instagram }}" target="_blank">@{{ site.data.footer.contact.instagram }}</a></dd>
-                    <dt>Facebook</dt>
-                    <dd><a href="https://www.facebook.com/{{ site.data.footer.contact.facebook }}" target="_blank">@{{ site.data.footer.contact.facebook }}</a></dd>
-                </dl>
-
-                <a href="{{ site.data.footer.contact.signup_url }}" class="external">{{ site.data.footer.contact.signup_text }}</a>
+                <div class="contact-info">
+                    <div class="contact-method">
+                        {% include icon.html name="paper-airplane" %}
+                        <a href="mailto:{{ site.data.footer.contact.email }}">{{ site.data.footer.contact.email }}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        {% include icon.html name="linkedin" %}
+                        <a href="https://www.linkedin.com/in/{{ site.data.footer.contact.linkedin }}" target="_blank">@{{ site.data.footer.contact.linkedin }}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        {% include icon.html name="instagram" %}
+                        <a href="https://www.instagram.com/{{ site.data.footer.contact.instagram }}" target="_blank">@{{ site.data.footer.contact.instagram }}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        {% include icon.html name="facebook" %}
+                        <a href="https://www.facebook.com/{{ site.data.footer.contact.facebook }}" target="_blank">@{{ site.data.footer.contact.facebook }}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        {% include icon.html name="envelope" %}
+                        <a href="{{ site.data.footer.contact.signup_url }}" target="_blank">
+                            {{ site.data.footer.contact.signup_text }}
+                        </a>
+                    </div>
+                </div>
             </div>
-            
-            <hr>
-
-            <nav>
-                <ul>
-                    <li><a href="/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
-                    <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About MADE</a></li>
-                    <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Broderson Awards</a></li>
-                    <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Become a member</a></li>
-                    <li><a href="/code-of-conduct"{% if page.url == "/code-of-conduct/" %} class="current"{% endif %}>Code of conduct</a></li>
-                    <li><a href="/login" class="external" target="_blank">Member account login</a></li>
-                    <li><a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a></li>
-                </ul>
-            </nav>
-
-            <hr>
-
-            <div class="fineprint">
-                {{ site.data.footer.fineprint | markdownify }}
-                <p>© {{ site.data.footer.copyright_start_year }}–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} {{ site.data.footer.copyright_name }}</p>
+        </div>
+        
+        <div class="footer-nav">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            {% include svg/made-logo.svg %}
+                        </div>
+                        <div class="fineprint">
+                            {{ site.data.footer.fineprint | markdownify }}
+                            <p>© {{ site.data.footer.copyright_start_year }}–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} {{ site.data.footer.copyright_name }}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="/"{% if page.url == "/" %} class="current"{% endif %}>Home</a></li>
+                            <li><a href="/about"{% if page.url == "/about/" %} class="current"{% endif %}>About MADE</a></li>
+                            <li><a href="/brodersons"{% if page.url == "/brodersons/" or page.url contains "/brodersons/" %} class="current"{% endif %}>Broderson Awards</a></li>
+                            <li><a href="/membership"{% if page.url == "/membership/" %} class="current"{% endif %}>Become a member</a></li>
+                            <li><a href="/code-of-conduct"{% if page.url == "/code-of-conduct/" %} class="current"{% endif %}>Code of conduct</a></li>
+                            <li>
+                                <a href="/login" target="_blank">
+                                    Member account login
+                                    {% include icon.html name="external-link" %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://maineaddesign.slack.com" target="_blank">
+                                    Member Slack
+                                    {% include icon.html name="external-link" %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

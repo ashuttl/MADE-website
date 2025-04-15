@@ -9,9 +9,7 @@ title: Code of conduct
 Maine Ad + Design ("MADE") is committed to conducting its affairs with honesty, integrity, and professionalism. We are dedicated to fostering a safe, respectful environment in which people can work, meet, learn, and share ideas.
 {% endcapture %}
 
-<div class="lede">
 {{ lede_content | markdownify }}
-</div>
 
 This policy applies to all individuals participating in MADE activities, including:
 * Members of the Board of Directors ("Directors")

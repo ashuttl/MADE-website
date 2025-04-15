@@ -14,6 +14,8 @@ theme: harbor
   theme="harbor"
 %}
 
+{% include upcoming-events.html theme="harbor" %}
+
 <!-- <div class="container home">
   <div class="secondary-ctas">
       <a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a>

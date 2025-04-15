@@ -55,8 +55,8 @@ title: Join Maine Ad + Design
 - The ability to submit work for consideration for the Broderson Awards
 - Good feelings and support for a good cause
 
-<div class="callout" markdown="1">
-==We don’t want the cost of membership to prevent anyone from joining.==
+<div class="panel panel-seadogs" markdown="1">
+==We don't want the cost of membership to prevent anyone from joining.==
 
 [Students or educators can join free](https://made.memberful.com/checkout?plan=109068&coupon=Education) with coupon code "Education".
 

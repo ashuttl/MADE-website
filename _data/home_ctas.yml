@@ -1,5 +1,7 @@
 - url: /about
   text: About us
+- url: /events
+  text: Events
 - url: /membership
   text: Become a member
 - url: /brodersons

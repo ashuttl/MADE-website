@@ -1,0 +1,50 @@
+{% comment %}
+  Include usage:
+  {% include event-card.html event=event %}
+  
+  Parameters:
+  - event: An event collection item with these properties:
+    - title: Event title
+    - date: Event date (YYYY-MM-DD)
+    - start_time: Start time (string)
+    - end_time: End time (string, optional)
+    - location: Location name
+    - address: Location address
+    - image: Path to event image
+    - ticket_link: URL to buy tickets/RSVP (optional)
+    - price: Event price (optional)
+{% endcomment %}
+
+{% assign event = include.event %}
+<!-- Date formatting handled directly with the date filter -->
+
+<div class="event-card">
+  <div class="event-image" style="background-image: url('{{ event.image }}');">
+    {% if event.ticket_link %}
+      <a href="{{ event.ticket_link }}" class="event-ticket-link cta cta-sunshine cta-small" target="_blank">
+        {% if event.price %}
+          {{ event.price | prepend: "Tickets: " }}
+        {% else %}
+          RSVP
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+  <div class="event-content">
+    <h3 class="event-title text-seadogs">{{ event.title }}</h3>
+    <div class="event-date">
+      <time datetime="{{ event.date | date_to_xmlschema }}">
+        {{ event.date | date: "%A, %B %-d" }}
+      </time>
+      <span class="event-time">
+        {{ event.start_time }}{% if event.end_time %}&ndash;{{ event.end_time }}{% endif %}
+      </span>
+    </div>
+    <div class="event-location">
+      <div class="location-name">{{ event.location }}</div>
+      {% if event.address %}
+        <div class="location-address">{{ event.address }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

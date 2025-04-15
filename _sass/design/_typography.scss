@@ -1,6 +1,6 @@
 // Typography Variables
 :root {
-  // We now define our font families in fonts.css 
+  // References fonts.css 
   --font-sans: var(--font-golos);
   --font-serif: var(--font-aluminia-original);
   --font-mono: var(--font-fragment-mono);
@@ -17,6 +17,7 @@ body {
   line-height: var(--line-height-normal);
   color: var(--ink);
   background-color: var(--page);
+  -webkit-font-smoothing: antialiased;
 }
 
 // Headings
@@ -65,11 +66,12 @@ p, ul, ol, dl, blockquote {
 }
 
 .lede {
-  font-size: 1.25em;
+  font-size: 1.4em;
   font-weight: 300;
   line-height: var(--line-height-loose);
   text-wrap: balance;
   font-family: var(--font-aluminia);
+  max-width: 55ch;
 }
 
 // Links
@@ -172,4 +174,95 @@ mark {
   padding: 0;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
+}
+
+// Straplines and Headlines
+.strapline {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5em;
+}
+
+.headline {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 2em;
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  margin-top: 0;
+  margin-bottom: 1em;
+  text-wrap: balance;
+}
+
+// Icons
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+  fill: currentColor;
+  
+  &.icon-sm {
+    width: 0.875em;
+    height: 0.875em;
+  }
+  
+  &.icon-lg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+  
+  &.icon-xl {
+    width: 1.5em;
+    height: 1.5em;
+  }
+}
+
+// Unicode/emoji icons
+.emoji-icon {
+  display: inline-block;
+  margin: 0 0.15em;
+  
+  &.paper-airplane {
+    &::after {
+      content: "✈️";
+    }
+  }
+  
+  &.external {
+    &::after {
+      content: "↗︎";
+    }
+  }
+  
+  &.social-linkedin {
+    &::after {
+      content: "in";
+      font-weight: bold;
+      padding: 0 0.2em;
+      background-color: var(--linktext);
+      color: var(--page);
+      border-radius: 0.2em;
+    }
+  }
+  
+  &.social-instagram {
+    &::after {
+      content: "📷";
+    }
+  }
+  
+  &.social-facebook {
+    &::after {
+      content: "f";
+      font-weight: bold;
+      padding: 0 0.3em;
+      background-color: #1877F2;
+      color: white;
+      border-radius: 0.2em;
+    }
+  }
 }

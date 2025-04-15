@@ -1,0 +1,46 @@
+{% comment %}
+  Include usage:
+  {% include upcoming-events.html %}
+  
+  This displays upcoming events sorted by date.
+  All parameters are optional and have defaults.
+  
+  Parameters:
+  - theme: Color theme to use (default, harbor, sunshine, etc.)
+  - limit: Max number of events to show (default: 3)
+{% endcomment %}
+
+{% assign theme = include.theme | default: "harbor" %}
+{% assign limit = include.limit | default: 3 %}
+{% assign now = site.time %}
+
+{% assign upcoming_events = site.events | where_exp: "event", "event.date >= now" | sort: "date" | limit: limit %}
+{% assign has_events = upcoming_events | size > 0 %}
+
+<section class="events-section panel panel-{{ theme }}">
+  <div class="container">
+    <div class="events-container">
+      <div class="events-intro">
+        <div class="strapline">Events</div>
+        <h2 class="headline">What's coming up?</h2>
+        <p>Spend time with cool people IRL.</p>
+      </div>
+      
+      {% if has_events %}
+        <div class="events-scroll-outer">
+          <div class="events-scroll-container">
+            <div class="events-scroll">
+              {% for event in upcoming_events %}
+                {% include event-card.html event=event %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="no-events">
+          <p>No upcoming events at this time. Check back soon!</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

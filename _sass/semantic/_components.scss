@@ -3,24 +3,12 @@
 }
 
 // Strapline and headline components
-strapline {
-  display: block;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  font-size: 0.85em;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-  color: var(--theme-ink, var(--ink));
+.strapline {
+  // Styling moved to _typography.scss
 }
 
-headline {
-  display: block;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.75em;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  color: var(--theme-ink, var(--ink));
+.headline {
+  // Styling moved to _typography.scss
 }
 
 // Two column content layout
@@ -166,7 +154,7 @@ headline {
     background-color: var(--sunshine);
     color: var(--ink);
     
-    strapline, headline {
+    .strapline, .headline {
       color: var(--ink);
     }
     
@@ -187,7 +175,7 @@ headline {
     background-color: var(--tomato);
     color: var(--page);
     
-    strapline, headline {
+    .strapline, .headline {
       color: var(--page);
     }
     
@@ -209,7 +197,7 @@ headline {
     background-color: var(--harbor);
     color: var(--page);
     
-    strapline, headline {
+    .strapline, .headline {
       color: var(--page);
     }
     
@@ -224,6 +212,52 @@ headline {
     mark {
       background-color: rgba(var(--sunshine-rgb), 0.3);
       color: var(--page);
+    }
+  }
+  
+  &.panel-langostino {
+    background-color: var(--langostino);
+    color: var(--page);
+    
+    .strapline, .headline {
+      color: var(--page);
+    }
+    
+    a {
+      color: var(--sunshine);
+      
+      &:hover, &:focus {
+        color: var(--page);
+      }
+    }
+    
+    mark {
+      background-color: rgba(var(--sunshine-rgb), 0.3);
+      color: var(--page);
+    }
+  }
+  
+  &.panel-seadogs {
+    background-color: var(--seadogs);
+    color: var(--ink);
+    
+    .strapline, .headline {
+      color: var(--ink);
+    }
+    
+    a {
+      color: var(--harbor);
+      font-weight: 600;
+      
+      &:hover, &:focus {
+        color: var(--ink);
+      }
+    }
+    
+    mark {
+      background-color: rgba(var(--ink-rgb), 0.08);
+      color: var(--ink);
+      font-weight: 700;
     }
   }
 }

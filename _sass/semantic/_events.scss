@@ -1,0 +1,272 @@
+// Events section
+.events-section {
+  padding: 3rem 0;
+  
+  // When in harbor theme (dark background)
+  &.panel-harbor {
+    .events-intro {
+      .strapline, .headline, p {
+        color: var(--page);
+      }
+      
+      .strapline {
+        color: var(--seadogs);
+      }
+    }
+  }
+  
+  .events-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    position: relative; // Add positioning context
+    
+    @media (min-width: 48em) {
+      grid-template-columns: minmax(16rem, 0.35fr) 1fr;
+      align-items: start;
+      gap: 3rem;
+    }
+  }
+  
+  .events-intro {
+    margin-bottom: 0;
+    
+    p {
+      max-width: 24rem;
+    }
+    
+    .headline {
+      margin-bottom: 0.75em;
+    }
+  }
+  
+  // Horizontal scrolling events for home page
+  .events-scroll-outer {
+    position: relative;
+    width: 100%;
+    margin-left: 0;
+    overflow: hidden; // Prevent outer container from scrolling
+    
+    @media (min-width: 48em) {
+      width: 100%; // Keep width at 100% of parent
+      padding-right: 0; // Remove padding to allow for full container width
+    }
+  }
+  
+  .events-scroll-container {
+    width: 100%;
+    position: relative;
+    overflow-x: auto;
+    padding: 6px 6px 1rem 6px; // Padding for hover effects and scrollbar
+    margin: -6px; // Offset padding to maintain alignment
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    scrollbar-width: thin; // Firefox
+    
+    @media (min-width: 48em) {
+      width: calc(100vw - (1.5rem + 3vw)); // Viewport width minus left padding
+      margin-right: calc(-1 * (1.5rem + 3vw)); // Negative margin to extend to right viewport edge
+      max-width: none; // Allow container to extend as needed
+    }
+    
+    &::-webkit-scrollbar {
+      height: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(var(--page-rgb), 0.1);
+      border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(var(--page-rgb), 0.3);
+      border-radius: 3px;
+    }
+    
+    // Harbor theme scrollbar adjustments
+    .panel-harbor & {
+      &::-webkit-scrollbar-track {
+        background: rgba(var(--seadogs-rgb), 0.1);
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(var(--seadogs-rgb), 0.3);
+      }
+    }
+  }
+  
+  .events-scroll {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    min-width: 100%;
+    padding: 6px 1rem 6px 0; // Right padding for end space, top/bottom for the hover effect
+    margin: -6px 0; // Offset padding to maintain alignment
+    
+    .event-card {
+      width: 18rem;
+      flex-shrink: 0;
+      
+      @media (max-width: 48em) {
+        width: 85%;
+        min-width: 14rem;
+        max-width: 20rem;
+      }
+    }
+  }
+  
+  // Regular grid for events page
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+    gap: 1.5rem;
+    
+    @media (min-width: 48em) {
+      gap: 2rem;
+    }
+    
+    &.wider-grid {
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+      
+      @media (min-width: 64em) {
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+      }
+    }
+  }
+  
+  .no-events {
+    background-color: rgba(var(--page-rgb), 0.1);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    max-width: 32rem;
+    
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// Event card
+.event-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--page);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+  transition: none;
+  box-shadow: none;
+  height: 100%;
+  position: relative;
+  
+  &:hover {
+    transform: translate(-6px, -6px);
+    box-shadow: 6px 6px 0 0 var(--seadogs);
+    border-color: var(--seadogs);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  
+  // Special styling for harbor theme (dark background)
+  .panel-harbor & {
+    background-color: transparent;
+    border-color: var(--seadogs);
+    
+    &:hover {
+      border-color: var(--wintermint);
+      box-shadow: 6px 6px 0 0 var(--wintermint);
+    }
+    
+    .event-title {
+      color: var(--seadogs);
+    }
+    
+    .event-date, .event-time, .event-location {
+      color: var(--wintermint);
+    }
+    
+    .location-address {
+      opacity: 0.9;
+    }
+    
+    .event-ticket-link {
+      border-color: var(--sunshine);
+      color: var(--ink);
+      
+      &:hover {
+        box-shadow: 3px 3px 0 0 var(--wintermint);
+      }
+    }
+  }
+  
+  .event-image {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 10rem;
+    border-radius: 0.75rem 0.75rem 0 0;
+    
+    .event-ticket-link {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 2;
+      white-space: nowrap;
+      font-weight: 600;
+      box-shadow: none;
+      
+      &:hover {
+        box-shadow: 3px 3px 0 0 var(--seadogs);
+      }
+    }
+  }
+  
+  .event-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.25em;
+    font-weight: 700;
+    margin: 0 0 0.75rem;
+    line-height: 1.2;
+  }
+  
+  .event-date, .event-time, .event-location {
+    font-size: 0.875em;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+  
+  .event-date {
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    font-family: var(--font-sans);
+    
+    time {
+      font-weight: 500;
+    }
+    
+    .event-time {
+      font-family: var(--font-mono);
+      margin-top: 0.25rem;
+    }
+  }
+  
+  .event-location {
+    margin-top: auto;
+    
+    .location-name {
+      font-weight: 600;
+    }
+    
+    .location-address {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+  }
+}

@@ -1,17 +1,18 @@
 ---
 ---
 
-@import "design/variables";
-@import "design/typography";
-@import "design/colors";
-@import "design/brodersons";
+@use "design/variables" as *;
+@use "design/typography" as *;
+@use "design/colors" as *;
+@use "design/brodersons" as *;
 
-@import "semantic/layout";
-@import "semantic/components";
-@import "semantic/buttons";
-@import "semantic/tables";
-@import "semantic/expanders";
-@import "semantic/image-layouts";
-@import "semantic/banner";
+@use "semantic/layout" as *;
+@use "semantic/components" as *;
+@use "semantic/buttons" as *;
+@use "semantic/tables" as *;
+@use "semantic/expanders" as *;
+@use "semantic/image-layouts" as *;
+@use "semantic/banner" as *;
+@use "semantic/events" as *;
 
-@import "design/utilities";
+@use "design/utilities" as *;

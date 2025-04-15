@@ -1,0 +1,15 @@
+{% comment %}
+  Icon include that supports both emoji icons and SVG icons
+  Usage: 
+  {% include icon.html name="linkedin" %}
+  {% include icon.html name="wave" type="emoji" %}
+  {% include icon.html name="external-link" class="icon-sm" %}
+{% endcomment %}
+
+{% if include.type == "emoji" %}
+  <span class="emoji-icon {{ include.name }} {{ include.class }}"></span>
+{% else %}
+  <span class="icon {{ include.class }}">
+    {% include svg/{{ include.name }}.svg %}
+  </span>
+{% endif %}

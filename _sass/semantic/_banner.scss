@@ -13,7 +13,7 @@
   }
   
   .banner-link {
-    color: var(--page);
+    color: var(--page) !important; /* Force white text regardless of page theme */
     text-decoration: none;
     display: block;
     transition: opacity 0.2s ease;

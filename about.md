@@ -19,8 +19,8 @@ In 1923, forty years before the heyday of Don Draper, one of America's first ad 
 ---
 
 <div class="panel panel-sunshine">
-  <strapline>Our mission</strapline>
-  <headline>To celebrate, cultivate, and connect Maine's professional creative community</headline>
+  <span class="strapline">Our mission</span>
+  <h2 class="headline">To celebrate, cultivate, and connect Maine's professional creative community</h2>
   
   <div class="two-up">
     <div>
@@ -44,7 +44,7 @@ In 1923, forty years before the heyday of Don Draper, one of America's first ad 
     </div>
   </div>
   
-  <p>— in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).</p>
+  <p>— in and around greater Portland, Lewiston and Auburn, Biddeford and Saco, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).</p>
 </div>
 
 ---
@@ -59,7 +59,7 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
 - Supporting the next generation of creative professionals
 
 <div class="panel panel-tomato">
-  <strapline>Inclusion</strapline>
+  <span class="strapline">Inclusion</span>
   <p><mark>Maine Ad + Design is a community of tolerance and pride.</mark> We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.</p>
 </div>
 

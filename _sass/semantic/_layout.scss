@@ -15,6 +15,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   max-width: 100vw;
+  width: 100%;
 }
 
 // Container
@@ -26,6 +27,7 @@ body {
   padding: 0 calc(1.5rem + 3vw);
   box-sizing: border-box;
   max-width: 100%;
+  overflow-x: visible; // Allow specific children to extend beyond while containing others
   
   // No padding needed for main content containers
   .main-content > & {
@@ -217,137 +219,144 @@ main {
 
 // Footer
 footer {
-  background-color: var(--page);
+  margin-top: 3rem;
   
-  // Theme adjustments for footer
-  .theme-harbor &, .theme-midnight &, .theme-teal &, .theme-sunshine & {
-    background-color: var(--theme-page);
-  }
-  
-  hr {
-    margin: 2rem 0;
-    border-color: var(--theme-ink);
-    opacity: 0.1;
-  }
-  
-  .contact {
-    margin-bottom: 2rem;
+  .footer-contact {
+    padding: 3rem 0;
+    background-color: var(--langostino);
+    color: var(--page);
     
-    .lede {
-      margin-bottom: 1.5rem;
-      font-family: var(--font-heading);
-      font-weight: 400;
-      color: var(--theme-ink, var(--ink));
-    }
-  }
-  
-  .contact-info {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-word;
-    hyphens: auto;
-    
-    @media (min-width: 36em) {
-      grid-template-columns: auto 1fr;
-      gap: 0.5rem 1.5rem;
+    .strapline, .headline {
+      color: var(--page);
     }
     
-    dt {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 0.9em;
-      letter-spacing: 0.02em;
-      color: var(--theme-ink, var(--ink));
-    }
-    
-    dd {
-      margin: 0;
-      padding-bottom: 0.75rem;
+    .contact-info {
+      margin: 2rem 0;
+      max-width: 32rem;
       
-      @media (min-width: 36em) {
-        padding-bottom: 0;
+      .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        a {
+          color: var(--page);
+          text-decoration: none;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          
+          &:hover, &:focus {
+            text-decoration: underline;
+          }
+        }
+        
+        .icon {
+          flex-shrink: 0;
+          color: var(--sunshine);
+          width: 1.5em;
+          height: 1.5em;
+        }
+      }
+    }
+    
+    // Newsletter signup styling removed - now part of contact methods
+  }
+  
+  .footer-nav {
+    padding: 3rem 0;
+    background-color: var(--harbor);
+    color: var(--page);
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      
+      @media (min-width: 48em) {
+        flex-direction: row;
+        gap: 3rem;
+      }
+    }
+    
+    .footer-info {
+      flex: 3;
+      
+      .footer-logo {
+        margin-bottom: 1.5rem;
+        
+        svg {
+          width: 10rem;
+          height: auto;
+          color: var(--seadogs);
+        }
+      }
+    }
+    
+    .fineprint {
+      font-size: 0.875em;
+      color: rgba(var(--page-rgb), 0.8);
+      
+      p {
+        margin-bottom: 1rem;
+        max-width: 65ch;
       }
       
       a {
-        color: var(--theme-link, var(--linktext));
-        display: inline-block;
-        max-width: 100%;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
+        color: var(--seadogs);
         
-        &:hover, &:focus {
-          color: var(--theme-current-link, var(--currentlinktext));
+        &:hover {
+          color: var(--wintermint);
         }
       }
-    }
-  }
-  
-  nav {
-    font-family: var(--font-heading);
-    
-    ul {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: 0.5rem 1.5rem;
-      max-width: none; /* Override the default max-width constraint */
     }
     
-    a {
-      color: var(--theme-ink, var(--ink));
-      font-size: 0.9em;
-      letter-spacing: 0.01em;
-      position: relative;
-      text-decoration: none;
+    .footer-links {
+      flex: 1;
+      margin-top: 2rem;
       
-      &:hover, &:focus, &.current {
-        color: var(--theme-current-link, var(--currentlinktext));
+      @media (min-width: 48em) {
+        margin-top: 0;
       }
       
-      &:hover, &:focus {
-        text-decoration: none;
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         
-        &::before {
-          content: '';
-          position: absolute;
-          bottom: -0.35rem;
-          left: 0;
-          right: 0;
-          height: 0.15rem;
-          background-color: var(--theme-current-link, var(--currentlinktext));
-          border-radius: 99px;
-          opacity: 0.7;
-        }
-      }
-      
-      &.current {
-        font-weight: 600;
-        
-        &::before {
-          content: '';
-          position: absolute;
-          bottom: -0.35rem;
-          left: 0;
-          right: 0;
-          height: 0.15rem;
-          background-color: var(--theme-current-link, var(--currentlinktext));
-          border-radius: 99px;
+        li {
+          margin-bottom: 0.75rem;
+          
+          a {
+            color: var(--seadogs);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            
+            &:hover, &:focus {
+              color: var(--wintermint);
+            }
+            
+            &.current {
+              color: var(--wintermint);
+              font-weight: 700;
+            }
+            
+            .icon {
+              color: var(--seadogs);
+              width: 0.85em;
+              height: 0.85em;
+              margin-left: 0.15em;
+            }
+          }
         }
       }
     }
-  }
-  
-  .fineprint {
-    font-size: 0.875em;
-    color: var(--theme-ink, var(--ink));
-    font-family: var(--font-sans);
   }
 }
