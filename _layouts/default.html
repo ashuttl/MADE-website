@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
+    {% include banner.html %}
     <header>
         <div class="container">
             <a href="/" class="logo">

@@ -1,9 +1,9 @@
 // Typography Variables
 :root {
   // We now define our font families in fonts.css 
-  --font-sans: var(--font-aluminia);
+  --font-sans: var(--font-golos);
   --font-serif: var(--font-aluminia-original);
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-mono: var(--font-fragment-mono);
   --font-heading: var(--font-brandon);
   
   --line-height-tight: 1;
@@ -69,16 +69,16 @@ p, ul, ol, dl, blockquote {
   font-weight: 300;
   line-height: var(--line-height-loose);
   text-wrap: balance;
+  font-family: var(--font-aluminia);
 }
 
 // Links
 a {
-  color: var(--linktext);
-  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
   
   &:hover, &:focus {
     color: var(--currentlinktext);
-    text-decoration: underline;
   }
   
   &.external {

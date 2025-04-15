@@ -1,16 +1,29 @@
-// Convert color variables to RGB values for opacity
+////////////////////////////
+// new colors
+// tomato-alt: #D85E38
+// tomato: #CA583C
+// seadogs: #52C1B1
+// page: #FAF7EF
+// ink: #062138
+// sunshine: #F0C86D
+////////////////////////////
+
+
+
 :root {
-  --ink-rgb: 26, 25, 25;
-  --page-rgb: 245, 245, 245;
-  --linktext-rgb: 93, 161, 145;
-  --currentlinktext-rgb: 237, 112, 64;
-  --seadogs-rgb: 104, 180, 162;
+  --ink-rgb: 6, 33, 56;
+  --page-rgb: 250, 247, 239;
+  --linktext-rgb: 82, 193, 177;
+  --currentlinktext-rgb: 216, 94, 56;
+  --seadogs-rgb: 82, 193, 177;
   --wintermint-rgb: 158, 204, 191;
   --harbor-rgb: 6, 33, 56;
   --langostino-rgb: 202, 88, 60;
   --sunshine-rgb: 240, 200, 109;
   --orchid-rgb: 76, 10, 102;
   --pumpkin-rgb: 237, 112, 64;
+  --tomato-rgb: 202, 88, 60;
+  --tomato-alt-rgb: 216, 94, 56;
 
   // Default color variables
   --ink: rgb(var(--ink-rgb));
@@ -24,6 +37,8 @@
   --sunshine: rgb(var(--sunshine-rgb));
   --orchid: rgb(var(--orchid-rgb));
   --pumpkin: rgb(var(--pumpkin-rgb));
+  --tomato: rgb(var(--tomato-rgb));
+  --tomato-alt: rgb(var(--tomato-alt-rgb));
 }
 
 // Color utility classes
@@ -36,6 +51,8 @@
 .bg-sunshine { background-color: var(--sunshine); }
 .bg-orchid { background-color: var(--orchid); color: var(--page); }
 .bg-pumpkin { background-color: var(--pumpkin); }
+.bg-tomato { background-color: var(--tomato); color: var(--page); }
+.bg-tomato-alt { background-color: var(--tomato-alt); color: var(--page); }
 
 .text-page { color: var(--page); }
 .text-ink { color: var(--ink); }
@@ -46,6 +63,8 @@
 .text-sunshine { color: var(--sunshine); }
 .text-orchid { color: var(--orchid); }
 .text-pumpkin { color: var(--pumpkin); }
+.text-tomato { color: var(--tomato); }
+.text-tomato-alt { color: var(--tomato-alt); }
 
 // Color modifiers with transparency
 @for $i from 1 through 9 {
@@ -60,6 +79,8 @@
   .bg-sunshine-#{$i} { background-color: rgba(var(--sunshine-rgb), $alpha); }
   .bg-orchid-#{$i} { background-color: rgba(var(--orchid-rgb), $alpha); }
   .bg-pumpkin-#{$i} { background-color: rgba(var(--pumpkin-rgb), $alpha); }
+  .bg-tomato-#{$i} { background-color: rgba(var(--tomato-rgb), $alpha); }
+  .bg-tomato-alt-#{$i} { background-color: rgba(var(--tomato-alt-rgb), $alpha); }
 }
 
 // Theme classes

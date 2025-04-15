@@ -1,48 +1,71 @@
 // Base button/CTA styles
 .cta {
   display: inline-block;
-  padding: 0.5rem 1.25rem; /* Smaller padding */
-  background-color: var(--langostino); /* Changed default color to langostino */
-  color: white;
-  border-radius: var(--border-radius);
-  font-family: var(--font-heading);
-  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  background-color: transparent;
+  color: var(--ink);
+  border-radius: 2rem; /* Pill shape */
+  font-family: var(--font-mono);
+  font-weight: 400;
   text-align: center;
-  border: none;
+  border: 1px solid var(--tomato);
   cursor: pointer;
   text-decoration: none;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  font-size: 0.9em; /* Slightly smaller font */
+  font-size: 0.8em;
+  transition: none;
   
   &:hover, &:focus {
-    background-color: darken(#ca583c, 10%); /* Darker langostino */
-    color: white;
+    color: var(--ink);
     text-decoration: none;
+    box-shadow: 3px 3px 0 0 var(--tomato);
+    transform: translate(-2px, -2px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   
   &:active {
-    transform: translateY(0);
+    transform: translate(0, 0);
+    box-shadow: 0 0 0 0 var(--tomato);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  
+  .theme-harbor &, &.cta-harbor {
+    border-color: var(--seadogs);
+    
+    &:hover, &:focus {
+      box-shadow: 3px 3px 0 0 var(--seadogs);
+    }
+  }
+  
+  .theme-sunshine &, &.cta-sunshine {
+    border-color: var(--harbor);
+    color: var(--harbor);
+    
+    &:hover, &:focus {
+      box-shadow: 3px 3px 0 0 var(--harbor);
+      color: var(--harbor);
+    }
   }
   
   &.cta-secondary {
-    background-color: rgba(var(--seadogs-rgb), 0.1);
+    border-color: var(--seadogs);
     color: var(--seadogs);
     
     &:hover, &:focus {
-      background-color: rgba(var(--seadogs-rgb), 0.2);
+      box-shadow: 3px 3px 0 0 var(--seadogs);
       color: var(--seadogs);
     }
   }
   
   &.cta-small {
-    padding: 0.5rem 1rem;
-    font-size: 0.8em;
+    padding: 0.375rem 1rem;
+    font-size: 0.7em;
   }
   
   &.cta-large {
-    padding: 1rem 2rem;
-    font-size: 1em;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9em;
   }
   
   &.cta-full {
@@ -51,19 +74,31 @@
   }
   
   // Color variations
-  &.cta-pumpkin {
-    background-color: var(--pumpkin);
+  &.cta-tomato {
+    border-color: var(--tomato);
     
     &:hover, &:focus {
-      background-color: darken(#ed7040, 10%);
+      box-shadow: 3px 3px 0 0 var(--tomato);
     }
   }
   
-  &.cta-harbor {
-    background-color: var(--harbor);
+  .panel-tomato &, .theme-tomato & {
+    border-color: var(--page);
+    color: var(--page);
     
     &:hover, &:focus {
-      background-color: darken(#062138, 10%);
+      box-shadow: 3px 3px 0 0 var(--page);
+      color: var(--page);
+    }
+  }
+  
+  .panel-harbor &, .theme-harbor & {
+    border-color: var(--seadogs);
+    color: var(--page);
+    
+    &:hover, &:focus {
+      box-shadow: 3px 3px 0 0 var(--seadogs);
+      color: var(--page);
     }
   }
 }

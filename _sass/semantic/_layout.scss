@@ -74,11 +74,13 @@ header {
     
     a {
       color: var(--theme-ink, var(--ink));
-      font-weight: 400;
+      font-family: var(--font-sans);
+      font-weight: 700;
       letter-spacing: 0.01em;
-      text-transform: uppercase;
+      text-transform: none;
       font-size: 0.875em;
       position: relative;
+      text-decoration: none;
       
       &:hover, &:focus, &[aria-current="page"], &.current {
         color: var(--theme-current-link, var(--currentlinktext));
@@ -304,6 +306,7 @@ footer {
       font-size: 0.9em;
       letter-spacing: 0.01em;
       position: relative;
+      text-decoration: none;
       
       &:hover, &:focus, &.current {
         color: var(--theme-current-link, var(--currentlinktext));

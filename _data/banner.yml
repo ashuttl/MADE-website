@@ -1,0 +1,6 @@
+## Global banner configuration
+## To disable the banner, set enabled to false
+enabled: true
+text: "Get the latest on the 2025 Brodersons ✨ June 5, 2025"
+url: "/brodersons"
+theme: "tomato" # Options: tomato, harbor, sunshine, neutral

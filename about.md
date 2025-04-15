@@ -5,34 +5,47 @@ title: About Maine Ad + Design
 
 # About Maine Ad + Design
 
+<div class="panel mini-panel">
+  <h3>Ready to join the club?</h3>
+  <a href="/membership" class="cta">Become a member</a>
+</div>
+
 {% capture lede_content %}
 In 1923, forty years before the heyday of Don Draper, one of America's first ad clubs was dreamed up in a hotel room in cosmopolitan Portland, Maine. In the century since — first as the Portland Advertising Club, then the Advertising Club of Greater Portland (and then of Maine), and now as Maine Ad + Design — generations of Maine creative professionals have come together to connect, create, and celebrate everything that makes us tick.
-
-Not a member yet? [Please join us!](/membership)
 {% endcapture %}
 
 {% include lede.html content=lede_content %}
 
 ---
 
-## Our mission
-
-We are a nonprofit professional membership organization with a mission to celebrate, cultivate, and connect Maine's professional creative community. We achieve our mission through:
-
-- Educational workshops
-- Networking events
-- Award recognition
-- Funding for education
-
-We are fundamentally a network of members. Our members include people working in or studying the commercial arts, including:
-
-- Advertising, design, and marketing agencies
-- Corporate/in-house marketing teams
-- Media organizations
-- Independent professionals
-- Students
-
-— in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).
+<div class="panel panel-sunshine">
+  <strapline>Our mission</strapline>
+  <headline>To celebrate, cultivate, and connect Maine's professional creative community</headline>
+  
+  <div class="two-up">
+    <div>
+      <h3>We provide:</h3>
+      <ul>
+        <li>Educational workshops</li>
+        <li>Networking events</li>
+        <li>Award recognition</li>
+        <li>Funding for education</li>
+      </ul>
+    </div>
+    <div>
+      <h3>We serve:</h3>
+      <ul>
+        <li>Advertising, design, and marketing agencies</li>
+        <li>Corporate/in-house marketing teams</li>
+        <li>Media organizations</li>
+        <li>Independent professionals</li>
+        <li>Students</li>
+      </ul>
+    </div>
+  </div>
+  
+  <p>— in and around greater Portland, Lewiston and Auburn, Augusta, Bangor, the coast and islands, and all around the state (and including once and/or future Mainers, and Mainers at heart 🌲).</p>
+</div>
 
 ---
 
@@ -45,7 +58,10 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
 - Celebrating excellence in our industry
 - Supporting the next generation of creative professionals
 
-==Maine Ad + Design is a community of tolerance and pride.== We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.
+<div class="panel panel-tomato">
+  <strapline>Inclusion</strapline>
+  <p><mark>Maine Ad + Design is a community of tolerance and pride.</mark> We stand against oppression in all its forms, at large scales and at small ones, and are committed to cultivating diversity, inclusivity, equality, and kindness where we live and work.</p>
+</div>
 
 ---
 

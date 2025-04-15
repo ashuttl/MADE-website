@@ -1,0 +1,9 @@
+{% if site.data.banner.enabled %}
+<div class="global-banner bg-{% if site.data.banner.theme == 'tomato' %}tomato{% elsif site.data.banner.theme == 'harbor' %}harbor{% elsif site.data.banner.theme == 'sunshine' %}sunshine{% else %}ink{% endif %}">
+  <div class="container">
+    <a href="{{ site.data.banner.url | relative_url }}" class="banner-link">
+      {{ site.data.banner.text }}
+    </a>
+  </div>
+</div>
+{% endif %}
