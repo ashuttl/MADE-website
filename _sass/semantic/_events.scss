@@ -22,6 +22,8 @@
     gap: 2rem;
     position: relative;
     overflow: visible; /* Ensure children can extend if needed */
+    width: 100%; /* Add explicit width */
+    box-sizing: border-box; /* Ensure padding is included */
     
     @media (min-width: 48em) {
       grid-template-columns: minmax(16rem, 0.35fr) 1fr;
@@ -49,7 +51,7 @@
   .events-carousel {
     position: relative;
     width: 100%;
-    overflow: visible; /* Allow the scrolling container to extend */
+    overflow: hidden; /* Constrain overflow to prevent extending beyond container */
   }
   
   // Horizontal scrolling events for home page
@@ -57,11 +59,10 @@
     position: relative;
     width: 100%;
     overflow-x: auto;
-    padding: 6px;
-    margin: -6px; 
     -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
     scrollbar-width: thin; // Firefox
     scroll-behavior: smooth; // For smooth scrolling
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
   }
   
   // Scroll buttons styling
@@ -91,11 +92,11 @@
     }
     
     &.scroll-left {
-      left: 0.5rem;
+      left: 0;
     }
     
     &.scroll-right {
-      right: 0.5rem;
+      right: 0;
     }
     
     // Harbor theme adjustments
@@ -117,32 +118,30 @@
     }
   }
   
-  // Full-width behavior for overflow scrolling
+  // Extend to viewport edge on desktop
   @media (min-width: 48em) {
-    /* Safari compatibility - apply when JS adds the class */
-    .events-carousel.has-overflow,
-    .events-carousel:has(.events-scroll[data-count="3"]),
-    .events-carousel:has(.events-scroll[data-count="4"]),
-    .events-carousel:has(.events-scroll[data-count="5"]) {
-      &:has(.events-scroll-outer.has-overflow),
+    .events-carousel {
+      position: relative; /* Ensure scroll buttons are positioned relative to carousel */
+      
       &.has-overflow {
-        position: relative;
-        margin-left: calc(-1 * (1.5rem + 3vw));
-        padding-right: 0; /* Eliminate padding on the right */
-        width: calc(100vw - (1.5rem + 3vw)); /* 100vw minus left padding */
-        overflow-x: visible; /* Allow overflow for scrolling */
+        width: auto; /* Allow extension */
+        margin-right: calc(-1 * (1.5rem + 3vw)); /* Negative margin to cancel container padding */
+        padding-right: 0;
+        overflow: hidden; /* Hide overflow */
         
         .events-scroll-outer {
-          padding-left: calc(1.5rem + 3vw);
-          padding-right: calc(1.5rem + 3vw);
+          width: 100%;
+          padding: 0;
+          margin: 0 1.5rem; /* Add margin to make room for buttons */
+          padding-right: calc(1.5rem + 3vw); /* Add padding to ensure content is visible in container */
         }
         
         .scroll-left {
-          left: calc(1.5rem + 3vw - 0.5rem);
+          left: 0;
         }
         
         .scroll-right {
-          right: 1rem;
+          right: 0; /* Position at edge of carousel container */
         }
       }
     }
@@ -179,6 +178,7 @@
     display: flex;
     gap: 1.5rem;
     width: max-content;
+    padding: 1rem 0; /* Add padding to allow space for box-shadow */
     
     // When there are 1-2 events, adapt to available space
     &[data-count="1"], &[data-count="2"] {

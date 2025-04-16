@@ -282,8 +282,9 @@
   }
   
   h3 {
-    font-size: 1.125em;
+    font-size: 1em;
     margin: 0;
+    font-family: (var(--font-sans));
   }
   
   p {
@@ -321,8 +322,8 @@
   }
   
   &:nth-child(3):hover {
-    box-shadow: 6px 6px 0 0 var(--sunshine);
-    border-color: var(--sunshine);
+    box-shadow: 6px 6px 0 0 var(--harbor);
+    border-color: var(--harbor);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   

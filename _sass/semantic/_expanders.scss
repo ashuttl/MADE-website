@@ -8,14 +8,15 @@
   transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
   
   &.is-open {
-    box-shadow: var(--shadow-xl);
-    border-color: rgba(var(--ink-rgb), 0.1);
+    border-color: var(--ink);
+    transform: translateY(-2px);
+    box-shadow: 3px 3px 0 0 var(--ink);
   }
   
-  &:hover {
-    &:not(.is-open) {
-      transform: translateY(-1px);
-    }
+  /* Only apply hover effect to closed expanders */
+  &:not(.is-open):hover {
+    transform: translateY(-1px);
+    box-shadow: 1px 1px 0 0 var(--ink);
   }
 }
 

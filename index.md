@@ -16,9 +16,20 @@ theme: harbor
 
 {% include upcoming-events.html theme="harbor" %}
 
-<!-- <div class="container home">
-  <div class="secondary-ctas">
-      <a href="https://maineaddesign.slack.com" class="external" target="_blank">Member Slack</a>
-      <a href="https://made.memberful.com/auth/sign_in" class="external" target="_blank">Member account login</a>
-  </div>
-</div> -->
+<section class="instagram">
+<div class="container">
+<h2>Stay in the loop</h2>
+<div class="instagram-follow">
+  <a href="https://www.instagram.com/MaineAdDesign" target="_blank" class="cta cta-harbor">Follow us on Instagram</a>
+</div>
+<behold-widget feed-id="TwvbmjtgKDpsUvUDxaua"></behold-widget>
+<script>
+  (() => {
+    const d=document,s=d.createElement("script");s.type="module";
+    s.src="https://w.behold.so/widget.js";d.head.append(s);
+  })();
+</script>
+</div>
+</section>
+
+<hr>

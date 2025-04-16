@@ -71,7 +71,7 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
     <div class="board-member">
         <img src="/assets/images/board/dustyn.jpeg" alt="Dustyn Bailey">
         <h3>Dustyn Bailey</h3>
-        <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn</a></p>
+        <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn {% include icon.html name="external-link" %}</a></p>
     </div>
     <div class="board-member">
         <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">

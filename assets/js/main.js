@@ -180,6 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Make sure parent also knows about overflow
         container.classList.add('has-overflow');
         
+        // Force the scroll container to stay within bounds
+        scrollOuter.style.boxSizing = 'border-box';
+        
         console.log('Overflow detected: scrollWidth=', scroll.scrollWidth, 'clientWidth=', scrollOuter.clientWidth);
       } else {
         scrollOuter.classList.remove('has-overflow');
@@ -241,6 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Update button visibility when scrolling
       scrollOuter.addEventListener('scroll', updateButtonVisibility);
+      
+      // Make sure buttons are positioned correctly relative to container
+      container.style.position = 'relative';
     }
   });
 });

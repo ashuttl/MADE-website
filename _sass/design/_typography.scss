@@ -84,11 +84,7 @@ a {
   }
   
   &.external {
-    &::after {
-      content: " ↗︎";
-      display: inline-block;
-      margin-left: 0.15em;
-    }
+    /* Removed arrow since we now use SVG icon */
   }
 }
 

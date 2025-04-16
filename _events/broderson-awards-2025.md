@@ -6,7 +6,7 @@ start_time: "6:00 PM"
 end_time: "9:00 PM"
 location: UNE Innovation Hall
 address: Portland, Maine
-image: /assets/images/event-placeholder.jpg
+image: /assets/images/events/brodersons.png
 price: 
 ticket_link: 
 ---

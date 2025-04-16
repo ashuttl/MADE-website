@@ -219,6 +219,21 @@ main {
   }
 }
 
+// Instagram section
+.instagram {
+  padding: 2rem 0;
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .instagram-follow {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+}
+
 // Footer
 footer {
   margin-top: 0; /* Removed top margin */
