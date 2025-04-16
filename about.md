@@ -79,6 +79,11 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
         <p>Vice President</p>
     </div>
     <div class="board-member">
+        <img src="/assets/images/board/gerrit.jpeg" alt="Gerrit Petersons">
+        <h3>Gerrit Petersons</h3>
+        <p>Treasurer</p>
+    </div>
+    <div class="board-member">
         <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">
         <h3>Abby Lank</h3>
         <p>Secretary</p>
@@ -106,10 +111,6 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
     <div class="board-member">
         <img src="/assets/images/board/elsie.jpeg" alt="Elsie Widing">
         <h3>Elsie Widing</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/gerrit.jpeg" alt="Gerrit Petersons">
-        <h3>Gerrit Petersons</h3>
     </div>
     <div class="board-member">
         <img src="/assets/images/board/helena.jpeg" alt="Helena Olson">
