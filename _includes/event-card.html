@@ -19,7 +19,9 @@
 <!-- Date formatting handled directly with the date filter -->
 
 <div class="event-card">
-  <div class="event-image" style="background-image: url('{{ event.image }}');">
+  <div class="event-image">
+    <div class="event-image-bg" style="background-image: url('{{ event.image }}');"></div>
+    <div class="event-image-overlay"></div>
     {% if event.ticket_link %}
       <a href="{{ event.ticket_link }}" class="event-ticket-link cta cta-sunshine cta-small" target="_blank">
         {% if event.price %}

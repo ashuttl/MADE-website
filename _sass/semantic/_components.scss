@@ -90,13 +90,13 @@
     padding: 2rem;
     border: 1px solid var(--ink);
     border-radius: 1rem;
-    box-shadow: 5px 5px 0 0 var(--tomato);
+    box-shadow: -5px 5px 0 0 var(--tomato);
     transition: none;
     text-align: center;
     
     &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 7px 7px 0 0 var(--tomato);
+      transform: translate(2px, -2px);
+      box-shadow: -7px 7px 0 0 var(--tomato);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     
@@ -114,19 +114,19 @@
     
     &.mini-panel-harbor {
       border-color: var(--harbor);
-      box-shadow: 5px 5px 0 0 var(--seadogs);
+      box-shadow: -5px 5px 0 0 var(--seadogs);
       
       &:hover {
-        box-shadow: 7px 7px 0 0 var(--seadogs);
+        box-shadow: -7px 7px 0 0 var(--seadogs);
       }
     }
     
     &.mini-panel-sunshine {
       border-color: var(--ink);
-      box-shadow: 5px 5px 0 0 var(--sunshine);
+      box-shadow: -5px 5px 0 0 var(--sunshine);
       
       &:hover {
-        box-shadow: 7px 7px 0 0 var(--sunshine);
+        box-shadow: -7px 7px 0 0 var(--sunshine);
       }
     }
     
