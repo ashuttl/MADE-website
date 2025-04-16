@@ -121,8 +121,12 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
         <h3>Kes Lavoie</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/sokvonny.jpeg" alt="Sokvonny Chhouk">
-        <h3>Sokvonny Chhouk</h3>
+        <img src="/assets/images/board/mel.jpeg" alt="Mel Andrel">
+        <h3>Mel Andrel</h3>
+    </div>
+    <div class="board-member">
+        <img src="/assets/images/board/jameson.jpeg" alt="Jameson Smith">
+        <h3>Jameson Smith</h3>
     </div>
     
 </div>
