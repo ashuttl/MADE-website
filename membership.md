@@ -1,12 +1,19 @@
 ---
 layout: page
 title: Join Maine Ad + Design
+theme: sunshine
 ---
 
+{% capture lede_content %}
+# Join Maine Ad + Design
+
+Maine Ad + Design is a nonprofit professional organization that has been working to create community for Maine's creative professionals for more than 100 years. We're a fun, welcoming, caring group of people connected by shared skills, interests, and geography. Join us!
+{% endcapture %}
+
+
 {% capture processed_content %}
-<h1>Join Maine Ad + Design</h1>
 <div class="lede">
-<p>Maine Ad + Design is a nonprofit professional organization that has been working to create community for Maine's creative professionals for more than 100 years. We're a fun, welcoming, caring group of people connected by shared skills, interests, and geography. Join us!</p>
+{{ lede_content | markdownify }}
 </div>
 {% endcapture %}
 

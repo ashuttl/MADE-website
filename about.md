@@ -11,7 +11,7 @@ title: About Maine Ad + Design
 </div>
 
 {% capture lede_content %}
-In 1923, forty years before the heyday of Don Draper, one of America's first ad clubs was dreamed up in a hotel room in cosmopolitan Portland, Maine. In the century since — first as the Portland Advertising Club, then the Advertising Club of Greater Portland (and then of Maine), and now as Maine Ad + Design — generations of Maine creative professionals have come together to connect, create, and celebrate everything that makes us tick.
+In 1923, forty years before the heyday of Don Draper, one of America's first ad clubs was dreamed up in a hotel room in cosmopolitan Portland, Maine. In the century since – first as the _Portland Advertising Club,_ then the _Advertising Club of Greater Portland_ (and then _of Maine_), and now as <span style="font-variant-caps:all-small-caps">MADE</span> – generations of Maine creative professionals have come together to connect, create, and celebrate everything that makes us tick.
 {% endcapture %}
 
 {% include lede.html content=lede_content %}

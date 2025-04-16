@@ -295,8 +295,8 @@
 
 // Membership tier card
 .tier {
-  background-color: var(--page);
-  border: 1px solid var(--ink);
+  background-color: var(--theme-page);
+  border: 1px solid var(--theme-ink);
   border-radius: 1rem;
   padding: 2rem;
   display: flex;
@@ -355,8 +355,18 @@
   .cta {
     margin-top: 1.5rem;
     align-self: flex-start;
-    border-color: var(--ink);
-    color: var(--ink);
+    border-color: var(--theme-ink);
+    color: var(--theme-ink);
+    
+    .theme-sunshine & {
+      border-color: var(--harbor);
+      color: var(--harbor);
+      
+      &:hover {
+        box-shadow: 4px 4px 0 0 var(--harbor);
+        border-color: var(--harbor);
+      }
+    }
     
     &:hover {
       box-shadow: 4px 4px 0 0 var(--tomato);

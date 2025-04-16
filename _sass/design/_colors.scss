@@ -100,7 +100,7 @@
   color: var(--theme-ink);
   
   a:not(.button):not(.cta) {
-    color: var(--theme-link);
+    // color: var(--theme-link);
     
     &.current {
       color: var(--theme-current-link);
@@ -109,7 +109,7 @@
   
   // Special handling for buttons
   .cta {
-    background-color: var(--theme-link);
+    // background-color: var(--theme-link);
     color: var(--theme-page);
     
     &:hover {
