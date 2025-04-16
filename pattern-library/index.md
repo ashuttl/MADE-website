@@ -9,12 +9,192 @@ This page documents the design system and components used on the Maine Ad + Desi
 
 <div class="panel mini-panel">
   <h3>Quick Reference</h3>
-  <a href="#typography" class="cta">Typography</a>
+  <a href="#content-guide" class="cta">Content Guide</a>
+  <a href="#typography" class="cta" style="margin-top: 0.5rem;">Typography</a>
   <a href="#colors" class="cta" style="margin-top: 0.5rem;">Colors</a>
   <a href="#components" class="cta" style="margin-top: 0.5rem;">Components</a>
   <a href="#events" class="cta" style="margin-top: 0.5rem;">Events</a>
   <a href="#icons" class="cta" style="margin-top: 0.5rem;">Icons</a>
 </div>
+
+<a id="content-guide"></a>
+## Content Guide
+
+{% capture content_guide %}
+This section provides a quick reference for where to modify content on the MADE website. This is helpful for users who are familiar with code and GitHub but may not know Jekyll well.
+{% endcapture %}
+
+{{ content_guide | markdownify }}
+
+### File Structure Overview
+
+{% capture file_structure %}
+The MADE website follows Jekyll's file structure conventions:
+
+- **Regular Pages**: Individual Markdown files in the root directory (e.g., `about.md`, `membership.md`)
+- **Collections**: Groups of related content in folders with an underscore prefix (`_events`, `_brodersons`)
+- **Data Files**: Structured content in YAML files in the `_data` directory
+- **Layouts**: Templates for different page types in the `_layouts` directory
+- **Includes**: Reusable components in the `_includes` directory
+- **Assets**: Images, CSS, and JavaScript in the `assets` directory
+{% endcapture %}
+
+{{ file_structure | markdownify }}
+
+### Common Content Locations
+
+{% capture content_locations %}
+| Content Type | Location | File Format | Notes |
+|--------------|----------|-------------|-------|
+| Regular pages | Root directory | Markdown (`.md`) | e.g., `about.md`, `membership.md` |
+| Events | `_events/` directory | Markdown (`.md`) | Each event is a separate file |
+| Brodersons content | `_brodersons/` directory | Markdown (`.md`) | For Broderson Awards content |
+| Global banner | `_data/banner.yml` | YAML | Configure the site-wide banner |
+| Footer content | `_data/footer.yml` | YAML | Update contact info and footer text |
+| Home page CTAs | `_data/home_ctas.yml` | YAML | Main call-to-action buttons on homepage |
+| Site config | `_config.yml` | YAML | Site-wide configurations |
+{% endcapture %}
+
+{{ content_locations | markdownify }}
+
+### Editing Events
+
+{% capture editing_events %}
+Events are managed as a Jekyll collection. To add a new event:
+
+1. Create a new Markdown file in the `_events/` directory with a descriptive filename (e.g., `made-mixer-june.md`)
+2. Include required front matter (YAML at the top of the file):
+
+```yaml
+---
+layout: page
+title: Event Title
+date: 2025-06-15  # YYYY-MM-DD format
+start_time: "6:00 PM"
+end_time: "8:00 PM"
+location: Venue Name
+address: |
+  123 Main Street
+  Portland, Maine
+image: /assets/images/events/your-image.jpg
+price: "$10"  # Optional
+ticket_link: https://example.com/tickets  # Optional
+---
+```
+
+3. Add event description in Markdown below the front matter
+
+Events will automatically appear in the upcoming events section if their date is in the future.
+{% endcapture %}
+
+{{ editing_events | markdownify }}
+
+### Modifying Global Elements
+
+{% capture global_elements %}
+#### Banner
+
+Edit `_data/banner.yml` to update the site-wide banner:
+
+```yaml
+enabled: true  # Set to false to disable
+text: "Your banner text here"
+url: "/target-page"
+theme: "tomato"  # Options: tomato, harbor, sunshine, neutral
+exclude_paths: "/path1,/path2/"  # Pages where banner shouldn't show
+```
+
+#### Footer
+
+Edit `_data/footer.yml` to update footer content:
+
+```yaml
+# Contact information
+contact:
+  email: "your@email.com"
+  linkedin: "YourLinkedIn"
+  instagram: "YourInstagram"
+  facebook: "YourFacebook"
+  signup_url: "https://signup-form.com"
+  signup_text: "Sign up text"
+
+# Footer text (supports Markdown)
+fineprint: |
+  Your footer text here
+  Can span multiple lines
+
+# Copyright information
+copyright_name: "Your organization name"
+copyright_start_year: 1923
+```
+
+#### Homepage
+
+The homepage is controlled by `index.md`. The hero section is configured directly in the file:
+
+```liquid
+{% raw %}{% include hero.html
+  image_src="/path/to/image.jpg"
+  title="Your title here"
+  cta_links=site.data.home_ctas
+  theme="harbor"
+%}{% endraw %}
+```
+
+The homepage CTA buttons are defined in `_data/home_ctas.yml`:
+
+```yaml
+- url: /about
+  text: About
+- url: /membership
+  text: Join
+```
+{% endcapture %}
+
+{{ global_elements | markdownify }}
+
+### Adding Images
+
+{% capture adding_images %}
+Images should be placed in the appropriate subdirectory within the `assets/images/` directory:
+
+- Event images: `assets/images/events/`
+- Board member photos: `assets/images/board/`
+- General images: `assets/images/`
+- Brodersons images: `assets/images/brodersons/`
+{% endcapture %}
+
+{{ adding_images | markdownify }}
+
+### Using the Capture Technique for Markdown
+
+{% capture markdown_capture %}
+Jekyll and Liquid have some limitations when it comes to processing Markdown within certain contexts. To ensure your Markdown content is properly processed, use the "capture" technique:
+
+1. Wrap your Markdown content in a Liquid capture tag:
+   ```liquid
+   {% raw %}{% capture your_content_name %}
+   Your **Markdown** content goes here.
+   
+   - With lists
+   - And other formatting
+   {% endcapture %}{% endraw %}
+   ```
+
+2. Output the captured content with the markdownify filter:
+   ```liquid
+   {% raw %}{{ your_content_name | markdownify }}{% endraw %}
+   ```
+
+This technique is especially useful for:
+- Content that includes complex Markdown formatting
+- Content that includes Liquid tags and variables
+- Content that needs to be reused in multiple places
+
+You can see this technique used throughout the site, particularly on the About page and in components like the hero section.
+{% endcapture %}
+
+{{ markdown_capture | markdownify }}
 
 ## Overview
 
@@ -64,7 +244,13 @@ The MADE site uses a combination of typefaces for different purposes:
 
 ### Body Copy
 
-<p class="lede">This is a lede paragraph, set in Aluminia. It's used to introduce sections with a distinctive, editorial feel.</p>
+{% capture ledecontent %}
+This is a lede paragraph, set in Aluminia. It’s used to introduce sections with a distinctive, editorial feel. Aluminia was designed for Mainer Bruce Kennett’s excellent book on the excellent W.A. Dwiggins ([this is the book](https://brucekennett.com/wa-dwiggins-a-life-in-design/), and here’s [more on the font](https://letterformarchive.org/news/recasting-aluminia/?srsltid=AfmBOopSiBEKqFhkcs2IxMHSfys786D_7Q6r1G7k39XNzU3eaFl2JRVw)).
+{% endcapture %}
+
+<div class="lede">
+{{ ledecontent | markdownify }}
+</div>
 
 Regular paragraph text is set in Golos Text. It's clean, contemporary, and highly readable at all sizes. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Links are generally <a href="#">underlined</a> and inherit their color from the parent element.
 
