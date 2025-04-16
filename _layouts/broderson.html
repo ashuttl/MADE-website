@@ -16,7 +16,7 @@ layout: default
     <div class="gallery">
         {% for image in page.images %}
         <figure>
-            <img src="{{ image.src | relative_url }}" alt="{{ image.alt }}">
+            <img src="{{ image.src }}" alt="{{ image.alt }}">
             {% if image.caption %}<figcaption>{{ image.caption }}</figcaption>{% endif %}
         </figure>
         {% endfor %}

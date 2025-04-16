@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/fonts.css' | relative_url }}">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/fonts.css' }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' }}">
 </head>
 <body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
     {% include banner.html %}
@@ -105,6 +105,6 @@
         </div>
     </footer>
     
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/main.js' }}"></script>
 </body>
 </html>
