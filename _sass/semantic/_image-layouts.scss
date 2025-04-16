@@ -2,7 +2,7 @@
 .hero-section {
   position: relative;
   min-height: 70vh;
-  margin-bottom: 3rem;
+  margin-bottom: 0; /* Removed margin to eliminate gap with events section */
   display: flex;
   align-items: center;
   text-align: left;

@@ -157,3 +157,90 @@ document.addEventListener('DOMContentLoaded', function() {
     link.setAttribute('rel', 'noopener noreferrer');
   });
 });
+
+// Handle events carousel
+document.addEventListener('DOMContentLoaded', function() {
+  const eventContainers = document.querySelectorAll('.events-carousel');
+  
+  eventContainers.forEach(container => {
+    const scrollOuter = container.querySelector('.events-scroll-outer');
+    const scroll = container.querySelector('.events-scroll');
+    const leftButton = container.querySelector('.scroll-button.scroll-left');
+    const rightButton = container.querySelector('.scroll-button.scroll-right');
+    
+    if (!scrollOuter || !scroll) return;
+    
+    // Function to check for overflow
+    function checkOverflow() {
+      // Add a small buffer to account for rounding errors
+      const buffer = 5;
+      if (scroll.scrollWidth > scrollOuter.clientWidth + buffer) {
+        scrollOuter.classList.add('has-overflow');
+        
+        // Make sure parent also knows about overflow
+        container.classList.add('has-overflow');
+        
+        console.log('Overflow detected: scrollWidth=', scroll.scrollWidth, 'clientWidth=', scrollOuter.clientWidth);
+      } else {
+        scrollOuter.classList.remove('has-overflow');
+        container.classList.remove('has-overflow');
+      }
+      
+      // Update button visibility
+      updateButtonVisibility();
+    }
+    
+    // Function to update button visibility based on scroll position
+    function updateButtonVisibility() {
+      if (!leftButton || !rightButton) return;
+      
+      // Initial state - hide left button at start
+      if (scrollOuter.scrollLeft === 0) {
+        leftButton.style.opacity = '0';
+      } else {
+        leftButton.style.opacity = '1';
+      }
+      
+      // At the end, hide right button
+      const maxScroll = scroll.scrollWidth - scrollOuter.clientWidth;
+      if (scrollOuter.scrollLeft >= maxScroll - 5) {
+        rightButton.style.opacity = '0';
+      } else {
+        rightButton.style.opacity = '1';
+      }
+    }
+    
+    // Initial check
+    // Wait a bit for layout to settle
+    setTimeout(checkOverflow, 100);
+    
+    // Check again on window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(checkOverflow, 100);
+    });
+    
+    // Handle scroll button clicks
+    if (leftButton && rightButton) {
+      const scrollAmount = 340; // Roughly the width of a card plus gap
+      
+      leftButton.addEventListener('click', () => {
+        scrollOuter.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      rightButton.addEventListener('click', () => {
+        scrollOuter.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Update button visibility when scrolling
+      scrollOuter.addEventListener('scroll', updateButtonVisibility);
+    }
+  });
+});

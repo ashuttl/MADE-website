@@ -74,6 +74,7 @@
                         </div>
                         <div class="fineprint">
                             {{ site.data.footer.fineprint | markdownify }}
+                            <hr>It
                             <p>© {{ site.data.footer.copyright_start_year }}–{% capture now %}{{ "now" | date: "%Y" }}{% endcapture %}{{ now }} {{ site.data.footer.copyright_name }}</p>
                         </div>
                     </div>

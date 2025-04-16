@@ -77,6 +77,11 @@
   border-radius: var(--border-radius);
   transition: none;
   
+  // Special case for panels directly after hero (like events section)
+  .hero-section + & {
+    margin-top: 0;
+  }
+  
   // Mini Panel - floating CTA
   &.mini-panel {
     width: 15rem;

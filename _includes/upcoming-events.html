@@ -23,19 +23,22 @@
       <div class="events-intro">
         <div class="strapline">Events</div>
         <h2 class="headline">What's coming up?</h2>
-        <p>Spend time with cool people IRL.</p>
+        <p>Some ways to spend time IRL with friends and strangers:</p>
       </div>
       
       {% if has_events %}
+      <div class="events-carousel">
+        {% assign event_count = upcoming_events | size %}
         <div class="events-scroll-outer">
-          <div class="events-scroll-container">
-            <div class="events-scroll">
-              {% for event in upcoming_events %}
-                {% include event-card.html event=event %}
-              {% endfor %}
-            </div>
+          <button class="scroll-button scroll-left" aria-label="Scroll left">&#10094;</button>
+          <div class="events-scroll" data-count="{{ event_count }}">
+            {% for event in upcoming_events %}
+              {% include event-card.html event=event %}
+            {% endfor %}
           </div>
+          <button class="scroll-button scroll-right" aria-label="Scroll right">&#10095;</button>
         </div>
+      </div>
       {% else %}
         <div class="no-events">
           <p>No upcoming events at this time. Check back soon!</p>
