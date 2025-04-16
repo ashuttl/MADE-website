@@ -74,8 +74,14 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
         <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn {% include icon.html name="external-link" %}</a></p>
     </div>
     <div class="board-member">
+        <img src="/assets/images/board/stanzi.jpeg" alt="Stanzi Littlefield">
+        <h3>Stanzi Littlefield</h3>
+        <p>Vice President</p>
+    </div>
+    <div class="board-member">
         <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">
         <h3>Abby Lank</h3>
+        <p>Secretary</p>
     </div>
     <div class="board-member">
         <img src="/assets/images/board/alphan.jpeg" alt="Alphan Günaydın">
@@ -117,8 +123,5 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
         <img src="/assets/images/board/sokvonny.jpeg" alt="Sokvonny Chhouk">
         <h3>Sokvonny Chhouk</h3>
     </div>
-    <div class="board-member">
-        <img src="/assets/images/board/stanzi.jpeg" alt="Stanzi Littlefield">
-        <h3>Stanzi Littlefield</h3>
-    </div>
+    
 </div>
