@@ -14,7 +14,25 @@
 {% assign limit = include.limit | default: 3 %}
 {% assign now = site.time %}
 
-{% assign upcoming_events = site.events | where_exp: "event", "event.date >= now" | sort: "date" | limit: limit %}
+{% comment %}
+  To show events until the day after they occur, we need to calculate
+  yesterday's date and compare only the date parts (without time).
+{% endcomment %}
+{% assign day_in_seconds = 86400 %}
+{% assign yesterday_timestamp = now | date: "%s" | minus: day_in_seconds %}
+{% assign yesterday = yesterday_timestamp | date: "%Y-%m-%d" %}
+
+{% assign all_upcoming_events = '' | split: '' %}
+
+{% for event in site.events %}
+  {% assign event_date = event.date | date: "%Y-%m-%d" %}
+  {% if event_date >= yesterday %}
+    {% assign all_upcoming_events = all_upcoming_events | push: event %}
+  {% endif %}
+{% endfor %}
+
+{% assign all_upcoming_events = all_upcoming_events | sort: 'date' %}
+{% assign upcoming_events = all_upcoming_events | slice: 0, limit %}
 {% assign has_events = upcoming_events | size > 0 %}
 
 <section class="events-section panel panel-{{ theme }}">

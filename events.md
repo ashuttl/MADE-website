@@ -9,8 +9,29 @@ theme: seadogs
 Join MADE for events throughout the year – from casual mixers to the annual Broderson Awards celebration.
 
 {% assign now = site.time %}
-{% assign upcoming_events = site.events | where_exp: "event", "event.date >= now" | sort: "date" %}
-{% assign past_events = site.events | where_exp: "event", "event.date < now" | sort: "date" | reverse %}
+
+{% comment %}
+  To show events until the day after they occur, we need to calculate
+  yesterday's date and compare only the date parts (without time).
+{% endcomment %}
+{% assign day_in_seconds = 86400 %}
+{% assign yesterday_timestamp = now | date: "%s" | minus: day_in_seconds %}
+{% assign yesterday = yesterday_timestamp | date: "%Y-%m-%d" %}
+
+{% assign upcoming_events = '' | split: '' %}
+{% assign past_events = '' | split: '' %}
+
+{% for event in site.events %}
+  {% assign event_date = event.date | date: "%Y-%m-%d" %}
+  {% if event_date >= yesterday %}
+    {% assign upcoming_events = upcoming_events | push: event %}
+  {% else %}
+    {% assign past_events = past_events | push: event %}
+  {% endif %}
+{% endfor %}
+
+{% assign upcoming_events = upcoming_events | sort: 'date' %}
+{% assign past_events = past_events | sort: 'date' | reverse %}
 
 ## Upcoming Events
 

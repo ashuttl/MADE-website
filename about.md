@@ -20,7 +20,7 @@ In 1923, forty years before the heyday of Don Draper, one of America's first ad 
 
 <div class="panel panel-sunshine">
   <span class="strapline">Our mission</span>
-  <h2 class="headline">To celebrate, cultivate, and connect Maine's professional creative community</h2>
+  <h2 class="headline">To celebrate, cultivate, and connect Maine’s professional creative community</h2>
   
   <div class="two-up">
     <div>
@@ -117,16 +117,15 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
         <h3>Helena Olson</h3>
     </div>
     <div class="board-member">
+        <img src="/assets/images/board/jameson.jpeg" alt="Jameson Smith">
+        <h3>Jameson Smith</h3>
+    </div>
+    <div class="board-member">
         <img src="/assets/images/board/kes.jpeg" alt="Kes Lavoie">
         <h3>Kes Lavoie</h3>
     </div>
     <div class="board-member">
         <img src="/assets/images/board/mel.jpeg" alt="Mel Andrel">
         <h3>Mel Andrel</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/jameson.jpeg" alt="Jameson Smith">
-        <h3>Jameson Smith</h3>
-    </div>
-    
+    </div>    
 </div>
