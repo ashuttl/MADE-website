@@ -1,6 +1,6 @@
 // Events section
 .events-section {
-  padding: 3rem 0;
+  padding: clamp(1.5rem, 5vw, 3rem) 0;
   margin: 0; /* Ensure no margin is applied, only padding */
   overflow: visible; /* Allow children to overflow for hover effects */
   
@@ -41,10 +41,22 @@
     
     p {
       max-width: 24rem;
+      margin-bottom: 0.75em;
+      font-size: 0.9em;
+      
+      @media (min-width: 48em) {
+        font-size: 1em;
+      }
     }
     
     .headline {
-      margin-bottom: 0.75em;
+      margin-bottom: 0.5em;
+      font-size: 1.75em;
+      
+      @media (min-width: 48em) {
+        margin-bottom: 0.75em;
+        font-size: 2em;
+      }
     }
   }
   
@@ -136,16 +148,16 @@
         .events-scroll-outer {
           width: 100%;
           padding: 0;
-          margin: 0 1.5rem; /* Add margin to make room for buttons */
-          padding-right: calc(1.5rem + 3vw); /* Add padding to ensure content is visible in container */
+          margin: 0; /* Remove horizontal margins */
+          padding-right: 0; /* Remove right padding */
         }
         
         .scroll-left {
-          left: 0;
+          left: -1rem; /* Move slightly outside container */
         }
         
         .scroll-right {
-          right: 0; /* Position at edge of carousel container */
+          right: -1rem; /* Move slightly outside container */
         }
       }
     }
@@ -182,8 +194,20 @@
     display: flex;
     gap: 1.5rem;
     width: max-content;
-    padding: 1rem 0.5rem; /* Add padding on all sides to allow space for box-shadow and hover transform */
-    margin-left: 0.5rem; /* Additional left margin to ensure hover transform is visible */
+    padding: 0.5rem 0; /* Only keep minimal vertical padding for hover transform */
+    margin-left: 0; /* Remove left margin */
+    
+    .event-card:first-child {
+      margin-left: 0.5rem; /* Space for hover effect on first card */
+    }
+    
+    .event-card:last-child {
+      margin-right: max(2vw, 1rem); /* Add padding to last card to match container */
+      
+      @media (min-width: 65em) {
+        margin-right: calc(1.5rem + 3vw);
+      }
+    }
     
     // When there are 1-2 events, adapt to available space
     &[data-count="1"], &[data-count="2"] {
@@ -343,7 +367,7 @@
   }
   
   .event-content {
-    padding: 1.5rem;
+    padding: clamp(0.875rem, 3vw, 1.5rem);
     display: flex;
     flex-direction: column;
     flex: 1;
