@@ -23,13 +23,8 @@ body {
 .container {
   width: 100%;
   margin: 0 auto;
-  // Fluid padding that increases with viewport width
-  // More constrained on smaller screens, scaling with viewport width on larger screens
-  padding: 0 max(2vw, 1rem);
-  
-  @media (min-width: 65em) {
-    padding: 0 calc(1.5rem + 3vw);
-  }
+  // Using the standardized container padding variable
+  padding: 0 var(--container-padding);
   
   box-sizing: border-box;
   max-width: 100%;
@@ -48,7 +43,7 @@ body {
 
 // Header
 header {
-  padding: 1.5rem 0;
+  padding: var(--space-md) 0;
   position: relative;
   font-family: var(--font-heading);
   

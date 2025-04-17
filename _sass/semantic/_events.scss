@@ -192,21 +192,17 @@
   
   .events-scroll {
     display: flex;
-    gap: 1.5rem;
+    gap: var(--space-md);
     width: max-content;
-    padding: 0.5rem 0; /* Only keep minimal vertical padding for hover transform */
+    padding: var(--space-xs) 0; /* Only keep minimal vertical padding for hover transform */
     margin-left: 0; /* Remove left margin */
     
     .event-card:first-child {
-      margin-left: 0.5rem; /* Space for hover effect on first card */
+      margin-left: var(--space-xs); /* Space for hover effect on first card */
     }
     
     .event-card:last-child {
-      margin-right: max(2vw, 1rem); /* Add padding to last card to match container */
-      
-      @media (min-width: 65em) {
-        margin-right: calc(1.5rem + 3vw);
-      }
+      margin-right: var(--container-padding); /* Add padding to last card to match container */
     }
     
     // When there are 1-2 events, adapt to available space
@@ -259,12 +255,15 @@
 
 // Event card
 .event-card {
+  @extend .card !optional;
+  @extend .card-hoverable !optional;
+  @extend .card-seadogs-hover !optional;
   display: flex;
   flex-direction: column;
-  background-color: var(--page);
+  background-color: var(--theme-page, var(--page));
   border-radius: 1rem;
   overflow: hidden;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--theme-ink, var(--ink));
   transition: none;
   box-shadow: none;
   height: 24rem; /* Fixed height for all cards */
@@ -281,11 +280,11 @@
   // Special styling for harbor theme (dark background)
   .panel-harbor & {
     background-color: transparent;
-    border-color: var(--seadogs);
+    border-color: var(--theme-accent, var(--seadogs));
     
     &:hover {
-      border-color: var(--wintermint);
-      box-shadow: 6px 6px 0 0 var(--wintermint);
+      border-color: var(--theme-accent-light, var(--wintermint));
+      box-shadow: 6px 6px 0 0 var(--theme-accent-light, var(--wintermint));
     }
     
     .event-image {
@@ -367,7 +366,8 @@
   }
   
   .event-content {
-    padding: clamp(0.875rem, 3vw, 1.5rem);
+    @extend .card-content !optional;
+    padding: var(--space-sm);
     display: flex;
     flex-direction: column;
     flex: 1;

@@ -1,5 +1,6 @@
-// Color variables
+// Color system
 :root {
+  // Base colors
   --page: whitesmoke;
   --ink: #1a1919;
   --linktext: #5da191;
@@ -13,6 +14,84 @@
   --white: white;
   --orchid: #4c0a66;
   --pumpkin: #ed7040;
+  
+  // Theme default values (fallbacks)
+  --theme-page: var(--page);
+  --theme-ink: var(--ink);
+  --theme-link: var(--linktext);
+  --theme-current-link: var(--currentlinktext);
+  --theme-accent: var(--seadogs);
+  --theme-accent-light: var(--wintermint);
+  --theme-mark: var(--sunshine);
+  
+  // Theme-specific values
+}
+
+.theme-harbor {
+  --theme-page: var(--page);
+  --theme-ink: var(--harbor);
+  --theme-link: var(--seadogs);
+  --theme-current-link: var(--wintermint);
+  --theme-accent: var(--seadogs);
+  --theme-accent-light: var(--wintermint);
+  --theme-mark: rgba(var(--seadogs-rgb), 0.2);
+  --theme-link-rgb: var(--seadogs-rgb);
+}
+
+.theme-midnight {
+  --theme-page: var(--black);
+  --theme-ink: var(--page);
+  --theme-link: var(--wintermint);
+  --theme-current-link: var(--sunshine);
+  --theme-accent: var(--seadogs);
+  --theme-accent-light: var(--wintermint);
+  --theme-mark: rgba(var(--wintermint-rgb), 0.3);
+  --theme-link-rgb: var(--wintermint-rgb);
+}
+
+.theme-tomato {
+  --theme-page: var(--page);
+  --theme-ink: var(--ink);
+  --theme-link: var(--langostino);
+  --theme-current-link: var(--pumpkin);
+  --theme-accent: var(--langostino);
+  --theme-accent-light: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.3);
+  --theme-link-rgb: var(--langostino-rgb);
+}
+
+.theme-sunshine {
+  --theme-page: var(--page);
+  --theme-ink: var(--ink);
+  --theme-link: var(--harbor);
+  --theme-current-link: var(--langostino);
+  --theme-accent: var(--sunshine);
+  --theme-accent-light: var(--seadogs);
+  --theme-mark: rgba(var(--harbor-rgb), 0.2);
+  --theme-link-rgb: var(--harbor-rgb);
+}
+
+// RGB values for transparency usage
+:root {
+  --page-rgb: 245, 245, 245;
+  --ink-rgb: 26, 25, 25;
+  --seadogs-rgb: 82, 193, 177;
+  --wintermint-rgb: 158, 204, 191;
+  --harbor-rgb: 6, 33, 56;
+  --langostino-rgb: 202, 88, 60;
+  --sunshine-rgb: 240, 200, 109;
+  
+  // Color with opacity variations (for consistent alpha usage)
+  --seadogs-10: rgba(var(--seadogs-rgb), 0.1);
+  --seadogs-20: rgba(var(--seadogs-rgb), 0.2);
+  --harbor-10: rgba(var(--harbor-rgb), 0.1);
+  --harbor-20: rgba(var(--harbor-rgb), 0.2);
+  --sunshine-10: rgba(var(--sunshine-rgb), 0.1);
+  --sunshine-20: rgba(var(--sunshine-rgb), 0.2);
+  --sunshine-30: rgba(var(--sunshine-rgb), 0.3);
+  --sunshine-45: rgba(var(--sunshine-rgb), 0.45);
+  --page-10: rgba(var(--page-rgb), 0.1);
+  --page-30: rgba(var(--page-rgb), 0.3);
 }
 
 // Fluid typography
@@ -22,13 +101,23 @@
   font-size: calc(16px + 0.5 * (0.7vw + 0.3vh));
 }
 
-// Spacing variables
+// Fluid spacing system
 :root {
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-  --space-xl: 4rem;
+  // Fluid spacing that scales with viewport size
+  --space-2xs: clamp(0.25rem, 0.5vw, 0.375rem);
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.875rem, 2vw, 1.25rem);
+  --space-md: clamp(1.25rem, 3vw, 2rem);
+  --space-lg: clamp(1.5rem, 5vw, 3rem);
+  --space-xl: clamp(2rem, 6vw, 4rem);
+  --space-2xl: clamp(3rem, 8vw, 6rem);
+  
+  // Container padding (extracted as a separate variable for consistency)
+  --container-padding: max(2vw, 1rem);
+  
+  @media (min-width: 65em) {
+    --container-padding: calc(1.5rem + 3vw);
+  }
 }
 
 // Border variables

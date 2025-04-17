@@ -1,3 +1,58 @@
+// Base card component (abstract)
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1rem;
+  background-color: var(--theme-page, var(--page));
+  border: 1px solid var(--theme-ink, var(--ink));
+  transition: none;
+  box-shadow: none;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  
+  // Card content area
+  .card-content {
+    padding: var(--space-sm);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  // Card hover effect
+  &.card-hoverable {
+    &:hover {
+      transform: translate(-6px, -6px);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      z-index: 10; // Ensure hovered cards appear above others
+    }
+  }
+  
+  // Card with tomato shadow/border on hover
+  &.card-tomato-hover {
+    &:hover {
+      box-shadow: 6px 6px 0 0 var(--tomato);
+      border-color: var(--tomato);
+    }
+  }
+  
+  // Card with seadogs shadow/border on hover
+  &.card-seadogs-hover {
+    &:hover {
+      box-shadow: 6px 6px 0 0 var(--seadogs);
+      border-color: var(--seadogs);
+    }
+  }
+  
+  // Card with harbor shadow/border on hover
+  &.card-harbor-hover {
+    &:hover {
+      box-shadow: 6px 6px 0 0 var(--harbor);
+      border-color: var(--harbor);
+    }
+  }
+}
+
 // Lede text component
 .lede {
 }
@@ -52,22 +107,8 @@
     background-color: rgba(var(--sunshine-rgb), 0.15);
   }
   
-  // Theme-based styling
-  .theme-harbor & {
-    background-color: rgba(var(--theme-link-rgb), 0.1);
-  }
-  
-  .theme-midnight & {
-    background-color: rgba(var(--theme-link-rgb), 0.1);
-  }
-  
-  .theme-teal & {
-    background-color: rgba(var(--theme-link-rgb), 0.1);
-  }
-  
-  .theme-sunshine & {
-    background-color: rgba(var(--theme-link-rgb), 0.1);
-  }
+  // Themed styling using custom properties
+  background-color: rgba(var(--theme-link-rgb, var(--seadogs-rgb)), 0.1);
 }
 
 // Themed panels
@@ -297,10 +338,12 @@
 
 // Membership tier card
 .tier {
-  background-color: var(--theme-page);
-  border: 1px solid var(--theme-ink);
+  @extend .card !optional;
+  @extend .card-hoverable !optional;
+  background-color: var(--theme-page, var(--page));
+  border: 1px solid var(--theme-ink, var(--ink));
   border-radius: 1rem;
-  padding: clamp(0.875rem, 4vw, 2rem);
+  padding: var(--space-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -308,24 +351,28 @@
   position: relative;
   transition: none;
   box-shadow: none;
+  overflow: hidden;
   
   &:hover {
     transform: translate(-6px, -6px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    z-index: 10;
+  }
+  
+  // Color variations based on position
+  &:first-child:hover {
     box-shadow: 6px 6px 0 0 var(--tomato);
     border-color: var(--tomato);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   
   &:nth-child(2):hover {
     box-shadow: 6px 6px 0 0 var(--seadogs);
     border-color: var(--seadogs);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   
   &:nth-child(3):hover {
     box-shadow: 6px 6px 0 0 var(--harbor);
     border-color: var(--harbor);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
   
   .theme-midnight & {
