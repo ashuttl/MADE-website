@@ -125,15 +125,20 @@
   
   // Mini Panel - floating CTA
   &.mini-panel {
-    width: 15rem;
-    float: right;
-    margin: 0 0 2rem 2rem;
+    width: 100%;
+    margin: 2rem 0;
     padding: clamp(1rem, 4vw, 2rem);
     border: 1px solid var(--ink);
     border-radius: 1rem;
     box-shadow: 5px 5px 0 0 var(--tomato);
     transition: none;
     text-align: center;
+    
+    @media (min-width: 40em) {
+      width: 15rem;
+      float: right;
+      margin: 0 0 2rem 2rem;
+    }
     
     &:hover {
       transform: translate(-2px, -2px);
