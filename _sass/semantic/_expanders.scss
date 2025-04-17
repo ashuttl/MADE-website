@@ -5,18 +5,18 @@
   border-radius: var(--border-radius);
   overflow: hidden;
   box-shadow: none;
-  transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+  transform: none !important; // Prevent any movement
+  transition: box-shadow 0.3s ease-in-out;
   
   &.is-open {
     border-color: var(--ink);
-    transform: translateY(-2px);
-    box-shadow: 3px 3px 0 0 var(--ink);
+    box-shadow: 4px 4px 0 0 var(--ink);
   }
   
   /* Only apply hover effect to closed expanders */
   &:not(.is-open):hover {
-    transform: translateY(-1px);
-    box-shadow: 1px 1px 0 0 var(--ink);
+    box-shadow: 4px 4px 0 0 var(--ink);
+    transform: none !important; // Override any JS transform
   }
 }
 
@@ -25,7 +25,7 @@
   background-color: rgba(var(--page-rgb), 0.8);
   cursor: pointer;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
   
   &:hover {
     background-color: rgba(var(--seadogs-rgb), 0.08);
@@ -34,6 +34,10 @@
   .expander.is-open & {
     background-color: var(--ink);
     color: var(--page);
+    
+    &:hover {
+      background-color: var(--ink);
+    }
     
     h2, h3, h4, h5, h6 {
       color: var(--page);
@@ -102,6 +106,12 @@
 
 // JavaScript will add this class to open the expander
 .expander.is-open {
+  transform: none !important; // Override any JS transform
+  
+  &:hover {
+    transform: none !important;
+  }
+  
   .expander-toggle::after {
     content: "−"; // Minus sign (not hyphen)
     transform: translateY(-50%) rotate(180deg);
