@@ -314,13 +314,17 @@
     }
     
     .event-ticket-link {
+      background-color: var(--sunshine);
       border-color: var(--sunshine);
       color: var(--ink);
       position: relative;
       z-index: 5; // Ensure ticket link stays above the color overlay
       
       &:hover {
-        box-shadow: 3px 3px 0 0 var(--wintermint);
+        background-color: var(--wintermint);
+        border-color: var(--wintermint);
+        color: var(--ink);
+        box-shadow: 3px 3px 0 0 var(--harbor);
       }
     }
   }
@@ -358,9 +362,15 @@
       white-space: nowrap;
       font-weight: 600;
       box-shadow: none;
+      background-color: var(--harbor);
+      color: var(--page);
+      border-color: var(--harbor);
       
       &:hover {
-        box-shadow: 3px 3px 0 0 var(--seadogs);
+        background-color: var(--sunshine);
+        border-color: var(--sunshine);
+        color: var(--ink);
+        box-shadow: 3px 3px 0 0 var(--langostino);
       }
     }
   }

@@ -9,6 +9,8 @@ address: Portland, Maine
 image: /assets/images/events/brodersons.png
 price: 
 ticket_link: 
+detail_url: /brodersons
+button_label: Learn More
 ---
 
 Celebrate excellence in Maine's creative community at the annual Broderson Awards ceremony.

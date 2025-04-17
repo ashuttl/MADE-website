@@ -13,6 +13,8 @@
     - image: Path to event image
     - ticket_link: URL to buy tickets/RSVP (optional)
     - price: Event price (optional)
+    - detail_url: URL to event detail page (optional)
+    - button_label: Custom label for the button (optional, defaults to "RSVP" or price)
 {% endcomment %}
 
 {% assign event = include.event %}
@@ -24,10 +26,20 @@
     <div class="event-image-overlay"></div>
     {% if event.ticket_link %}
       <a href="{{ event.ticket_link }}" class="event-ticket-link cta cta-sunshine cta-small" target="_blank">
-        {% if event.price %}
+        {% if event.button_label %}
+          {{ event.button_label }}
+        {% elsif event.price %}
           {{ event.price | prepend: "Tickets: " }}
         {% else %}
           RSVP
+        {% endif %}
+      </a>
+    {% elsif event.detail_url %}
+      <a href="{{ event.detail_url }}" class="event-ticket-link cta cta-sunshine cta-small">
+        {% if event.button_label %}
+          {{ event.button_label }}
+        {% else %}
+          Learn More
         {% endif %}
       </a>
     {% endif %}
