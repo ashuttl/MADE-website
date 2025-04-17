@@ -1,0 +1,10 @@
+/* TEAM */
+Owner: Maine Ad + Design
+Site: https://maineaddesign.com
+Location: Maine, USA
+
+/* SITE */
+Built: 2025
+Standards: HTML5, CSS3
+Components: Jekyll, Liquid
+Software: Jekyll, GitHub Pages

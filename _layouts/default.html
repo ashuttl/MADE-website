@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- Favicon package -->
+    <link rel="icon" type="image/png" href="/assets/images/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Maine Ad + Design" />
+    <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:image" content="{{ site.url }}{% if page.og_image %}{{ page.og_image }}{% else %}/assets/images/og-default.jpg{% endif %}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Humans.txt authorship information -->
+    <link rel="author" href="/humans.txt">
+    
     <link rel="stylesheet" href="{{ '/assets/css/fonts.css' }}">
     <link rel="stylesheet" href="{{ '/assets/css/main.css' }}">
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
 </head>
 <body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
     {% include banner.html %}

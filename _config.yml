@@ -1,11 +1,23 @@
 title: Maine Ad + Design
 description: Maine Ad + Design is the oldest advertising club in the United States, supporting the creative community in Maine since 1923.
 baseurl: ""
-url: ""
+url: "https://maineaddesign.com"
+
+# Social media
+social:
+  facebook: maineaddesign
+  instagram: maineaddesign
+  linkedin: maineaddesign
 
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Kramdown settings
 kramdown:

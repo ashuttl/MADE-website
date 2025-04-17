@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maineaddesign.com/sitemap.xml
