@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Maine Ad & Design – community and events for creative professionals in Maine
+title: Maine Ad & Design – Building community for creative professionals in Maine
 has_hero: true
 theme: harbor
 ---
