@@ -264,7 +264,7 @@ Freelance: $80 • Standard: $100
 Yes. Either the individual or their organization must have a current MADE membership.
 
 **Do I need to be a MADE member to attend the event?**  
-No. All are welcome to attend.
+No. All are welcome to attend! You just need [a ticket](https://www.eventbrite.com/e/made-broderson-awards-2025-tickets-1321673213159?aff=oddtdtcreator).
 
 **Are there discounted tickets for MADE members?**  
 Yes. Members will receive a discount code via email.
@@ -273,7 +273,7 @@ Yes. Members will receive a discount code via email.
 Yes. Student MADE members receive 50% off. ([Student membership is free](https://made.memberful.com/checkout?plan=109068&coupon=Education)!)
 
 **Will there be a live event?**  
-Yes. The 2025 awards will be hosted live at UNE Innovation Hall.
+Yes. The 2025 awards will be hosted live at UNE Innovation Hall. [Tickets are on sale now!](https://www.eventbrite.com/e/made-broderson-awards-2025-tickets-1321673213159?aff=oddtdtcreator)
 
 **How do I submit?**  
 Through our [Judgify platform](https://www.judgify.me/2025-Broderson-Awards). Create a profile, upload your work, and include a brief description.
