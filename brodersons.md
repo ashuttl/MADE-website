@@ -35,7 +35,7 @@ class: broderson-page
     UNE Innovation Hall, Portland, Maine</div>
     
     <div class="actions">
-      <a href="https://made.memberful.com/register" class="cta">Sign up for email updates</a>
+      <a href="https://www.eventbrite.com/e/made-broderson-awards-2025-tickets-1321673213159?aff=oddtdtcreator" class="cta">Buy Tickets</a>
       <link rel="stylesheet" href="https://cdn.addevent.com/libs/atc/themes/fff-theme-2/theme.css" type="text/css" media="all" /><script type="text/javascript" src="https://cdn.addevent.com/libs/atc/1.6.1/atc.min.js"></script><div title="Add to Calendar" class="addeventatc" data-styling="none" data-id="nD25454934">	Add to Calendar	<span class="addeventatc_icon"></span></div><style>.addeventatc {background-color:#ffffff!important;color:#000000!important;}.addeventatc:hover {background-color:#ffffff!important;filter:brightness(105%);}.addeventatc:active {background-color:#ffffff!important;filter:brightness(110%);}</style>
     </div>
   </div>
