@@ -1,7 +1,7 @@
 ---
 layout: page
 title: MADE Mixer
-date: 2025-05-15
+date: 2025-05-22
 start_time: "5:30 PM"
 end_time: "7:30 PM"
 location: Blue Lobster Urban Winery
