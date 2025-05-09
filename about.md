@@ -1,6 +1,10 @@
 ---
 layout: page
 title: About Maine Ad + Design
+redirect_from:
+  - /who-we-are
+  - /board
+  - /ama
 ---
 
 # About Maine Ad + Design

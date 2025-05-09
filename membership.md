@@ -2,6 +2,10 @@
 layout: page
 title: Join Maine Ad + Design
 theme: sunshine
+redirect_from:
+   - /join
+   - /join-us
+   - /join_us
 ---
 
 {% capture lede_content %}
