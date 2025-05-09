@@ -31,7 +31,7 @@ class: broderson-page
   <h2>Celebrating excellence in Maine’s creative community</h2>
   <div class="meta">
     <div>Thursday, June 5, 2025<br>
-    6:00–9:00 pm<br>
+    6:00–10:00 pm<br>
     UNE Innovation Hall, Portland, Maine</div>
     
     <div class="actions">
