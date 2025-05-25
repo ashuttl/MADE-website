@@ -1,0 +1,9 @@
+---
+import { Markdown } from '@astrojs/markdown-component';
+
+const { content, theme } = Astro.props;
+const themeClass = theme && theme !== 'default' ? `theme-${theme}` : '';
+---
+<div class:list={["lede", themeClass]}>
+  {content && <Markdown content={content} />}
+</div>

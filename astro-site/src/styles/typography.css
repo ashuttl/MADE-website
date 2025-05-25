@@ -1,0 +1,202 @@
+/* Typography Variables from fonts.css are expected to be available */
+/* Additional variables from _typography.scss, Open Props equivalents will be used where possible */
+:root {
+  --font-sans: var(--font-golos); /* From fonts.css */
+  --font-serif: var(--font-aluminia-original); /* From fonts.css */
+  --font-mono: var(--font-fragment-mono); /* From fonts.css */
+  --font-heading: var(--font-brandon); /* From fonts.css */
+  
+  /* Original line heights, map to Open Props where suitable */
+  /* --line-height-tight: 1; -> var(--font-lineheight-0) or 00 */
+  /* --line-height-normal: 1.4; -> between var(--font-lineheight-3) and var(--font-lineheight-4) */
+  /* --line-height-loose: 1.4; */
+
+  /* Using Open Props for text max width */
+  --text-max-width: var(--size-content-3); /* Default max width for text blocks */
+}
+
+/* Base Typography Setup */
+body {
+  font-family: var(--font-sans);
+  line-height: var(--font-lineheight-4); /* Was 1.4, OP 1.5 is close */
+  color: var(--ink); /* From colors.css */
+  background-color: var(--page); /* From colors.css */
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--font-size-fluid-0); /* Base fluid font size */
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  margin-block-start: var(--size-fluid-3); /* Was 1.5em */
+  margin-block-end: var(--size-fluid-1);   /* Was 0.5em */
+  line-height: var(--font-lineheight-1); /* Was --line-height-tight: 1, OP 1.15 */
+  font-weight: 700; /* Matches Open Props --font-weight-6 (Bold) */
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--font-size-fluid-3); } /* Was 2.5em */
+h2 { font-size: var(--font-size-fluid-2); } /* Was 2em */
+h3 { font-size: var(--font-size-fluid-1); } /* Was 1.5em */
+h4 { font-size: var(--font-size-fluid-0); } /* Was 1.25em */
+h5 { font-size: var(--font-size-0); }      /* Was 1em */
+h6 { 
+  font-size: var(--font-size--1);     /* Was 0.875em */
+  text-transform: uppercase;
+  letter-spacing: var(--font-letterspacing-3); /* Was 0.05em */
+}
+
+/* Paragraphs and spacing */
+p, ul, ol, dl, blockquote {
+  margin-block-start: 0;
+  margin-block-end: var(--size-fluid-2); /* Was 1em */
+  max-width: var(--text-max-width);
+  text-wrap: pretty;
+  hanging-punctuation: first last;
+}
+
+.lede {
+  font-size: var(--font-size-fluid-1); /* Was 1.4em, OP fluid-1 is good */
+  font-weight: var(--font-weight-3); /* Was 300 */
+  line-height: var(--font-lineheight-4); /* Was 1.4 */
+  text-wrap: balance;
+  font-family: var(--font-aluminia); /* From fonts.css */
+  max-width: var(--size-header-2); /* Was 55ch */
+}
+
+/* Links - Open Props handles base link styles well. Adding hover/focus from original. */
+a:where(:not(.button):not(.cta)) { /* Ensuring specificity is lower than button styles */
+  color: var(--theme-link, var(--linktext)); /* Use theme variable or fallback */
+  text-decoration: underline; /* Kept from original */
+}
+
+a:where(:not(.button):not(.cta)):hover,
+a:where(:not(.button):not(.cta)):focus {
+  color: var(--theme-current-link, var(--currentlinktext)); /* Use theme variable or fallback */
+}
+
+/* Lists - Open Props provides decent list styling. Adjusting padding. */
+ul, ol {
+  padding-inline-start: var(--size-fluid-3); /* Was 1.5em */
+}
+
+ul li, ol li {
+  margin-block-end: var(--size-fluid-0); /* Was 0.5em */
+}
+
+ul ul, ul ol, ol ul, ol ol {
+  margin-block-start: var(--size-fluid-0); /* Was 0.5em */
+  margin-block-end: var(--size-fluid-0); /* Was 0.5em */
+}
+
+ul {
+  list-style-type: square; /* Kept from original */
+}
+
+dl dt {
+  font-weight: var(--font-weight-6); /* Was 700 */
+}
+
+dl dd {
+  margin-inline-start: 0;
+}
+
+/* Blockquotes */
+blockquote {
+  border-inline-start: var(--border-size-3) solid var(--wintermint); /* Was 0.25rem */
+  padding-inline-start: var(--size-fluid-2); /* Was 1em */
+  font-style: italic;
+  color: var(--ink);
+  text-wrap: pretty;
+  /* hyphens: auto; */ /* Open Props might handle this, or can be added if needed */
+}
+
+/* Code */
+code, pre {
+  font-family: var(--font-mono);
+  font-size: var(--font-size--1); /* Was 0.9em */
+  border: var(--border-size-1) solid var(--ink); /* Was 0.0625rem */
+  border-radius: var(--radius-2); /* Was --border-radius */
+  max-width: 100%;
+  background-color: var(--surface-2); /* Using Open Props surface for subtle background */
+}
+
+code {
+  padding: var(--size-1) var(--size-2); /* Was 0.2em 0.4em */
+  word-wrap: break-word; /* Kept for very long unbreakable strings */
+}
+
+pre {
+  padding: var(--size-fluid-2); /* Was 1em */
+  overflow-x: auto;
+  white-space: pre-wrap; /* Kept */
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+
+/* Horizontal Rule */
+hr {
+  border: 0;
+  border-block-start: var(--border-size-1) solid var(--ink); /* Was 0.0625rem */
+  opacity: 0.1;
+  margin-block: var(--size-fluid-3); /* Was 2em */
+}
+
+/* Highlighted text */
+mark {
+  background-color: var(--theme-mark, var(--mark-color, var(--yellow-3))); /* Fallback to Open Props yellow */
+  padding-inline: var(--size-1); /* From Open Props */
+  border-radius: var(--radius-conditional-1); /* From Open Props */
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* Straplines and Headlines */
+.strapline {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--font-size--1); /* Was 0.85em */
+  text-transform: uppercase;
+  letter-spacing: var(--font-letterspacing-3); /* Was 0.05em */
+  margin-block-end: var(--size-fluid-1); /* Was 0.5em */
+}
+
+.headline {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-fluid-2); /* Was 2em */
+  font-weight: var(--font-weight-6); /* Was 700 */
+  line-height: var(--font-lineheight-1); /* Was --line-height-tight */
+  margin-block-start: 0;
+  margin-block-end: var(--size-fluid-2); /* Was 1em */
+  text-wrap: balance;
+}
+
+/* Icons - Base styles for SVG icons if not handled by component */
+.icon-svg { /* Assuming Icon.astro components will have this class or similar */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em; /* Common alignment for icons */
+  fill: currentColor;
+}
+
+.icon-svg.icon-sm { width: 0.875em; height: 0.875em; }
+.icon-svg.icon-lg { width: 1.25em; height: 1.25em; }
+.icon-svg.icon-xl { width: 1.5em; height: 1.5em; }
+
+/* Emoji Icons from original - might be less needed if SVG icons are comprehensive */
+.emoji-icon {
+  display: inline-block;
+  margin-inline: var(--size-1); /* Was 0.15em */
+}
+
+/* Specific emoji content - consider if these are still desired or if SVG versions suffice */
+.emoji-icon.paper-airplane::after { content: "✈️"; }
+.emoji-icon.external::after { content: "↗︎"; }
+/* ... other emoji styles can be added if needed ... */
+/* For social icons, SVG versions are generally preferred for consistency */

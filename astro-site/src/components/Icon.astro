@@ -1,0 +1,35 @@
+---
+import EnvelopeIcon from './icons/EnvelopeIcon.astro';
+import ExternalLinkIcon from './icons/ExternalLinkIcon.astro';
+import FacebookIcon from './icons/FacebookIcon.astro';
+import InstagramIcon from './icons/InstagramIcon.astro';
+import LinkedinIcon from './icons/LinkedinIcon.astro';
+import MadeLogoHorizontalIcon from './icons/MadeLogoHorizontalIcon.astro';
+import MadeLogoIcon from './icons/MadeLogoIcon.astro';
+import PaperAirplaneIcon from './icons/PaperAirplaneIcon.astro';
+import WaveIcon from './icons/WaveIcon.astro';
+
+const { name, type = 'svg', class: className } = Astro.props;
+
+const svgIcons = {
+  'envelope': EnvelopeIcon,
+  'external-link': ExternalLinkIcon,
+  'facebook': FacebookIcon,
+  'instagram': InstagramIcon,
+  'linkedin': LinkedinIcon,
+  'made-logo-horizontal': MadeLogoHorizontalIcon, // Corrected name
+  'made-logo': MadeLogoIcon, // Corrected name
+  'paper-airplane': PaperAirplaneIcon,
+  'wave': WaveIcon,
+};
+
+const IconComponent = type === 'svg' ? svgIcons[name] : null;
+---
+{type === 'emoji' ? (
+  <span class:list={['emoji-icon', name, className]}></span>
+) : IconComponent ? (
+  <IconComponent class:list={[className]} />
+) : (
+  <!-- Optional: some fallback or error message if icon not found -->
+  <span class:list={['icon-not-found', className]}>Icon {name} not found</span>
+)}

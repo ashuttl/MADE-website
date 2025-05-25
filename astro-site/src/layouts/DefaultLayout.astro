@@ -1,0 +1,143 @@
+---
+import '../styles/global.css';
+import Banner from '../components/Banner.astro';
+import Icon from '../components/Icon.astro';
+import MadeLogoHorizontalIcon from '../components/icons/MadeLogoHorizontalIcon.astro';
+import MadeLogoIcon from '../components/icons/MadeLogoIcon.astro';
+import { bannerData } from '../data/banner.js';
+import { footerData } from '../data/footer.js';
+import { Markdown } from 'astro/components'; // Using standard Markdown component
+
+const { title, description, bodyClass, og_image } = Astro.props;
+const currentYear = new Date().getFullYear();
+
+// Basic markdown to HTML for fineprint (links and newlines)
+// A more robust solution might involve a custom component or remark plugin if complex markdown is needed.
+const fineprintHtml = footerData.fineprint
+  .replace(/\n\n/g, '</p><p>') // Double newlines to paragraph breaks
+  .replace(/\n/g, '<br/>')    // Single newlines to <br>
+  .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>'); // Basic [text](url) to <a>
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title || 'Maine Ad + Design'}</title>
+    <meta name="description" content={description || 'The official website for Maine Ad + Design.'} />
+    
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/images/favicons/favicon.svg" />
+    <link rel="shortcut icon" href="/images/favicons/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Maine Ad + Design" />
+    <link rel="manifest" href="/images/favicons/site.webmanifest" />
+    
+    <meta property="og:title" content={title || 'Maine Ad + Design'}>
+    <meta property="og:description" content={description || 'The official website for Maine Ad + Design.'}>
+    <meta property="og:image" content={og_image || '/images/og-default.jpg'}>
+    <meta property="og:url" content={Astro.url.toString()}>
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="author" href="/humans.txt">
+</head>
+<body class:list={[bodyClass]}>
+    <Banner bannerData={bannerData} />
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <MadeLogoHorizontalIcon class="logo-svg" />
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="/about/">About</a></li>
+                    <li><a href="/membership/">Join</a></li>
+                    <li><a href="/brodersons/">Brodersons</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <slot />
+    </main>
+
+    <footer>
+        <div class="footer-contact">
+            <div class="container">
+                <span class="strapline">Contact</span>
+                <h2 class="headline">{footerData.contact.lede}</h2>
+
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <Icon name="paper-airplane" />
+                        <a href={`mailto:${footerData.contact.email}`}>{footerData.contact.email}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <Icon name="linkedin" />
+                        <a href={`https://www.linkedin.com/company/${footerData.contact.linkedin}`} target="_blank">@{footerData.contact.linkedin}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <Icon name="instagram" />
+                        <a href={`https://www.instagram.com/${footerData.contact.instagram}`} target="_blank">@{footerData.contact.instagram}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <Icon name="facebook" />
+                        <a href={`https://www.facebook.com/${footerData.contact.facebook}`} target="_blank">@{footerData.contact.facebook}</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <Icon name="envelope" />
+                        <a href={footerData.contact.signup_url} target="_blank">
+                            {footerData.contact.signup_text}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-nav">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <div class="footer-logo">
+                            <MadeLogoIcon class="footer-logo-svg" />
+                        </div>
+                        <div class="fineprint" set:html={fineprintHtml} />
+                        <hr />
+                        <p>© {footerData.copyright_start_year}–{currentYear} {footerData.copyright_name}</p>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about/">About MADE</a></li>
+                            <li><a href="/brodersons/">Broderson Awards</a></li>
+                            <li><a href="/membership/">Become a member</a></li>
+                            <li><a href="/code-of-conduct/">Code of conduct</a></li>
+                            <li>
+                                <a href="https://made.memberful.com/auth/sign_in" target="_blank">
+                                    Member account login
+                                    <Icon name="external-link" />
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://maineaddesign.slack.com" target="_blank">
+                                    Member Slack
+                                    <Icon name="external-link" />
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/js/main.js"></script> { /* Assuming main.js will be in public/js/ */ }
+</body>
+</html>

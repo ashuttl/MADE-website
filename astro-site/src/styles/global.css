@@ -1,0 +1,33 @@
+/* External Font Imports */
+@import url("https://use.typekit.net/nwa0tey.css");
+@import url("https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Golos+Text:wght@400;500;600;700;800;900&display=swap");
+
+/* Open Props Base Styles */
+@import "open-props/style"; /* Includes normalize, base, etc. */
+/* @import "open-props/colors-hsl"; /* Consider if needed, as we have custom colors.css */
+/* @import "open-props/typography"; /* Consider if needed, as we have custom typography.css */
+/* @import "open-props/fonts"; /* We are using custom fonts primarily */
+/* Add more specific Open Props imports if needed, e.g. open-props/buttons, open-props/borders */
+@import "open-props/normalize"; /* Explicitly keeping normalize */
+@import "open-props/buttons"; /* Useful for CTA styling base */
+@import "open-props/borders"; /* Useful for consistent borders */
+
+
+/* Local Custom Styles */
+@import './fonts.css';    /* Defines local @font-face and --font-family variables */
+@import './colors.css';   /* Defines color palette, utility classes, and themes */
+@import './typography.css'; /* Defines base typographic styles and specific element styling */
+
+/* Global body styles from original _variables.scss (if any not covered by Open Props or typography.css) */
+/* For example, if there were global settings for text rendering, box-sizing, etc. */
+body {
+  /* Default text color and background color are set in typography.css using variables from colors.css */
+  /* Open Props normalize handles box-sizing: border-box; */
+  /* -webkit-font-smoothing: antialiased; is in typography.css */
+  
+  /* Example of a global variable that could be defined or overridden here if needed */
+  /* --surface-1: var(--page); /* Connect Open Props semantic variable to our custom page color */
+  /* --text-1: var(--ink); /* Connect Open Props semantic variable to our custom ink color */
+}
+
+/* Any other truly global styles or overrides can go here */

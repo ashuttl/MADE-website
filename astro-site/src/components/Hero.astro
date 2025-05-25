@@ -1,0 +1,39 @@
+---
+import { Markdown } from '@astrojs/markdown-component';
+
+const { 
+  image_src, 
+  title, 
+  content, 
+  image_position = "center", 
+  cta_links, 
+  theme = "default" 
+} = Astro.props;
+
+const themeClass = `theme-${theme}`;
+---
+<div class:list={["hero-section", themeClass]}>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-inner">
+        {title && <h1>{title}</h1>}
+        
+        {content && <Markdown content={content} />}
+        
+        {cta_links && cta_links.length > 0 && (
+          <div class="primary-ctas">
+            {cta_links.map(cta => (
+              <a href={cta.url} class="cta">{cta.text}</a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+    
+    {image_src && (
+      <div class="hero-image">
+        <img src={image_src} alt={title || 'Hero image'} style={`object-position: ${image_position};`} />
+      </div>
+    )}
+  </div>
+</div>

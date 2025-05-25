@@ -1,0 +1,39 @@
+---
+const { event } = Astro.props;
+// Interpret YYYY-MM-DD date as UTC to avoid timezone issues
+const formattedDate = event.date ? new Date(event.date + 'T00:00:00Z').toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }) : '';
+const xmlSchemaDate = event.date ? new Date(event.date + 'T00:00:00Z').toISOString() : '';
+
+let buttonLabelText = "RSVP";
+if (event.button_label) {
+    buttonLabelText = event.button_label;
+} else if (event.price) {
+    buttonLabelText = `Tickets: ${event.price}`;
+} else if (event.detail_url && !event.ticket_link) {
+    buttonLabelText = "Learn More";
+}
+---
+<div class="event-card">
+  <div class="event-image">
+    <div class="event-image-bg" style={`background-image: url('${event.image}');`}></div>
+    <div class="event-image-overlay"></div>
+    {(event.ticket_link || event.detail_url) && (
+      <a href={event.ticket_link || event.detail_url} class="event-ticket-link cta cta-sunshine cta-small" target={event.ticket_link ? "_blank" : undefined}>
+        {buttonLabelText}
+      </a>
+    )}
+  </div>
+  <div class="event-content">
+    <h3 class="event-title text-seadogs">{event.title}</h3>
+    <div class="event-date">
+      {formattedDate && <time datetime={xmlSchemaDate}>{formattedDate}</time>}
+      <span class="event-time">
+        {event.start_time}{event.end_time && `–${event.end_time}`}
+      </span>
+    </div>
+    <div class="event-location">
+      <div class="location-name">{event.location}</div>
+      {event.address && <div class="location-address">{event.address}</div>}
+    </div>
+  </div>
+</div>

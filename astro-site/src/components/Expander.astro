@@ -1,0 +1,43 @@
+---
+import { Markdown } from '@astrojs/markdown-component';
+
+const { title } = Astro.props;
+
+// Basic slugify function (can be replaced with a more robust one if needed)
+const slugify = (text) => 
+  text ? text.toString().toLowerCase()
+    .replace(/\s+/g, '-')           // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+    .replace(/^-+/, '')             // Trim - from start of text
+    .replace(/-+$/, '') : '';       // Trim - from end of text
+
+const id = slugify(title);
+---
+<div class="expander" id={id}>
+  <div class="expander-toggle">
+    {title && <h2>{title}</h2>}
+  </div>
+  <div class="expander-content">
+    <slot /> {/* Content will be passed as children, assuming it might be Markdown */}
+  </div>
+</div>
+
+<script>
+  // Inline script to handle expander toggle, similar to original site's main.js
+  document.querySelectorAll('.expander-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const expander = toggle.closest('.expander');
+      const content = expander.querySelector('.expander-content');
+      const isOpen = expander.classList.contains('open');
+
+      if (isOpen) {
+        expander.classList.remove('open');
+        content.style.maxHeight = null;
+      } else {
+        expander.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+</script>

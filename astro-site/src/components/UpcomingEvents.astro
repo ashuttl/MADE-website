@@ -1,0 +1,80 @@
+---
+import EventCard from './EventCard.astro';
+
+const { events = [], theme = "harbor", limit = 3 } = Astro.props;
+
+// Filter for upcoming events (from today onwards)
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Set to start of today for comparison
+
+const upcomingEventsList = events
+  .filter(event => {
+    if (!event.date) return false;
+    // Ensure date is parsed correctly, assuming YYYY-MM-DD and treating as UTC
+    const eventDateParts = event.date.split('-').map(Number);
+    const eventDate = new Date(Date.UTC(eventDateParts[0], eventDateParts[1] - 1, eventDateParts[2]));
+    return eventDate >= today;
+  })
+  .sort((a, b) => {
+    // Sort by date
+    const dateA = new Date(a.date + 'T00:00:00Z');
+    const dateB = new Date(b.date + 'T00:00:00Z');
+    return dateA - dateB;
+  })
+  .slice(0, limit);
+
+const hasEvents = upcomingEventsList.length > 0;
+const panelThemeClass = `panel-${theme}`;
+---
+<section class:list={["events-section", "panel", panelThemeClass]}>
+  <div class="container">
+    <div class="events-container">
+      <div class="events-intro">
+        <div class="strapline">Events</div>
+        <h2 class="headline">What’s coming up?</h2>
+        <p>Some ways to spend time IRL with friends and strangers. (It’s&nbsp;good for the&nbsp;soul.)</p>
+      </div>
+      
+      {hasEvents ? (
+        <div class="events-carousel">
+          {upcomingEventsList.length > 1 && <button class="scroll-button scroll-left" aria-label="Scroll left">&#10094;</button> }
+          <div class="events-scroll-outer">
+            <div class="events-scroll" data-count={upcomingEventsList.length}>
+              {upcomingEventsList.map(event => (
+                <EventCard event={event} />
+              ))}
+            </div>
+          </div>
+          {upcomingEventsList.length > 1 && <button class="scroll-button scroll-right" aria-label="Scroll right">&#10095;</button> }
+        </div>
+      ) : (
+        <div class="no-events">
+          <p>No upcoming events at this time. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Basic carousel scroll functionality placeholder
+  // A more robust solution would be needed for full functionality,
+  // especially for handling a variable number of cards and responsiveness.
+  document.querySelectorAll('.events-carousel').forEach(carousel => {
+    const scrollLeftButton = carousel.querySelector('.scroll-left');
+    const scrollRightButton = carousel.querySelector('.scroll-right');
+    const eventsScroll = carousel.querySelector('.events-scroll');
+
+    if (!scrollLeftButton || !scrollRightButton || !eventsScroll) return;
+
+    const cardWidth = eventsScroll.querySelector('.event-card')?.offsetWidth || 300; // Estimate card width
+
+    scrollLeftButton.addEventListener('click', () => {
+      eventsScroll.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    });
+
+    scrollRightButton.addEventListener('click', () => {
+      eventsScroll.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    });
+  });
+</script>

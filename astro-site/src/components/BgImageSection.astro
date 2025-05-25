@@ -1,0 +1,32 @@
+---
+import { Markdown } from '@astrojs/markdown-component';
+
+const { 
+  image_src, 
+  title, 
+  content, 
+  image_position = "center", 
+  cta_links, 
+  theme = "default" 
+} = Astro.props;
+
+const themeClass = `theme-${theme}`;
+---
+<div class:list={["bg-image-section", themeClass]}>
+  <div class="bg-image" style={`background-image: url('${image_src}'); background-position: ${image_position};`}>
+    {/* Simplified color overlay approach - can be enhanced with CSS or another div if needed */}
+  </div>
+  <div class="content">
+    {title && <h2>{title}</h2>}
+    
+    {content && <Markdown content={content} />} {/* Assuming content is Markdown */}
+    
+    {cta_links && cta_links.length > 0 && (
+      <div class="primary-ctas">
+        {cta_links.map(cta => (
+          <a href={cta.url} class="cta">{cta.text}</a>
+        ))}
+      </div>
+    )}
+  </div>
+</div>

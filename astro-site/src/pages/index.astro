@@ -1,0 +1,49 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro';
+import Hero from '../components/Hero.astro';
+import UpcomingEvents from '../components/UpcomingEvents.astro';
+import { homeCtas } from '../data/homeCtas.js';
+import { getCollection } from 'astro:content'; // For fetching events
+
+const pageTitle = "Maine Ad & Design – Building community for creative professionals in Maine";
+
+// Data for the Hero component, now using imported homeCtas
+const heroData = {
+  title: "Building community for Maine creatives since 1923",
+  image_src: "/images/home-page-photo.jpg", // Ensure this path is correct relative to `public`
+  theme: "harbor", // This theme is for the Hero component itself
+  image_position: "top center", // from original index.md frontmatter for hero
+  cta_links: homeCtas
+};
+
+// Fetch events for UpcomingEvents component
+const allEvents = await getCollection('events');
+
+// Props for HomeLayout (and thus DefaultLayout)
+const layoutProps = {
+  title: pageTitle,
+  bodyClass: "has-hero theme-harbor", // from original index.md frontmatter
+  // og_image: could be set here if specific to homepage
+};
+---
+<HomeLayout {...layoutProps}>
+  <Hero {...heroData} />
+  <UpcomingEvents theme="harbor" events={allEvents} /> {/* Pass fetched events */}
+
+  <section class="instagram">
+    <div class="container">
+      <h2>Stay in the loop</h2>
+      <div class="instagram-follow">
+        <a href="https://www.instagram.com/MaineAdDesign" target="_blank" class="cta cta-harbor">Follow us on Instagram</a>
+      </div>
+      <behold-widget feed-id="TwvbmjtgKDpsUvUDxaua"></behold-widget>
+      <script is:inline>
+        (() => {
+          const d=document,s=d.createElement("script");s.type="module";
+          s.src="https://w.behold.so/widget.js";d.head.append(s);
+        })();
+      </script>
+    </div>
+  </section>
+  <hr />
+</HomeLayout>

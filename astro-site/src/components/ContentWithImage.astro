@@ -1,0 +1,31 @@
+---
+import DuotoneImage from './DuotoneImage.astro';
+const { 
+  image_src, 
+  image_alt, 
+  content, 
+  image_position = "right", 
+  object_position = "center",
+  theme = "default",
+  no_effect = false
+} = Astro.props;
+
+const positionClass = image_position === 'left' ? 'image-left' : '';
+const themeClass = theme !== 'default' ? `theme-${theme}` : '';
+const imageClass = `content-image ${no_effect ? 'no-effect' : ''}`;
+---
+<div class:list={["content-with-image", positionClass, themeClass]}>
+  {image_position === "left" && (
+    <div class="image-part">
+      <DuotoneImage image_src={image_src} image_alt={image_alt} theme={theme} class={imageClass} object_position={object_position} />
+    </div>
+  )}
+
+  <div class="content-part" set:html={content} />
+
+  {image_position === "right" && (
+    <div class="image-part">
+      <DuotoneImage image_src={image_src} image_alt={image_alt} theme={theme} class={imageClass} object_position={object_position} />
+    </div>
+  )}
+</div>

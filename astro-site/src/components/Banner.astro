@@ -1,0 +1,28 @@
+---
+const { bannerData } = Astro.props;
+let showBanner = bannerData && bannerData.enabled;
+
+if (showBanner && bannerData.exclude_paths && bannerData.exclude_paths.length > 0) {
+  const currentPath = Astro.url.pathname;
+  for (const path of bannerData.exclude_paths) {
+    // Revised path checking logic based on subtask description
+    if (currentPath === path || 
+        (path.endsWith('/') && currentPath.startsWith(path)) || 
+        (currentPath.endsWith('/') && path.startsWith(currentPath.slice(0, -1)) && path.length === currentPath.length - 1 ) // currentPath is /foo/ and path is /foo
+       ) {
+      showBanner = false;
+      break;
+    }
+  }
+}
+const themeClass = bannerData && bannerData.theme ? `bg-${bannerData.theme}` : 'bg-ink';
+---
+{showBanner && (
+  <div class:list={["global-banner", themeClass]}>
+    <div class="container">
+      <a href={bannerData.url} class="banner-link">
+        {bannerData.text}
+      </a>
+    </div>
+  </div>
+)}

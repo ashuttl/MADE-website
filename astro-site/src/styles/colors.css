@@ -1,0 +1,193 @@
+:root {
+  --ink-rgb: 6, 33, 56;
+  --page-rgb: 250, 247, 239;
+  --linktext-rgb: 82, 193, 177; /* seadogs */
+  --currentlinktext-rgb: 216, 94, 56; /* tomato-alt */
+  --seadogs-rgb: 82, 193, 177;
+  --wintermint-rgb: 158, 204, 191;
+  --harbor-rgb: 6, 33, 56; /* same as ink */
+  --langostino-rgb: 202, 88, 60; /* same as tomato */
+  --sunshine-rgb: 240, 200, 109;
+  --orchid-rgb: 76, 10, 102;
+  --pumpkin-rgb: 237, 112, 64;
+  --tomato-rgb: 202, 88, 60;
+  --tomato-alt-rgb: 216, 94, 56;
+
+  /* Default color variables */
+  --ink: rgb(var(--ink-rgb));
+  --page: rgb(var(--page-rgb));
+  --linktext: rgb(var(--linktext-rgb));
+  --currentlinktext: rgb(var(--currentlinktext-rgb));
+  --seadogs: rgb(var(--seadogs-rgb));
+  --wintermint: rgb(var(--wintermint-rgb));
+  --harbor: rgb(var(--harbor-rgb));
+  --langostino: rgb(var(--langostino-rgb));
+  --sunshine: rgb(var(--sunshine-rgb));
+  --orchid: rgb(var(--orchid-rgb));
+  --pumpkin: rgb(var(--pumpkin-rgb));
+  --tomato: rgb(var(--tomato-rgb));
+  --tomato-alt: rgb(var(--tomato-alt-rgb));
+
+  /* Open Props semantic colors for reference, can be overridden by themes */
+  /* --surface-1: var(--page);
+  --text-1: var(--ink);
+  --link: var(--linktext);
+  --link-visited: var(--linktext); /* Or a different color if desired */
+  /* --brand: var(--seadogs);  */
+}
+
+/* Color utility classes */
+.bg-page { background-color: var(--page); }
+.bg-ink { background-color: var(--ink); color: var(--page); }
+.bg-seadogs { background-color: var(--seadogs); color: var(--ink); } /* Ensure contrast */
+.bg-wintermint { background-color: var(--wintermint); color: var(--ink); } /* Ensure contrast */
+.bg-harbor { background-color: var(--harbor); color: var(--page); }
+.bg-langostino { background-color: var(--langostino); color: var(--page); } /* Ensure contrast */
+.bg-sunshine { background-color: var(--sunshine); color: var(--ink); } /* Ensure contrast */
+.bg-orchid { background-color: var(--orchid); color: var(--page); }
+.bg-pumpkin { background-color: var(--pumpkin); color: var(--ink); } /* Ensure contrast */
+.bg-tomato { background-color: var(--tomato); color: var(--page); }
+.bg-tomato-alt { background-color: var(--tomato-alt); color: var(--page); }
+
+.text-page { color: var(--page); }
+.text-ink { color: var(--ink); }
+.text-seadogs { color: var(--seadogs); }
+.text-wintermint { color: var(--wintermint); }
+.text-harbor { color: var(--harbor); }
+.text-langostino { color: var(--langostino); }
+.text-sunshine { color: var(--sunshine); }
+.text-orchid { color: var(--orchid); }
+.text-pumpkin { color: var(--pumpkin); }
+.text-tomato { color: var(--tomato); }
+.text-tomato-alt { color: var(--tomato-alt); }
+
+/* Color modifiers with transparency (selected) */
+.bg-ink-1 { background-color: rgba(var(--ink-rgb), 0.1); }
+.bg-ink-3 { background-color: rgba(var(--ink-rgb), 0.3); }
+.bg-ink-5 { background-color: rgba(var(--ink-rgb), 0.5); }
+.bg-ink-7 { background-color: rgba(var(--ink-rgb), 0.7); }
+.bg-ink-9 { background-color: rgba(var(--ink-rgb), 0.9); }
+
+.bg-page-1 { background-color: rgba(var(--page-rgb), 0.1); }
+.bg-page-5 { background-color: rgba(var(--page-rgb), 0.5); }
+.bg-page-9 { background-color: rgba(var(--page-rgb), 0.9); }
+
+.bg-seadogs-1 { background-color: rgba(var(--seadogs-rgb), 0.1); }
+.bg-seadogs-5 { background-color: rgba(var(--seadogs-rgb), 0.5); }
+.bg-seadogs-9 { background-color: rgba(var(--seadogs-rgb), 0.9); }
+
+.bg-tomato-1 { background-color: rgba(var(--tomato-rgb), 0.1); }
+.bg-tomato-5 { background-color: rgba(var(--tomato-rgb), 0.5); }
+.bg-tomato-9 { background-color: rgba(var(--tomato-rgb), 0.9); }
+
+/* Theme classes */
+/* Base styles that .theme-default would have set */
+.theme-default, .theme-harbor, .theme-midnight, .theme-teal, .theme-sunshine {
+  --mark-color: var(--sunshine); /* A default mark color */
+  background-color: var(--theme-page, var(--page));
+  color: var(--theme-ink, var(--ink));
+}
+
+.theme-default a:not(.button):not(.cta):not(.cta-link),
+.theme-harbor a:not(.button):not(.cta):not(.cta-link),
+.theme-midnight a:not(.button):not(.cta):not(.cta-link),
+.theme-teal a:not(.button):not(.cta):not(.cta-link),
+.theme-sunshine a:not(.button):not(.cta):not(.cta-link) {
+  /* color: var(--theme-link, var(--linktext)); */ /* Handled by Open Props link styles or global.css */
+}
+
+.theme-default a:not(.button):not(.cta):not(.cta-link).current,
+.theme-harbor a:not(.button):not(.cta):not(.cta-link).current,
+.theme-midnight a:not(.button):not(.cta):not(.cta-link).current,
+.theme-teal a:not(.button):not(.cta):not(.cta-link).current,
+.theme-sunshine a:not(.button):not(.cta):not(.cta-link).current {
+  color: var(--theme-current-link, var(--currentlinktext));
+}
+
+/* Specific theme overrides */
+.theme-default {
+  --theme-page: var(--page);
+  --theme-ink: var(--ink);
+  --theme-link: var(--linktext);
+  --theme-current-link: var(--currentlinktext);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.4); /* Original had --mark-color */
+}
+
+.theme-harbor {
+  --theme-page: var(--harbor);
+  --theme-ink: var(--wintermint);
+  --theme-link: var(--seadogs);
+  --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.4);
+}
+
+.theme-midnight {
+  --theme-page: var(--ink);
+  --theme-ink: var(--page);
+  --theme-link: var(--seadogs);
+  --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.3);
+}
+
+.theme-teal {
+  --theme-page: var(--wintermint);
+  --theme-ink: var(--harbor);
+  --theme-link: var(--orchid);
+  --theme-current-link: var(--pumpkin);
+  --theme-mark: rgba(var(--sunshine-rgb), 0.4);
+}
+
+.theme-sunshine {
+  --theme-page: var(--sunshine);
+  --theme-ink: var(--ink);
+  --theme-link: var(--harbor);
+  --theme-current-link: var(--langostino);
+  --theme-mark: rgba(var(--harbor-rgb), 0.2);
+}
+
+/* Styles for pattern library demo, can be removed if not needed globally */
+.color-swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+  gap: 1rem; /* Equivalent to --size-4 or --size-fluid-1 */
+  margin-block: 2rem; /* Equivalent to --size-8 or --size-fluid-3 */
+}
+
+.color-swatch {
+  height: 6.25rem; /* Approx --size-11 */
+  border-radius: var(--radius-2); /* Equivalent to --border-radius */
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem; /* Equivalent to --size-4 or --size-fluid-1 */
+  box-shadow: var(--shadow-2); /* Equivalent to --shadow-sm */
+}
+
+.color-swatch p {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--font-size--1); /* Equivalent to 0.875em */
+}
+
+/* Add padding to markdown themed sections - this might be better handled by components themselves */
+.panel.theme-harbor, 
+.panel.theme-midnight, 
+.panel.theme-teal, 
+.panel.theme-sunshine, 
+.panel.theme-default {
+  padding: var(--size-8); /* Equivalent to 2rem */
+  margin-block: var(--size-8);
+  border-radius: var(--radius-2);
+}
+
+/* Ensure text color for buttons within themes provides contrast */
+.theme-harbor .cta, .theme-midnight .cta, .theme-teal .cta {
+  /* color: var(--theme-page);  Already handled by .bg-X utility if button background is set by theme */
+}
+.theme-sunshine .cta {
+  /* color: var(--theme-ink); Will depend on button background */
+}
+
+/* Example: If buttons in a theme have a background of --theme-link */
+/* .theme-harbor .cta { background-color: var(--theme-link); color: var(--theme-page); } */
+/* .theme-sunshine .cta { background-color: var(--theme-link); color: var(--theme-page); } */
+/* This level of detail might be better in a button-specific CSS or component style */

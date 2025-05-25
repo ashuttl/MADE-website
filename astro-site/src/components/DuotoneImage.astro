@@ -1,0 +1,16 @@
+---
+const { 
+  image_src, 
+  image_alt, 
+  theme = "default", 
+  intensity = "", 
+  blend_mode = "", 
+  class: customClass, // Renamed to avoid conflict with Astro's class directive
+  object_position = "center" // Added from ContentWithImage.astro context
+} = Astro.props;
+
+const themeClass = `theme-${theme}`;
+---
+<div class:list={["duotone-image", themeClass, intensity, blend_mode, customClass]}>
+  <img src={image_src} alt={image_alt} style={`object-position: ${object_position};`} />
+</div>
