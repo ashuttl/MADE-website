@@ -310,4 +310,131 @@
     font-size: 1.1em;
     color: rgba(var(--theme-ink-rgb), 0.85);
   }
+  
+  // Sponsors section styling
+  .sponsors-section {
+    background-color: var(--theme-ink);
+    color: white;
+    margin: 3rem -50vw 0 -50vw;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    padding: 3rem 2rem;
+    text-align: center;
+    
+    .sponsors-thank-you {
+      margin-bottom: 3rem;
+      
+      h2 {
+        color: #D85E38;
+        font-size: 3em;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        margin: 0;
+        line-height: 1;
+      }
+      
+      h3 {
+        color: white;
+        font-size: 2em;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        margin: 0.2rem 0 0 0;
+      }
+    }
+    
+    .sponsor-tier {
+      margin-bottom: 2.5rem;
+      
+      h4 {
+        color: white;
+        font-size: 1em;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0 0 1rem 0;
+      }
+      
+      .sponsor-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        
+        img {
+          max-height: 3rem;
+          width: auto;
+          filter: brightness(0) invert(1);
+        }
+      }
+    }
+    
+    .event-sponsor .sponsor-logos img {
+      max-height: 4rem;
+    }
+    
+    .sponsor-tier-row {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      
+      .sponsor-tier {
+        margin-bottom: 0;
+      }
+      
+      .academic-sponsors .sponsor-logos {
+        gap: 3rem;
+      }
+    }
+    
+    .sponsors-divider {
+      margin: 3rem 0 2rem 0;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #D85E38;
+        z-index: 0;
+      }
+      
+      h4 {
+        color: #D85E38;
+        font-size: 1.2em;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 0;
+        background-color: var(--theme-ink);
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+        display: inline-block;
+      }
+    }
+    
+    .friends-sponsors {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      
+      img {
+        max-height: 2.5rem;
+        width: auto;
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
 }

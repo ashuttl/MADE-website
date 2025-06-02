@@ -287,3 +287,47 @@ Through our [Judgify platform](https://www.judgify.me/2025-Broderson-Awards). Cr
     {{ faq_content | markdownify }}
   </div>
 </div>
+
+<div class="sponsors-section">
+  <div class="sponsors-thank-you">
+    <h2>Thank You</h2>
+    <h3>To Our Sponsors</h3>
+  </div>
+
+  <div class="sponsor-tier event-sponsor">
+    <h4>Event Sponsor</h4>
+    <div class="sponsor-logos">
+      <img src="/assets/images/sponsors/evergreen.png" alt="Evergreen Credit Union">
+    </div>
+  </div>
+
+  <div class="sponsor-tier-row">
+    <div class="sponsor-tier academic-sponsors">
+      <h4>Academic Award Sponsors</h4>
+      <div class="sponsor-logos">
+        <img src="/assets/images/sponsors/adobe.png" alt="Adobe">
+        <img src="/assets/images/sponsors/hancock.png" alt="Hancock Lumber">
+      </div>
+    </div>
+
+    <div class="sponsor-tier winner-sponsor">
+      <h4>Winner Showcase Sponsor</h4>
+      <div class="sponsor-logos">
+        <img src="/assets/images/sponsors/blaze.png" alt="Blaze">
+      </div>
+    </div>
+  </div>
+
+  <div class="sponsors-divider">
+    <h4>& Friends of MADE</h4>
+  </div>
+
+  <div class="friends-sponsors">
+    <img src="/assets/images/sponsors/allagash.png" alt="Allagash Brewing Company">
+    <img src="/assets/images/sponsors/prc.png" alt="PRC">
+    <img src="/assets/images/sponsors/little-something.png" alt="Little Something">
+    <img src="/assets/images/sponsors/rest-stop.png" alt="Rest Stop">
+    <img src="/assets/images/sponsors/mel-andrel.png" alt="Mel Andrel">
+    <img src="/assets/images/sponsors/llbean.png" alt="L.L.Bean">
+  </div>
+</div>
