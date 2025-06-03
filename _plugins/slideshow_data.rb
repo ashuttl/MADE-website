@@ -103,8 +103,8 @@ module Jekyll
                 end
               end
               
-              # Helper function to check if image is vertical/portrait enough to group with others
-              def is_groupable_vertical?(image_path)
+              # Helper function to check if image should be grouped with others
+              def is_groupable?(image_path)
                 begin
                   # Convert relative path to absolute path
                   full_path = File.join(site.source, 'assets', 'winners', image_path)
@@ -117,9 +117,10 @@ module Jekyll
                     width, height = dimensions
                     aspect_ratio = height.to_f / width.to_f
                     
-                    # Group vertical images with aspect ratio of 1.3 or higher (height > 1.3x width)
-                    # This covers social media frames (9:16 ≈ 1.78), portraits, and other vertical content
-                    aspect_ratio >= 1.3
+                    # Group images that are NOT clearly landscape
+                    # This includes: vertical (>1.0), square (~1.0), and slightly wide but not clearly landscape
+                    # Only exclude clearly landscape images (width > 1.5x height)
+                    aspect_ratio >= 0.67  # Don't group very wide landscape images (width > 1.5x height)
                   else
                     false
                   end
@@ -128,22 +129,76 @@ module Jekyll
                 end
               end
               
+              # Helper function to get video duration in milliseconds
+              def get_video_duration(video_path)
+                begin
+                  # Convert relative path to absolute path
+                  full_path = File.join(site.source, 'assets', 'winners', video_path)
+                  
+                  # Use ffprobe to get video duration
+                  require 'open3'
+                  output, error, status = Open3.capture3("ffprobe -v quiet -print_format json -show_format \"#{full_path}\"")
+                  
+                  if status.success?
+                    require 'json'
+                    data = JSON.parse(output)
+                    duration_seconds = data.dig('format', 'duration')&.to_f
+                    
+                    if duration_seconds && duration_seconds > 0
+                      (duration_seconds * 1000).round # Convert to milliseconds
+                    else
+                      nil
+                    end
+                  else
+                    nil
+                  end
+                rescue => e
+                  # If ffprobe fails, we'll fall back to the default duration
+                  nil
+                end
+              end
+              
               # Process images with dimension-based grouping
               if winner_assets['images']
                 images = winner_assets['images']
+                
+                # Filter out frame images if we have a corresponding video
+                videos = winner_assets['videos'] || []
+                filtered_images = images.reject do |image|
+                  # Check if this image is a frame from a video we have
+                  # Pattern: if video is "xyz-1.mp4", skip images like "xyz-1-f1.jpg", "xyz-1-f2.jpg", etc.
+                  should_skip = videos.any? do |video|
+                    video_base = File.basename(video, File.extname(video)) # "xyz-1" from "xyz-1.mp4"
+                    image_base = File.basename(image, File.extname(image)) # "xyz-1-f1" from "xyz-1-f1.jpg"
+                    
+                    # Skip if image looks like a frame from this video
+                    image_base.match(/^#{Regexp.escape(video_base)}-f\d+(-thumb)?$/)
+                  end
+                  
+                  if should_skip
+                    puts "  Skipping frame image #{image} (video exists)"
+                  end
+                  
+                  should_skip
+                end
+                
+                if images.length != filtered_images.length
+                  puts "#{submission_id}: Filtered #{images.length - filtered_images.length} frame images (#{videos.length} videos available)"
+                end
+                
                 landscape_images = []
                 vertical_images = []
                 
-                images.each_with_index do |image, index|
-                  if is_groupable_vertical?(image)
-                    # This is a vertical image - group with other vertical images
+                filtered_images.each_with_index do |image, index|
+                  if is_groupable?(image)
+                    # This is a groupable image - group with other groupable images
                     vertical_images << image
                     
-                    # Create grouped slide when we have 2+ vertical images and hit a boundary
+                    # Create grouped slide when we have 2+ groupable images and hit a boundary
                     if vertical_images.length >= 2 && (
                       vertical_images.length >= 3 || # Create group at 3 images
-                      index == images.length - 1 || # End of images - group what we have
-                      (images[index + 1] && !is_groupable_vertical?(images[index + 1])) # Next image is not vertical - group current batch
+                      index == filtered_images.length - 1 || # End of images - group what we have
+                      (filtered_images[index + 1] && !is_groupable?(filtered_images[index + 1])) # Next image is not groupable - group current batch
                     )
                       assets << {
                         url: vertical_images.dup,
@@ -152,7 +207,7 @@ module Jekyll
                       vertical_images.clear
                     end
                   elsif is_landscape?(image)
-                    # This is a landscape image - handle any accumulated vertical images first
+                    # This is a landscape image - handle any accumulated groupable images first
                     if vertical_images.length == 1
                       assets << {
                         url: vertical_images.first,
@@ -172,8 +227,8 @@ module Jekyll
                     # Create grouped slide when we have 2+ landscape images and hit a boundary
                     if landscape_images.length >= 2 && (
                       landscape_images.length >= 3 || # Create group at 3 images
-                      index == images.length - 1 || # End of images - group what we have
-                      (images[index + 1] && !is_landscape?(images[index + 1])) # Next image is not landscape - group current batch
+                      index == filtered_images.length - 1 || # End of images - group what we have
+                      (filtered_images[index + 1] && !is_landscape?(filtered_images[index + 1])) # Next image is not landscape - group current batch
                     )
                       assets << {
                         url: landscape_images.dup,
@@ -182,7 +237,7 @@ module Jekyll
                       landscape_images.clear
                     end
                   else
-                    # This is a regular portrait image - give it its own slide
+                    # This is a non-groupable image - give it its own slide
                     # First, handle any accumulated groups
                     if vertical_images.length == 1
                       assets << {
@@ -210,7 +265,7 @@ module Jekyll
                     end
                     landscape_images.clear
                     
-                    # Add the portrait image as its own slide
+                    # Add this image as its own slide
                     assets << {
                       url: image,
                       type: 'image'
@@ -248,12 +303,16 @@ module Jekyll
                 end
               end
               
-              # Add videos
+              # Add videos with their actual duration
               if winner_assets['videos']
                 winner_assets['videos'].each do |video|
+                  # Try to get actual video duration, fall back to config if unavailable
+                  video_duration = get_video_duration(video) || 30000 # fallback to 30s
+                  
                   assets << {
                     url: video,
-                    type: 'video'
+                    type: 'video',
+                    duration: video_duration
                   }
                 end
               end

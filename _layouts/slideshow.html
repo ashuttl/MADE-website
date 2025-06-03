@@ -480,6 +480,7 @@
       lowerThirdDuration: 2000,    // 2 seconds lower third is visible
       transitionDuration: 1000,    // 1 second for transitions
       winnerTransitionDuration: 1500, // 1.5 seconds between winners
+      unloadDistantSlides: false,  // Set to true to save memory, false for reliability
     };
     
     // Global variables
@@ -549,7 +550,8 @@
           
           let duration = CONFIG.imageDuration;
           if (asset.type === 'video') {
-            duration = CONFIG.videoDuration;
+            // Use custom duration if available, otherwise fall back to config
+            duration = asset.duration || CONFIG.videoDuration;
           } else if (asset.type === 'image_group') {
             duration = CONFIG.imageGroupDuration;
           }
@@ -767,14 +769,13 @@
         // Show next slide
         slides[currentSlideIndex].element.classList.add('active');
         
-        // Handle video timing for random start position
+        // Handle video timing - let videos play from start
         const currentSlide = slides[currentSlideIndex];
         if (currentSlide.type === 'video') {
           const video = currentSlide.element.querySelector('video');
-          if (video && video.duration > CONFIG.videoDuration / 1000) {
-            // Random start time for long videos
-            const maxStart = video.duration - (CONFIG.videoDuration / 1000);
-            video.currentTime = Math.random() * maxStart;
+          if (video) {
+            // Start video from beginning
+            video.currentTime = 0;
           }
         }
         
@@ -792,9 +793,11 @@
           }
         }
         
-        // Preload nearby slides and unload distant ones
+        // Preload nearby slides and optionally unload distant ones
         preloadNearbySlides(currentSlideIndex);
-        unloadDistantSlides(currentSlideIndex);
+        if (CONFIG.unloadDistantSlides) {
+          unloadDistantSlides(currentSlideIndex);
+        }
         
         // Set timer for next slide if not paused
         if (!isPaused) {
@@ -829,9 +832,11 @@
           }
         }
         
-        // Preload nearby slides and unload distant ones
+        // Preload nearby slides and optionally unload distant ones
         preloadNearbySlides(currentSlideIndex);
-        unloadDistantSlides(currentSlideIndex);
+        if (CONFIG.unloadDistantSlides) {
+          unloadDistantSlides(currentSlideIndex);
+        }
         
         if (!isPaused) {
           startSlideTimer();
@@ -955,6 +960,7 @@
       let videoCount = 0;
       let transitionCount = 0;
       let totalDuration = 0;
+      let totalVideoDuration = 0;
       
       slides.forEach(slide => {
         totalDuration += slide.duration;
@@ -971,6 +977,7 @@
             break;
           case 'video':
             videoCount++;
+            totalVideoDuration += slide.duration;
             break;
           case 'transition':
             transitionCount++;
@@ -998,17 +1005,20 @@
       console.log(`   Total duration: ${totalMinutes}m ${totalSeconds}s`);
       console.log(`   Image duration: ${CONFIG.imageDuration / 1000}s each`);
       console.log(`   Image group duration: ${CONFIG.imageGroupDuration / 1000}s each`);
-      console.log(`   Video duration: ${CONFIG.videoDuration / 1000}s each`);
+      console.log(`   Video duration: actual video length (varies)`);
       console.log(`   Interstitial duration: ${CONFIG.interstitialDuration / 1000}s each`);
       console.log(`   Transition duration: ${CONFIG.winnerTransitionDuration / 1000}s each`);
       
       console.log(`\n🎯 ESTIMATED BREAKDOWN:`);
       console.log(`   Images: ~${Math.round((totalImages * CONFIG.imageDuration) / 60000)}m`);
-      console.log(`   Videos: ~${Math.round((videoCount * CONFIG.videoDuration) / 60000)}m`);
+      console.log(`   Videos: ~${Math.round(totalVideoDuration / 60000)}m (actual total)`);
       console.log(`   Intros: ~${Math.round((interstitialCount * CONFIG.interstitialDuration) / 60000)}m`);
       console.log(`   Transitions: ~${Math.round((transitionCount * CONFIG.winnerTransitionDuration) / 60000)}m`);
       
       console.log(`\n🎲 Starting at random slide #${currentSlideIndex} (${slides[currentSlideIndex]?.type})`);
+      console.log(`\n🌐 MEMORY MANAGEMENT:`);
+      console.log(`   Unload distant slides: ${CONFIG.unloadDistantSlides ? 'ON (saves memory)' : 'OFF (better reliability)'}`);
+      console.log(`   Preload distance: ${CONFIG.unloadDistantSlides ? '2 slides ahead' : 'all slides stay loaded'}`);
       console.log('==================\n');
     }
   </script>
