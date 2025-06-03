@@ -80,89 +80,137 @@ module Jekyll
               # Collect all assets for this winner with portrait grouping
               assets = []
               
-              # Helper function to check if image is portrait
-              def is_portrait?(image_path)
-                # Simple heuristic: assume portrait if filename contains certain indicators
-                # or if it's in a context that suggests portrait orientation
-                false # For now, we'll implement proper image dimension checking later if needed
+              # Helper function to check if image is landscape (wider than tall)
+              def is_landscape?(image_path)
+                begin
+                  # Convert relative path to absolute path
+                  full_path = File.join(site.source, 'assets', 'winners', image_path)
+                  
+                  # Use FastImage to get dimensions without loading the full image
+                  require 'fastimage'
+                  dimensions = FastImage.size(full_path)
+                  
+                  if dimensions && dimensions.length == 2
+                    width, height = dimensions
+                    # Consider landscape if width is significantly greater than height
+                    width > height * 1.1  # At least 10% wider than tall
+                  else
+                    false  # Default to not landscape if we can't determine
+                  end
+                rescue => e
+                  # If we can't read the image, default to not landscape
+                  false
+                end
               end
               
-              # Process images with more selective portrait grouping
+              # Helper function to check if image is vertical/portrait enough to group with others
+              def is_groupable_vertical?(image_path)
+                begin
+                  # Convert relative path to absolute path
+                  full_path = File.join(site.source, 'assets', 'winners', image_path)
+                  
+                  # Use FastImage to get dimensions without loading the full image
+                  require 'fastimage'
+                  dimensions = FastImage.size(full_path)
+                  
+                  if dimensions && dimensions.length == 2
+                    width, height = dimensions
+                    aspect_ratio = height.to_f / width.to_f
+                    
+                    # Group vertical images with aspect ratio of 1.3 or higher (height > 1.3x width)
+                    # This covers social media frames (9:16 ≈ 1.78), portraits, and other vertical content
+                    aspect_ratio >= 1.3
+                  else
+                    false
+                  end
+                rescue => e
+                  false
+                end
+              end
+              
+              # Process images with dimension-based grouping
               if winner_assets['images']
                 images = winner_assets['images']
-                portrait_images = []
+                landscape_images = []
+                vertical_images = []
                 
                 images.each_with_index do |image, index|
-                  # More selective heuristic for true portrait grouping candidates
-                  # Look for specific patterns that suggest actual portrait-oriented content
-                  
-                  # Check if this might be a portrait based on refined filename patterns
-                  is_likely_portrait = (
-                    # Multi-page PDF exports (p1, p2, p3, etc.) - often portrait pages
-                    image.match(/-p\d+(?:-thumb)?\.jpg$/) ||
-                    # Stamp-like designs (common in illustration work) 
-                    image.include?('stamp') ||
-                    # Book/poster series indicators
-                    image.match(/-\d+-\d+(?:-thumb)?\.jpg$/) ||
-                    # Multiple consecutive pages from same base file
-                    (index > 0 && images[index-1].gsub(/-p?\d+/, '') == image.gsub(/-p?\d+/, ''))
-                  )
-                  
-                  # Only group if we have strong portrait indicators AND reasonable file naming
-                  should_group = is_likely_portrait && (
-                    # Must be part of a numbered series (p1, p2, p3...)
-                    image.match(/-p\d+/) ||
-                    # Or stamp/poster series
-                    image.include?('stamp') ||
-                    # Or clearly sequential naming
-                    image.match(/-\d+-p\d+/)
-                  )
-                  
-                  if should_group && portrait_images.empty?
-                    # Start a potential portrait group
-                    portrait_images << image
-                  elsif should_group && !portrait_images.empty?
-                    # Continue the portrait group
-                    portrait_images << image
+                  if is_groupable_vertical?(image)
+                    # This is a vertical image - group with other vertical images
+                    vertical_images << image
                     
-                    # Create grouped slide when we have 2-4 images, but prefer 3 for best visual balance
-                    if portrait_images.length >= 2 && (
-                      portrait_images.length >= 3 || # Prefer 3+ for grouping
-                      index == images.length - 1 || # End of images
-                      !images[index + 1]&.match(/-p\d+/) # Next image breaks the pattern
+                    # Create grouped slide when we have 2+ vertical images and hit a boundary
+                    if vertical_images.length >= 2 && (
+                      vertical_images.length >= 3 || # Create group at 3 images
+                      index == images.length - 1 || # End of images - group what we have
+                      (images[index + 1] && !is_groupable_vertical?(images[index + 1])) # Next image is not vertical - group current batch
                     )
                       assets << {
-                        url: portrait_images.dup,
+                        url: vertical_images.dup,
                         type: 'image_group'
                       }
-                      portrait_images.clear
+                      vertical_images.clear
                     end
-                  else
-                    # Not a portrait candidate or break in portrait sequence
-                    # Add any accumulated portraits first (as individual images if only 1-2)
-                    if portrait_images.length == 1
+                  elsif is_landscape?(image)
+                    # This is a landscape image - handle any accumulated vertical images first
+                    if vertical_images.length == 1
                       assets << {
-                        url: portrait_images.first,
+                        url: vertical_images.first,
                         type: 'image'
                       }
-                    elsif portrait_images.length == 2
-                      # For only 2 images, you might prefer individual slides
-                      # Change this to 'image_group' if you want to group pairs
-                      portrait_images.each do |portrait_image|
-                        assets << {
-                          url: portrait_image,
-                          type: 'image'
-                        }
-                      end
-                    elsif portrait_images.length > 2
+                    elsif vertical_images.length >= 2
                       assets << {
-                        url: portrait_images.dup,
+                        url: vertical_images.dup,
                         type: 'image_group'
                       }
                     end
-                    portrait_images.clear
+                    vertical_images.clear
                     
-                    # Add the current image as single
+                    # Add to landscape group
+                    landscape_images << image
+                    
+                    # Create grouped slide when we have 2+ landscape images and hit a boundary
+                    if landscape_images.length >= 2 && (
+                      landscape_images.length >= 3 || # Create group at 3 images
+                      index == images.length - 1 || # End of images - group what we have
+                      (images[index + 1] && !is_landscape?(images[index + 1])) # Next image is not landscape - group current batch
+                    )
+                      assets << {
+                        url: landscape_images.dup,
+                        type: 'image_group'
+                      }
+                      landscape_images.clear
+                    end
+                  else
+                    # This is a regular portrait image - give it its own slide
+                    # First, handle any accumulated groups
+                    if vertical_images.length == 1
+                      assets << {
+                        url: vertical_images.first,
+                        type: 'image'
+                      }
+                    elsif vertical_images.length >= 2
+                      assets << {
+                        url: vertical_images.dup,
+                        type: 'image_group'
+                      }
+                    end
+                    vertical_images.clear
+                    
+                    if landscape_images.length == 1
+                      assets << {
+                        url: landscape_images.first,
+                        type: 'image'
+                      }
+                    elsif landscape_images.length >= 2
+                      assets << {
+                        url: landscape_images.dup,
+                        type: 'image_group'
+                      }
+                    end
+                    landscape_images.clear
+                    
+                    # Add the portrait image as its own slide
                     assets << {
                       url: image,
                       type: 'image'
@@ -170,24 +218,32 @@ module Jekyll
                   end
                 end
                 
-                # Handle any remaining portraits at the end
-                if portrait_images.length == 1
+                # Handle any remaining grouped images at the end
+                if vertical_images.length >= 2
+                  # Group any remaining vertical images (2 or more)
                   assets << {
-                    url: portrait_images.first,
+                    url: vertical_images,
+                    type: 'image_group'
+                  }
+                elsif vertical_images.length == 1
+                  # Single vertical image gets its own slide
+                  assets << {
+                    url: vertical_images.first,
                     type: 'image'
                   }
-                elsif portrait_images.length == 2
-                  # For pairs at the end, keep as individual (change to 'image_group' if desired)
-                  portrait_images.each do |portrait_image|
-                    assets << {
-                      url: portrait_image,
-                      type: 'image'
-                    }
-                  end
-                elsif portrait_images.length > 2
+                end
+                
+                if landscape_images.length >= 2
+                  # Group any remaining landscape images (2 or more)
                   assets << {
-                    url: portrait_images,
+                    url: landscape_images,
                     type: 'image_group'
+                  }
+                elsif landscape_images.length == 1
+                  # Single landscape image gets its own slide
+                  assets << {
+                    url: landscape_images.first,
+                    type: 'image'
                   }
                 end
               end
@@ -204,14 +260,21 @@ module Jekyll
               
               # Only add winner if they have assets to show
               if assets.any?
+                # Process text through markdown for proper typography
+                title = winner.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['title']).strip.gsub(/<\/?p>/, '') : nil
+                name = winner.data['name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['name']).strip.gsub(/<\/?p>/, '') : nil
+                company = winner.data['company_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['company_name']).strip.gsub(/<\/?p>/, '') : nil
+                school = winner.data['school_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['school_name']).strip.gsub(/<\/?p>/, '') : nil
+                category_title = category_info.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(category_info.data['title']).strip.gsub(/<\/?p>/, '') : nil
+                
                 slideshow_data << {
                   submission_id: submission_id,
-                  title: winner.data['title'],
-                  name: winner.data['name'],
-                  company: winner.data['company_name'],
-                  school: winner.data['school_name'],
+                  title: title,
+                  name: name,
+                  company: company,
+                  school: school,
                   creative_team: winner.data['creative_team_members'],
-                  category: category_info.data['title'],
+                  category: category_title,
                   level: winner.data['winning_level'].downcase,
                   assets: assets
                 }

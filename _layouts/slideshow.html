@@ -83,10 +83,16 @@
     }
     
     .slide video {
-      max-width: 100%;
-      max-height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       object-fit: contain;
+      object-position: center;
+      z-index: 1;
     }
+    
     
     /* Interstitial slide styling */
     .interstitial-slide {
@@ -239,15 +245,17 @@
     /* Animated lower third for asset slides */
     .lower-third {
       position: absolute;
-      bottom: 4rem;
-      left: 4rem;
-      right: 4rem;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(15px);
-      padding: 1.5rem 2rem;
+      bottom: 3rem;
+      left: 3rem;
+      right: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
       transform: translateY(100%);
       opacity: 0;
       animation: lowerThirdSlideIn 2s ease-out 3s forwards;
+      pointer-events: none;
+      z-index: 10;
     }
     
     .lower-third.visible {
@@ -255,11 +263,25 @@
       opacity: 1;
     }
     
+    .lower-third-left {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      padding: 1rem 1.5rem;
+      align-self: flex-end;
+    }
+    
+    .lower-third-right {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(15px);
+      padding: 1rem 1.5rem;
+      text-align: right;
+      align-self: flex-end;
+    }
+    
     .minimal-badge {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      margin-bottom: 0.75rem;
     }
     
     .minimal-badge .award-icon {
@@ -537,27 +559,31 @@
             <div class="slide-content">
               <div class="media-placeholder">Loading...</div>
               <div class="lower-third">
-                <div class="minimal-badge ${winner.level}">
-                  <div class="award-icon">
-                    <svg width="298" height="298" viewBox="0 0 298 298" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="148.785" cy="148.785" r="115.713" transform="rotate(-20.3956 148.785 148.785)" fill="#1a1a1a"/>
-                      <g clip-path="url(#clip0_153_2318_minimal)">
-                        <path d="M188.546 93.9352L174.454 99.1749L164.725 73.0097L87.2163 101.828L96.9447 127.993L79.329 134.543L92.5284 170.044L110.144 163.494L114.104 174.144L121.15 171.524L123.79 178.624L130.836 176.004L133.476 183.105L147.569 177.865L150.209 184.965L157.255 182.345L159.895 189.445L149.325 193.375L151.965 200.475L144.919 203.095L147.559 210.195L140.513 212.815L143.152 219.915L199.523 198.956L196.883 191.856L189.837 194.476L187.197 187.376L180.15 189.996L177.511 182.896L166.941 186.825L164.301 179.725L171.348 177.105L168.708 170.005L182.8 164.766L180.16 157.665L187.207 155.046L184.567 147.945L191.613 145.326L187.653 134.675L205.269 128.126L192.069 92.6253L188.546 93.9352ZM107.504 156.394L96.9348 160.324L89.0152 139.023L99.5846 135.094L107.504 156.394ZM100.031 114.723L107.077 112.104L113.677 129.854L106.631 132.474L100.031 114.723ZM195.583 123.646L185.013 127.575L177.094 106.275L187.663 102.345L195.583 123.646Z" fill="currentColor"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_153_2318_minimal">
-                          <rect width="120.281" height="130.178" fill="white" transform="translate(69.6001 108.378) rotate(-20.3956)"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </div>
-                  <div class="award-text">
-                    <div class="award-level">${winner.level}</div>
-                    <div class="award-category">${winner.category}</div>
+                <div class="lower-third-left">
+                  <div class="minimal-badge ${winner.level}">
+                    <div class="award-icon">
+                      <svg width="298" height="298" viewBox="0 0 298 298" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="148.785" cy="148.785" r="115.713" transform="rotate(-20.3956 148.785 148.785)" fill="#1a1a1a"/>
+                        <g clip-path="url(#clip0_153_2318_minimal)">
+                          <path d="M188.546 93.9352L174.454 99.1749L164.725 73.0097L87.2163 101.828L96.9447 127.993L79.329 134.543L92.5284 170.044L110.144 163.494L114.104 174.144L121.15 171.524L123.79 178.624L130.836 176.004L133.476 183.105L147.569 177.865L150.209 184.965L157.255 182.345L159.895 189.445L149.325 193.375L151.965 200.475L144.919 203.095L147.559 210.195L140.513 212.815L143.152 219.915L199.523 198.956L196.883 191.856L189.837 194.476L187.197 187.376L180.15 189.996L177.511 182.896L166.941 186.825L164.301 179.725L171.348 177.105L168.708 170.005L182.8 164.766L180.16 157.665L187.207 155.046L184.567 147.945L191.613 145.326L187.653 134.675L205.269 128.126L192.069 92.6253L188.546 93.9352ZM107.504 156.394L96.9348 160.324L89.0152 139.023L99.5846 135.094L107.504 156.394ZM100.031 114.723L107.077 112.104L113.677 129.854L106.631 132.474L100.031 114.723ZM195.583 123.646L185.013 127.575L177.094 106.275L187.663 102.345L195.583 123.646Z" fill="currentColor"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_153_2318_minimal">
+                            <rect width="120.281" height="130.178" fill="white" transform="translate(69.6001 108.378) rotate(-20.3956)"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div class="award-text">
+                      <div class="award-level">${winner.level}</div>
+                      <div class="award-category">${winner.category}</div>
+                    </div>
                   </div>
                 </div>
-                <div class="minimal-title">${winner.title}</div>
-                <div class="minimal-creator">${winner.name}</div>
+                <div class="lower-third-right">
+                  <div class="minimal-title">${winner.title}</div>
+                  <div class="minimal-creator">${winner.name}</div>
+                </div>
               </div>
             </div>
           `;
@@ -912,11 +938,79 @@
     // Initialize slideshow
     document.addEventListener('DOMContentLoaded', () => {
       createSlides();
-      console.log(`Total slides created: ${slides.length}`);
+      generateSlideshowReport();
       if (slides.length > 0 && !isPaused) {
         startSlideTimer();
       }
     });
+    
+    function generateSlideshowReport() {
+      console.log('\n🎬 SLIDESHOW REPORT');
+      console.log('==================');
+      
+      // Count slide types
+      let interstitialCount = 0;
+      let singleImageCount = 0;
+      let imageGroupCount = 0;
+      let videoCount = 0;
+      let transitionCount = 0;
+      let totalDuration = 0;
+      
+      slides.forEach(slide => {
+        totalDuration += slide.duration;
+        
+        switch(slide.type) {
+          case 'interstitial':
+            interstitialCount++;
+            break;
+          case 'image':
+            singleImageCount++;
+            break;
+          case 'image_group':
+            imageGroupCount++;
+            break;
+          case 'video':
+            videoCount++;
+            break;
+          case 'transition':
+            transitionCount++;
+            break;
+        }
+      });
+      
+      const totalImages = singleImageCount + imageGroupCount;
+      const totalMinutes = Math.floor(totalDuration / 60000);
+      const totalSeconds = Math.floor((totalDuration % 60000) / 1000);
+      
+      console.log(`📊 SLIDE BREAKDOWN:`);
+      console.log(`   Total slides: ${slides.length}`);
+      console.log(`   • Winner intros: ${interstitialCount}`);
+      console.log(`   • Single images: ${singleImageCount}`);
+      console.log(`   • Image groups: ${imageGroupCount}`);
+      console.log(`   • Videos: ${videoCount}`);
+      console.log(`   • Transitions: ${transitionCount}`);
+      console.log(`\n🎨 CONTENT SUMMARY:`);
+      console.log(`   Images total: ${totalImages} slides`);
+      console.log(`   Videos total: ${videoCount} slides`);
+      console.log(`   Other: ${interstitialCount + transitionCount} slides`);
+      
+      console.log(`\n⏱️  TIMING:`);
+      console.log(`   Total duration: ${totalMinutes}m ${totalSeconds}s`);
+      console.log(`   Image duration: ${CONFIG.imageDuration / 1000}s each`);
+      console.log(`   Image group duration: ${CONFIG.imageGroupDuration / 1000}s each`);
+      console.log(`   Video duration: ${CONFIG.videoDuration / 1000}s each`);
+      console.log(`   Interstitial duration: ${CONFIG.interstitialDuration / 1000}s each`);
+      console.log(`   Transition duration: ${CONFIG.winnerTransitionDuration / 1000}s each`);
+      
+      console.log(`\n🎯 ESTIMATED BREAKDOWN:`);
+      console.log(`   Images: ~${Math.round((totalImages * CONFIG.imageDuration) / 60000)}m`);
+      console.log(`   Videos: ~${Math.round((videoCount * CONFIG.videoDuration) / 60000)}m`);
+      console.log(`   Intros: ~${Math.round((interstitialCount * CONFIG.interstitialDuration) / 60000)}m`);
+      console.log(`   Transitions: ~${Math.round((transitionCount * CONFIG.winnerTransitionDuration) / 60000)}m`);
+      
+      console.log(`\n🎲 Starting at random slide #${currentSlideIndex} (${slides[currentSlideIndex]?.type})`);
+      console.log('==================\n');
+    }
   </script>
 </body>
 </html>
