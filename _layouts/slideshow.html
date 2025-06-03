@@ -658,14 +658,21 @@
         
         let mediaElement = '';
         
+        // Helper function to escape HTML attributes
+        const escapeHtml = (text) => {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        };
+        
         if (asset.type === 'video') {
           mediaElement = `<video autoplay muted loop><source src="${asset.url}" type="video/mp4"></video>`;
         } else if (asset.type === 'image_group') {
           const imageCount = asset.url.length;
-          const imageElements = asset.url.map(url => `<img src="${url}" alt="${slide.winner.title}">`).join('');
+          const imageElements = asset.url.map(url => `<img src="${url}" alt="${escapeHtml(slide.winner.title)}">`).join('');
           mediaElement = `<div class="image-group ${imageCount === 2 ? 'two-images' : ''}">${imageElements}</div>`;
         } else {
-          mediaElement = `<img src="${asset.url}" alt="${slide.winner.title}">`;
+          mediaElement = `<img src="${asset.url}" alt="${escapeHtml(slide.winner.title)}">`;
         }
         
         // Create a temporary container to load the media

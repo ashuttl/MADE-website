@@ -36,7 +36,7 @@ permalink: /brodersons/2025/winners/
               {% if thumbnail %}
                 <div class="winner-thumbnail">
                   <a href="{{ winner.url }}">
-                    <img src="{{ thumbnail }}" alt="{{ winner.title }}">
+                    <img src="{{ thumbnail }}" alt="{{ winner.title | xml_escape }}">
                   </a>
                 </div>
               {% endif %}
@@ -48,7 +48,7 @@ permalink: /brodersons/2025/winners/
                   </div>
                   <span>{{ level }}</span>
                 </div>
-                <h4><a href="{{ winner.url }}">{{ winner.title }}</a></h4>
+                <h4><a href="{{ winner.url }}">{{ winner.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</a></h4>
                 <p class="winner-name">{{ winner.name }}</p>
                 {% if winner.company_name and winner.company_name != '' %}
                   <p class="winner-company">{{ winner.company_name }}</p>

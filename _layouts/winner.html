@@ -51,7 +51,7 @@ class: broderson-page
     <div class="winner-top-navigation">
       <div class="nav-links">
         {% if prev_winner %}
-          <a href="{{ prev_winner.url }}" class="prev-winner cta" title="{{ prev_winner.title }}">
+          <a href="{{ prev_winner.url }}" class="prev-winner cta" title="{{ prev_winner.title | xml_escape }}">
             ← Previous
           </a>
         {% else %}
@@ -63,7 +63,7 @@ class: broderson-page
         </a>
         
         {% if next_winner %}
-          <a href="{{ next_winner.url }}" class="next-winner cta" title="{{ next_winner.title }}">
+          <a href="{{ next_winner.url }}" class="next-winner cta" title="{{ next_winner.title | xml_escape }}">
             Next →
           </a>
         {% else %}
@@ -115,7 +115,7 @@ class: broderson-page
         <div class="winner-main-content" data-featured-image="{{ featured_image }}">
           <div class="featured-image">
             <a href="{{ featured_image }}" class="glightbox" data-gallery="winner-gallery">
-              <img src="{{ featured_image }}" alt="{{ page.title }}" onload="checkImageLayout(this)">
+              <img src="{{ featured_image }}" alt="{{ page.title | xml_escape }}" onload="checkImageLayout(this)">
             </a>
           </div>
           
@@ -181,7 +181,7 @@ class: broderson-page
             <div class="additional-images">
               {% for image in additional_images %}
                 <a href="{{ image }}" class="glightbox" data-gallery="winner-gallery">
-                  <img src="{{ image }}" alt="{{ page.title }}" loading="lazy">
+                  <img src="{{ image }}" alt="{{ page.title | xml_escape }}" loading="lazy">
                 </a>
               {% endfor %}
             </div>
