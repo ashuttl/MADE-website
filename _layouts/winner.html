@@ -58,9 +58,21 @@ class: broderson-page
           <div class="nav-spacer"></div>
         {% endif %}
         
-        <a href="/brodersons/2025/winners/" class="back-to-winners cta">
-          All Winners
-        </a>
+        <div class="jump-to-category">
+          <select id="categoryJumper" class="category-select cta">
+            <option value="">Jump to Category</option>
+            {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
+            {% for section in sections %}
+              {% assign section_categories = section.items | sort: 'order' %}
+              {% for category in section_categories %}
+                {% assign category_winners = site.winners | where: 'category', category.slug %}
+                {% if category_winners.size > 0 %}
+                  <option value="{{ category.slug }}" {% if category.slug == page.category %}selected{% endif %}>{{ category.title }}</option>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </select>
+        </div>
         
         {% if next_winner %}
           <a href="{{ next_winner.url }}" class="next-winner cta" title="{{ next_winner.title | xml_escape }}">
@@ -275,5 +287,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+
+  // Handle category jumper dropdown
+  const categorySelect = document.getElementById('categoryJumper');
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function() {
+      const selectedCategory = this.value;
+      if (selectedCategory) {
+        // Navigate to winners page with category fragment
+        window.location.href = '/brodersons/2025/winners/#category-' + selectedCategory;
+      }
+    });
+  }
 });
 </script>

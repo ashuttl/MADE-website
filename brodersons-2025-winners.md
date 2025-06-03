@@ -7,6 +7,26 @@ permalink: /brodersons/2025/winners/
 
 <div class="brodersons-stripes"></div>
 
+<div class="brodersons-art">
+  <div class="art-inner">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+    <img src="/assets/images/brodersons/Brodersons fall.svg" alt="Brodersons fall art">
+    <img src="/assets/images/brodersons/Brodersons hot.svg" alt="Brodersons hot art">
+    <img src="/assets/images/brodersons/Brodersons spring.svg" alt="Brodersons spring art">
+    <img src="/assets/images/brodersons/Brodersons summer.svg" alt="Brodersons summer art">
+    <img src="/assets/images/brodersons/Brodersons warm.svg" alt="Brodersons warm art">
+  </div>
+</div>
+
 <div class="header-content">
   <h1><span class="highlight">Winners of the 2025 Broderson&nbsp;Awards</span></h1>
 </div>
@@ -22,7 +42,7 @@ permalink: /brodersons/2025/winners/
   {% for category in section_categories %}
     {% assign category_winners = site.winners | where: 'category', category.slug %}
     {% if category_winners.size > 0 %}
-    <div class="category-group">
+    <div class="category-group" id="category-{{ category.slug }}">
       <h3>{{ category.title }}</h3>
       
       <div class="winners-grid">
@@ -67,6 +87,27 @@ permalink: /brodersons/2025/winners/
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Handle fragment navigation for category jumping
+  function scrollToCategory() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#category-')) {
+      const targetElement = document.querySelector(hash);
+      if (targetElement) {
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          
+          // Scroll smoothly to the category
+        }, 100);
+      }
+    }
+  }
+  
+  // Handle initial page load with fragment
+  scrollToCategory();
+  
+  // Handle back/forward navigation
+  window.addEventListener('hashchange', scrollToCategory);
+  
   // Initialize thumbnail rotation for winners with multiple thumbnails
   const thumbnailContainers = document.querySelectorAll('.winner-thumbnail[data-thumbnails]');
   
