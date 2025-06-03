@@ -109,14 +109,15 @@ class: broderson-page
         {% assign featured_image = winner_assets.images.first %}
         {% if featured_image %}
           <div class="featured-image">
-            <img src="{{ featured_image }}" alt="{{ page.title }}">
+            <a href="{{ featured_image }}" class="glightbox" data-gallery="winner-gallery">
+              <img src="{{ featured_image }}" alt="{{ page.title }}">
+            </a>
           </div>
         {% endif %}
         
         <div class="main-info">
           {% if content and content != '' %}
             <div class="winner-description">
-              <h3>About This Work</h3>
               {{ content }}
             </div>
           {% endif %}
@@ -153,7 +154,9 @@ class: broderson-page
           {% if additional_images.size > 0 %}
             <div class="additional-images">
               {% for image in additional_images %}
-                <img src="{{ image }}" alt="{{ page.title }}" loading="lazy">
+                <a href="{{ image }}" class="glightbox" data-gallery="winner-gallery">
+                  <img src="{{ image }}" alt="{{ page.title }}" loading="lazy">
+                </a>
               {% endfor %}
             </div>
           {% endif %}

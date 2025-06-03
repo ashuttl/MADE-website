@@ -250,3 +250,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Initialize GLightbox for winner galleries
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof GLightbox !== 'undefined') {
+    const lightbox = GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+      autoplayVideos: true,
+      zoomable: true,
+      draggable: true,
+      openEffect: 'fade',
+      closeEffect: 'fade'
+    });
+  }
+});
