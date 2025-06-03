@@ -25,3 +25,6 @@ Gemfile.lock
 
 # Claude instructions
 CLAUDE.md
+assets/winners/convert_csv_to_jekyll.py
+.gitignore
+assets/winners/winners_with_details.csv
