@@ -123,16 +123,51 @@
 }
 
 .winner-page {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
+  
+  .winner-top-navigation {
+    margin: 2rem 0;
+    position: sticky;
+    top: 1rem;
+    z-index: 100;
+    
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+      
+      .nav-spacer {
+        flex: 1;
+        max-width: 120px;
+      }
+      
+      .prev-winner,
+      .next-winner {
+        flex: 1;
+        max-width: 120px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+      
+      .back-to-winners {
+        flex: 0 0 auto;
+      }
+    }
+  }
   
   .breadcrumb {
     margin-bottom: 1rem;
     font-size: 0.9rem;
-    color: var(--color-text-muted);
+    color: rgba(var(--theme-ink-rgb), 0.6);
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
     
     a {
-      color: var(--color-primary);
+      color: var(--theme-link);
       text-decoration: none;
       
       &:hover {
@@ -142,7 +177,10 @@
   }
   
   .winner-header {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     
     .winner-level-badge {
       display: inline-block;
@@ -176,10 +214,11 @@
     
     h1 {
       margin-bottom: 1rem;
+      margin-top: 0;
     }
     
     .winner-meta {
-      color: var(--color-text-secondary);
+      color: rgba(var(--theme-ink-rgb), 0.75);
       
       .winner-name {
         font-size: 1.1rem;
@@ -195,12 +234,68 @@
     }
   }
   
-  .winner-assets {
-    margin-bottom: 2rem;
+  .winner-main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    .featured-image {
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+    
+    .main-info {
+      .winner-description {
+        margin-bottom: 2rem;
+        
+        h3 {
+          margin-bottom: 1rem;
+          margin-top: 0;
+        }
+        
+        p {
+          line-height: 1.6;
+        }
+      }
+      
+      .pdf-section {
+        h3 {
+          margin-bottom: 1rem;
+          margin-top: 0;
+        }
+        
+        .pdf-link {
+          margin-right: 0.5rem;
+          margin-bottom: 0.5rem;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  
+  .additional-assets {
+    margin-bottom: 3rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+    h3 {
+      margin-bottom: 2rem;
+      margin-top: 0;
+      text-align: center;
+      font-size: 1.5rem;
+    }
     
     .video-section,
-    .images-section,
-    .pdf-section,
+    .additional-images,
     .audio-section {
       margin-bottom: 2rem;
     }
@@ -210,90 +305,41 @@
       max-width: 100%;
       height: auto;
       margin-bottom: 1rem;
+      border-radius: 8px;
     }
     
-    img {
-      width: 100%;
-      height: auto;
-      margin-bottom: 1rem;
-      border-radius: 4px;
+    .additional-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
     }
     
     audio {
       width: 100%;
       margin-bottom: 1rem;
     }
-    
-    .pdf-link {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background-color: var(--color-primary);
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      
-      &:hover {
-        background-color: var(--color-primary-dark);
-      }
-    }
   }
   
   .winner-description {
     margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     
     h3 {
       margin-bottom: 1rem;
+      margin-top: 0;
     }
     
     p {
       line-height: 1.6;
-    }
-  }
-  
-  .winner-navigation {
-    border-top: 1px solid var(--color-border);
-    padding-top: 2rem;
-    margin-top: 2rem;
-    
-    .nav-links {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      
-      a {
-        text-decoration: none;
-        color: var(--color-primary);
-        padding: 0.5rem 1rem;
-        border: 1px solid var(--color-primary);
-        border-radius: 4px;
-        transition: all 0.2s ease;
-        
-        &:hover {
-          background-color: var(--color-primary);
-          color: white;
-        }
-        
-        &.back-to-winners {
-          background-color: var(--color-primary);
-          color: white;
-          
-          &:hover {
-            background-color: var(--color-primary-dark);
-          }
-        }
-      }
-      
-      .prev-winner,
-      .next-winner {
-        flex: 1;
-        text-align: center;
-        max-width: 200px;
-      }
-      
-      .back-to-winners {
-        flex: 0 0 auto;
-      }
     }
   }
 }
@@ -303,14 +349,37 @@
     grid-template-columns: 1fr;
   }
   
-  .winner-navigation .nav-links {
-    flex-direction: column;
+  .winner-page {
+    .winner-top-navigation {
+      margin: 1rem 0;
+      
+      .nav-links {
+        flex-direction: column;
+        gap: 0.5rem;
+        
+        .nav-spacer {
+          display: none;
+        }
+        
+        .prev-winner,
+        .next-winner,
+        .back-to-winners {
+          max-width: none;
+          width: 100%;
+        }
+      }
+    }
     
-    .prev-winner,
-    .next-winner,
-    .back-to-winners {
-      width: 100%;
-      max-width: none;
+    .winner-main-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .additional-assets {
+      .additional-images {
+        grid-template-columns: 1fr;
+      }
     }
   }
 }

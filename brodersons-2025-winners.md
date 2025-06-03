@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "2025 Broderson Award Winners"
-class: winners-page
+class: broderson-page winners-page
 permalink: /brodersons/2025/winners/
 ---
 
