@@ -14,7 +14,7 @@
     
     h3 {
       margin-bottom: 1rem;
-      color: var(--color-text-secondary);
+      color: rgba(var(--theme-ink-rgb), 0.8);
     }
   }
   
@@ -26,30 +26,36 @@
   }
   
   .winner-card {
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
+    border: 2px solid var(--theme-ink);
+    border-radius: 0;
     overflow: hidden;
-    transition: transform 0.2s ease;
+    transition: none;
+    background-color: white;
     
     &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transform: translate(-4px, -4px);
+      box-shadow: 4px 4px 0 0 var(--theme-ink);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     
-    &.gold {
-      border-top: 4px solid #ffd700;
+    &.gold:hover {
+      box-shadow: 4px 4px 0 0 #EECE5C;
+      border-color: #EECE5C;
     }
     
-    &.silver {
-      border-top: 4px solid #c0c0c0;
+    &.silver:hover {
+      box-shadow: 4px 4px 0 0 #A1BAE1;
+      border-color: #A1BAE1;
     }
     
-    &.bronze {
-      border-top: 4px solid #cd7f32;
+    &.bronze:hover {
+      box-shadow: 4px 4px 0 0 #D85E38;
+      border-color: #D85E38;
     }
     
-    &.student {
-      border-top: 4px solid #4a90e2;
+    &.student:hover {
+      box-shadow: 4px 4px 0 0 var(--theme-link);
+      border-color: var(--theme-link);
     }
   }
   
@@ -69,30 +75,57 @@
     padding: 1rem;
     
     .winner-level {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       text-transform: uppercase;
       font-size: 0.75rem;
       font-weight: bold;
       margin-bottom: 0.5rem;
       
-      &::before {
-        content: "● ";
+      .award-icon {
+        width: 1.2em;
+        height: 1.2em;
+        flex-shrink: 0;
+        
+        svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
       }
     }
     
     .gold .winner-level {
-      color: #ffd700;
+      color: #EECE5C;
+      
+      .award-icon {
+        color: #EECE5C;
+      }
     }
     
     .silver .winner-level {
-      color: #c0c0c0;
+      color: #A1BAE1;
+      
+      .award-icon {
+        color: #A1BAE1;
+      }
     }
     
     .bronze .winner-level {
-      color: #cd7f32;
+      color: #D85E38;
+      
+      .award-icon {
+        color: #D85E38;
+      }
     }
     
     .student .winner-level {
-      color: #4a90e2;
+      color: var(--theme-link);
+      
+      .award-icon {
+        color: var(--theme-link);
+      }
     }
     
     h4 {
@@ -104,20 +137,20 @@
         color: inherit;
         
         &:hover {
-          color: var(--color-primary);
+          color: var(--theme-link);
         }
       }
     }
     
     .winner-name {
       font-weight: 600;
-      color: var(--color-text-secondary);
+      color: rgba(var(--theme-ink-rgb), 0.8);
       margin-bottom: 0.25rem;
     }
     
     .winner-company {
       font-size: 0.9rem;
-      color: var(--color-text-muted);
+      color: rgba(var(--theme-ink-rgb), 0.6);
     }
   }
 }
@@ -139,6 +172,7 @@
       gap: 1rem;
       max-width: 800px;
       margin: 0 auto;
+      padding: 0 1rem;
       
       .nav-spacer {
         flex: 1;
@@ -165,6 +199,7 @@
     color: rgba(var(--theme-ink-rgb), 0.6);
     max-width: 800px;
     margin: 0 auto 1rem auto;
+    padding: 0 1rem;
     
     a {
       color: var(--theme-link);
@@ -181,34 +216,107 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
+    
+    .winner-awards-info {
+      margin-bottom: 2rem;
+    }
     
     .winner-level-badge {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.75rem 1.25rem;
+      border: 2px solid var(--theme-ink);
+      border-radius: 0;
+      background-color: white;
+      box-shadow: 4px 4px 0 0 var(--theme-ink);
+      
+      .award-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        flex-shrink: 0;
+        
+        svg {
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+      }
+      
+      .award-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.125rem;
+        
+        .award-level {
+          font-size: 1rem;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          line-height: 1;
+        }
+        
+        .award-category {
+          font-size: 0.75rem;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: 0.025em;
+          opacity: 0.8;
+          line-height: 1;
+        }
+      }
       
       &.gold {
-        background-color: #ffd700;
-        color: #000;
+        border-color: #EECE5C;
+        box-shadow: 4px 4px 0 0 #EECE5C;
+        
+        .award-icon {
+          color: #EECE5C;
+        }
+        
+        .award-text {
+          color: #EECE5C;
+        }
       }
       
       &.silver {
-        background-color: #c0c0c0;
-        color: #000;
+        border-color: #A1BAE1;
+        box-shadow: 4px 4px 0 0 #A1BAE1;
+        
+        .award-icon {
+          color: #A1BAE1;
+        }
+        
+        .award-text {
+          color: #A1BAE1;
+        }
       }
       
       &.bronze {
-        background-color: #cd7f32;
-        color: #fff;
+        border-color: #D85E38;
+        box-shadow: 4px 4px 0 0 #D85E38;
+        
+        .award-icon {
+          color: #D85E38;
+        }
+        
+        .award-text {
+          color: #D85E38;
+        }
       }
       
       &.student {
-        background-color: #4a90e2;
-        color: #fff;
+        border-color: var(--theme-link);
+        box-shadow: 4px 4px 0 0 var(--theme-link);
+        
+        .award-icon {
+          color: var(--theme-link);
+        }
+        
+        .award-text {
+          color: var(--theme-link);
+        }
       }
     }
     
@@ -242,13 +350,15 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
     
     .featured-image {
       img {
         width: 100%;
         height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        border: 2px solid var(--theme-ink);
+        box-shadow: 6px 6px 0 0 var(--theme-ink);
       }
     }
     
@@ -286,6 +396,7 @@
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
     
     h3 {
       margin-bottom: 2rem;
@@ -305,7 +416,9 @@
       max-width: 100%;
       height: auto;
       margin-bottom: 1rem;
-      border-radius: 8px;
+      border-radius: 0;
+      border: 2px solid var(--theme-ink);
+      box-shadow: 4px 4px 0 0 var(--theme-ink);
     }
     
     .additional-images {
@@ -316,8 +429,9 @@
       img {
         width: 100%;
         height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 0;
+        border: 2px solid var(--theme-ink);
+        box-shadow: 4px 4px 0 0 var(--theme-ink);
       }
     }
     
@@ -332,6 +446,7 @@
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 1rem;
     
     h3 {
       margin-bottom: 1rem;

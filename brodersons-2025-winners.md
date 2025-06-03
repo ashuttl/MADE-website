@@ -42,7 +42,12 @@ permalink: /brodersons/2025/winners/
               {% endif %}
               
               <div class="winner-info">
-                <div class="winner-level">{{ level }}</div>
+                <div class="winner-level">
+                  <div class="award-icon">
+                    {% include svg/award.svg %}
+                  </div>
+                  <span>{{ level }}</span>
+                </div>
                 <h4><a href="{{ winner.url }}">{{ winner.title }}</a></h4>
                 <p class="winner-name">{{ winner.name }}</p>
                 {% if winner.company_name and winner.company_name != '' %}

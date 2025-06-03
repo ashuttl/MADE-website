@@ -1,5 +1,6 @@
 ---
 layout: default
+class: broderson-page
 ---
 
 {% assign winner_assets = site.data.winner_assets[page.submission_id] %}
@@ -7,9 +8,9 @@ layout: default
 {% assign current_category_winners = all_winners | where: 'category', page.category %}
 {% assign level_order = 'Gold,Silver,Bronze,Student' | split: ',' %}
 
-<div class="container broderson-page">
-  <div class="brodersons-stripes"></div>
-  
+<div class="brodersons-stripes"></div>
+
+<div class="container">
   <article class="winner-page">
     {% comment %} Top Navigation - Create ordered list of all winners {% endcomment %}
     {% assign prev_winner = nil %}
@@ -79,8 +80,16 @@ layout: default
         {{ current_category.title }}
       </div>
       
-      <div class="winner-level-badge {{ page.winning_level | downcase }}">
-        {{ page.winning_level }}
+      <div class="winner-awards-info">
+        <div class="winner-level-badge {{ page.winning_level | downcase }}">
+          <div class="award-icon">
+            {% include svg/award.svg %}
+          </div>
+          <div class="award-text">
+            <div class="award-level">{{ page.winning_level }}</div>
+            <div class="award-category">{{ current_category.title }}</div>
+          </div>
+        </div>
       </div>
       
       <h1><span class="highlight">{{ page.title }}</span></h1>
