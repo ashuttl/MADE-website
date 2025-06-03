@@ -33,6 +33,11 @@ collections:
   events:
     output: true
     permalink: /events/:name/
+  winners:
+    output: true
+    permalink: /brodersons/2025/winners/:name/
+  categories:
+    output: false
 
 # Exclude from processing
 exclude:

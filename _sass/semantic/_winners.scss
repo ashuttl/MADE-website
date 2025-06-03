@@ -1,0 +1,316 @@
+.winners-page {
+  .winners-section {
+    margin-bottom: 3rem;
+    
+    h2 {
+      border-bottom: 2px solid var(--color-primary);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+  }
+  
+  .category-group {
+    margin-bottom: 2.5rem;
+    
+    h3 {
+      margin-bottom: 1rem;
+      color: var(--color-text-secondary);
+    }
+  }
+  
+  .winners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .winner-card {
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    &.gold {
+      border-top: 4px solid #ffd700;
+    }
+    
+    &.silver {
+      border-top: 4px solid #c0c0c0;
+    }
+    
+    &.bronze {
+      border-top: 4px solid #cd7f32;
+    }
+    
+    &.student {
+      border-top: 4px solid #4a90e2;
+    }
+  }
+  
+  .winner-thumbnail {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .winner-info {
+    padding: 1rem;
+    
+    .winner-level {
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      
+      &::before {
+        content: "● ";
+      }
+    }
+    
+    .gold .winner-level {
+      color: #ffd700;
+    }
+    
+    .silver .winner-level {
+      color: #c0c0c0;
+    }
+    
+    .bronze .winner-level {
+      color: #cd7f32;
+    }
+    
+    .student .winner-level {
+      color: #4a90e2;
+    }
+    
+    h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+      
+      a {
+        text-decoration: none;
+        color: inherit;
+        
+        &:hover {
+          color: var(--color-primary);
+        }
+      }
+    }
+    
+    .winner-name {
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .winner-company {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+.winner-page {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  .breadcrumb {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  .winner-header {
+    margin-bottom: 2rem;
+    
+    .winner-level-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      
+      &.gold {
+        background-color: #ffd700;
+        color: #000;
+      }
+      
+      &.silver {
+        background-color: #c0c0c0;
+        color: #000;
+      }
+      
+      &.bronze {
+        background-color: #cd7f32;
+        color: #fff;
+      }
+      
+      &.student {
+        background-color: #4a90e2;
+        color: #fff;
+      }
+    }
+    
+    h1 {
+      margin-bottom: 1rem;
+    }
+    
+    .winner-meta {
+      color: var(--color-text-secondary);
+      
+      .winner-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      
+      .winner-company, 
+      .winner-school, 
+      .creative-team {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+  
+  .winner-assets {
+    margin-bottom: 2rem;
+    
+    .video-section,
+    .images-section,
+    .pdf-section,
+    .audio-section {
+      margin-bottom: 2rem;
+    }
+    
+    video {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    
+    img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+    }
+    
+    audio {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    
+    .pdf-link {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: var(--color-primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      
+      &:hover {
+        background-color: var(--color-primary-dark);
+      }
+    }
+  }
+  
+  .winner-description {
+    margin-bottom: 2rem;
+    
+    h3 {
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      line-height: 1.6;
+    }
+  }
+  
+  .winner-navigation {
+    border-top: 1px solid var(--color-border);
+    padding-top: 2rem;
+    margin-top: 2rem;
+    
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      
+      a {
+        text-decoration: none;
+        color: var(--color-primary);
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--color-primary);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: var(--color-primary);
+          color: white;
+        }
+        
+        &.back-to-winners {
+          background-color: var(--color-primary);
+          color: white;
+          
+          &:hover {
+            background-color: var(--color-primary-dark);
+          }
+        }
+      }
+      
+      .prev-winner,
+      .next-winner {
+        flex: 1;
+        text-align: center;
+        max-width: 200px;
+      }
+      
+      .back-to-winners {
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .winners-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .winner-navigation .nav-links {
+    flex-direction: column;
+    
+    .prev-winner,
+    .next-winner,
+    .back-to-winners {
+      width: 100%;
+      max-width: none;
+    }
+  }
+}

@@ -1,0 +1,131 @@
+---
+layout: default
+---
+
+{% assign winner_assets = site.data.winner_assets[page.submission_id] %}
+{% assign all_winners = site.winners | sort: 'category' %}
+{% assign current_category_winners = all_winners | where: 'category', page.category %}
+{% assign level_order = 'Gold,Silver,Bronze,Student' | split: ',' %}
+
+<div class="container">
+  <article class="winner-page">
+    <div class="winner-header">
+      <div class="breadcrumb">
+        <a href="/brodersons/">Brodersons</a> / 
+        <a href="/brodersons/2025/winners/">2025 Winners</a> / 
+        {% assign current_category = site.categories | where: 'slug', page.category | first %}
+        {{ current_category.title }}
+      </div>
+      
+      <div class="winner-level-badge {{ page.winning_level | downcase }}">
+        {{ page.winning_level }}
+      </div>
+      
+      <h1>{{ page.title }}</h1>
+      
+      <div class="winner-meta">
+        <div class="winner-name">{{ page.name }}</div>
+        {% if page.company_name and page.company_name != '' %}
+          <div class="winner-company">{{ page.company_name }}</div>
+        {% endif %}
+        {% if page.school_name and page.school_name != '' %}
+          <div class="winner-school">{{ page.school_name }}</div>
+        {% endif %}
+        {% if page.creative_team_members and page.creative_team_members != '' %}
+          <div class="creative-team">Creative Team: {{ page.creative_team_members }}</div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if winner_assets %}
+      <div class="winner-assets">
+        {% if winner_assets.videos.size > 0 %}
+          <div class="video-section">
+            {% for video in winner_assets.videos %}
+              <video controls>
+                <source src="{{ video }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        {% if winner_assets.images.size > 0 %}
+          <div class="images-section">
+            {% for image in winner_assets.images %}
+              <img src="{{ image }}" alt="{{ page.title }}" loading="lazy">
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        {% if winner_assets.pdfs.size > 0 %}
+          <div class="pdf-section">
+            <h3>Downloads</h3>
+            {% for pdf in winner_assets.pdfs %}
+              <a href="{{ pdf }}" target="_blank" class="pdf-link">
+                View PDF
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        {% if winner_assets.audio.size > 0 %}
+          <div class="audio-section">
+            {% for audio in winner_assets.audio %}
+              <audio controls>
+                <source src="{{ audio }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if content and content != '' %}
+      <div class="winner-description">
+        <h3>About This Work</h3>
+        {{ content }}
+      </div>
+    {% endif %}
+
+    <div class="winner-navigation">
+      {% assign current_index = 0 %}
+      {% assign prev_winner = nil %}
+      {% assign next_winner = nil %}
+      
+      {% for level in level_order %}
+        {% assign level_winners = current_category_winners | where: 'winning_level', level %}
+        {% for winner in level_winners %}
+          {% if winner.submission_id == page.submission_id %}
+            {% assign current_index = forloop.index %}
+            {% if forloop.index > 1 %}
+              {% assign prev_winner = level_winners[forloop.index0 | minus: 1] %}
+            {% endif %}
+            {% if forloop.index < level_winners.size %}
+              {% assign next_winner = level_winners[forloop.index] %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      
+      <div class="nav-links">
+        {% if prev_winner %}
+          <a href="{{ prev_winner.url }}" class="prev-winner">
+            ← {{ prev_winner.title }}
+          </a>
+        {% endif %}
+        
+        <a href="/brodersons/2025/winners/" class="back-to-winners">
+          Back to Winners
+        </a>
+        
+        {% if next_winner %}
+          <a href="{{ next_winner.url }}" class="next-winner">
+            {{ next_winner.title }} →
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+</div>
