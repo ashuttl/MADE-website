@@ -97,26 +97,26 @@
     }
     
     .gold .winner-level {
-      color: #EECE5C;
+      color: var(--theme-ink);
       
       .award-icon {
-        color: #EECE5C;
+        color: var(--theme-ink);
       }
     }
     
     .silver .winner-level {
-      color: #A1BAE1;
+      color: var(--theme-ink);
       
       .award-icon {
-        color: #A1BAE1;
+        color: var(--theme-ink);
       }
     }
     
     .bronze .winner-level {
-      color: #D85E38;
+      color: var(--theme-ink);
       
       .award-icon {
-        color: #D85E38;
+        color: var(--theme-ink);
       }
     }
     
@@ -185,6 +185,7 @@
         max-width: 120px;
         text-align: center;
         font-size: 0.9rem;
+        white-space: nowrap;
       }
       
       .back-to-winners {
@@ -193,48 +194,39 @@
     }
   }
   
-  .breadcrumb {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-    color: rgba(var(--theme-ink-rgb), 0.6);
-    max-width: 800px;
-    margin: 0 auto 1rem auto;
-    padding: 0 1rem;
-    
-    a {
-      color: var(--theme-link);
-      text-decoration: none;
-      
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-  
   .winner-header {
     margin-bottom: 3rem;
-    max-width: 800px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
     
-    .winner-awards-info {
+    .title-with-badge {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
       margin-bottom: 2rem;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+      }
     }
     
     .winner-level-badge {
       display: inline-flex;
       align-items: center;
-      gap: 1rem;
-      padding: 0.75rem 1.25rem;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
       border: 2px solid var(--theme-ink);
       border-radius: 0;
       background-color: white;
       box-shadow: 4px 4px 0 0 var(--theme-ink);
+      flex-shrink: 0;
       
       .award-icon {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
         flex-shrink: 0;
         
         svg {
@@ -250,7 +242,7 @@
         gap: 0.125rem;
         
         .award-level {
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: bold;
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -258,71 +250,95 @@
         }
         
         .award-category {
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 400;
           text-transform: uppercase;
           letter-spacing: 0.025em;
           opacity: 0.8;
           line-height: 1;
+          white-space: nowrap;
         }
       }
       
       &.gold {
-        border-color: #EECE5C;
-        box-shadow: 4px 4px 0 0 #EECE5C;
+        border-color: var(--theme-ink);
+        box-shadow: 4px 4px 0 0 var(--theme-ink);
+        background-color: #EECE5C;
         
         .award-icon {
           color: #EECE5C;
         }
         
         .award-text {
-          color: #EECE5C;
+          color: var(--theme-ink);
         }
       }
       
       &.silver {
-        border-color: #A1BAE1;
-        box-shadow: 4px 4px 0 0 #A1BAE1;
+        border-color: var(--theme-ink);
+        box-shadow: 4px 4px 0 0 var(--theme-ink);
+        background-color: #A1BAE1;
         
         .award-icon {
           color: #A1BAE1;
         }
         
         .award-text {
-          color: #A1BAE1;
+          color: var(--theme-ink);
         }
       }
       
       &.bronze {
-        border-color: #D85E38;
-        box-shadow: 4px 4px 0 0 #D85E38;
+        border-color: var(--theme-ink);
+        box-shadow: 4px 4px 0 0 var(--theme-ink);
+        background-color: #D85E38;
         
         .award-icon {
           color: #D85E38;
         }
         
         .award-text {
-          color: #D85E38;
+          color: var(--theme-ink);
         }
       }
       
       &.student {
-        border-color: var(--theme-link);
-        box-shadow: 4px 4px 0 0 var(--theme-link);
+        border-color: var(--theme-ink);
+        box-shadow: 4px 4px 0 0 var(--theme-ink);
+        background-color: var(--theme-link);
         
         .award-icon {
           color: var(--theme-link);
         }
         
         .award-text {
-          color: var(--theme-link);
+          color: white;
         }
       }
     }
     
     h1 {
-      margin-bottom: 1rem;
-      margin-top: 0;
+      margin: 0;
+      font-size: 2rem;
+      line-height: 1.1;
+      flex: 1;
+      
+      // Override the Brodersons highlight for better multi-line handling
+      .highlight {
+        background-color: var(--theme-ink);
+        color: white;
+        padding: 0.1em 0.3em;
+        padding-bottom: 0.15em;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+        line-height: 1.15;
+        margin-left: -0.3em;
+        display: inline;
+      }
+      
+      @media (max-width: 768px) {
+        font-size: 1.75rem;
+      }
     }
     
     .winner-meta {
@@ -397,13 +413,6 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
-    
-    h3 {
-      margin-bottom: 2rem;
-      margin-top: 0;
-      text-align: center;
-      font-size: 1.5rem;
-    }
     
     .video-section,
     .additional-images,
