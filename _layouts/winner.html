@@ -101,7 +101,10 @@ class: broderson-page
           {% if page.creative_team_members and page.creative_team_members != '' %}
             <div class="creative-team">
               <div class="creative-team-label">Creative Team</div>
-              <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
+              <div class="creative-team-wrapper">
+                <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
+                <button class="creative-team-expand" onclick="toggleCreativeTeam(this)" style="display: none;">Show More</button>
+              </div>
             </div>
           {% endif %}
         </div>
@@ -119,46 +122,70 @@ class: broderson-page
             </a>
           </div>
           
-          <div class="main-info">
-            {% if content and content != '' %}
-              <div class="winner-description">
-                {{ content }}
-              </div>
-            {% endif %}
-            
-            {% if winner_assets.pdfs.size > 0 %}
-              <div class="pdf-section">
-                <h3>Downloads</h3>
-                {% for pdf in winner_assets.pdfs %}
-                  <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
-                    View PDF
+          {% if content and content != '' or winner_assets.pdfs.size > 0 or page.website and page.website != '' %}
+            <div class="main-info">
+              {% if content and content != '' %}
+                <div class="winner-description">
+                  {{ content }}
+                </div>
+              {% endif %}
+              
+              {% if winner_assets.pdfs.size > 0 %}
+                <div class="pdf-section">
+                  <h3>Downloads</h3>
+                  {% for pdf in winner_assets.pdfs %}
+                    <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                      View PDF
+                    </a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              {% if page.website and page.website != '' %}
+                <div class="website-section">
+                  <h3>Website</h3>
+                  <a href="{{ page.website }}" target="_blank" class="cta website-link">
+                    {% include svg/external-link.svg %}
+                    Visit Website
                   </a>
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
         </div>
       {% else %}
-        <div class="winner-main-content no-featured-image">
-          <div class="main-info">
-            {% if content and content != '' %}
-              <div class="winner-description">
-                {{ content }}
-              </div>
-            {% endif %}
-            
-            {% if winner_assets.pdfs.size > 0 %}
-              <div class="pdf-section">
-                <h3>Downloads</h3>
-                {% for pdf in winner_assets.pdfs %}
-                  <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
-                    View PDF
+        {% if content and content != '' or winner_assets.pdfs.size > 0 or page.website and page.website != '' %}
+          <div class="winner-main-content no-featured-image">
+            <div class="main-info">
+              {% if content and content != '' %}
+                <div class="winner-description">
+                  {{ content }}
+                </div>
+              {% endif %}
+              
+              {% if winner_assets.pdfs.size > 0 %}
+                <div class="pdf-section">
+                  <h3>Downloads</h3>
+                  {% for pdf in winner_assets.pdfs %}
+                    <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                      View PDF
+                    </a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              {% if page.website and page.website != '' %}
+                <div class="website-section">
+                  <h3>Website</h3>
+                  <a href="{{ page.website }}" target="_blank" class="cta website-link">
+                    {% include svg/external-link.svg %}
+                    Visit Website
                   </a>
-                {% endfor %}
-              </div>
-            {% endif %}
+                </div>
+              {% endif %}
+            </div>
           </div>
-        </div>
+        {% endif %}
       {% endif %}
 
       {% comment %} Additional Assets Section {% endcomment %}
@@ -210,3 +237,43 @@ class: broderson-page
     {% endif %}
   </article>
 </div>
+
+<script>
+function toggleCreativeTeam(button) {
+  const content = button.parentElement.querySelector('.creative-team-content');
+  const isExpanded = content.classList.contains('expanded');
+  
+  if (isExpanded) {
+    content.classList.remove('expanded');
+    content.classList.add('truncated'); // Re-add truncated class to show fade
+    button.textContent = 'Show More';
+  } else {
+    content.classList.add('expanded');
+    content.classList.remove('truncated'); // Remove truncated class to hide fade
+    button.textContent = 'Show Less';
+  }
+}
+
+// Check if creative team needs expand button on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const creativeTeamContents = document.querySelectorAll('.creative-team-content');
+  
+  creativeTeamContents.forEach(content => {
+    const expandButton = content.parentElement.querySelector('.creative-team-expand');
+    
+    if (expandButton) {
+      // Temporarily remove max-height to measure actual height
+      const originalMaxHeight = content.style.maxHeight;
+      content.style.maxHeight = 'none';
+      const fullHeight = content.scrollHeight;
+      content.style.maxHeight = originalMaxHeight;
+      
+      // If content is taller than ~4.5rem (approximately 3 lines), show expand button and fade
+      if (fullHeight > 72) { // 4.5rem ≈ 72px
+        expandButton.style.display = 'block';
+        content.classList.add('truncated');
+      }
+    }
+  });
+});
+</script>

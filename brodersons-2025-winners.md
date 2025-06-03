@@ -8,7 +8,7 @@ permalink: /brodersons/2025/winners/
 <div class="brodersons-stripes"></div>
 
 <div class="header-content">
-  <h1><span class="highlight">Winners of the 2025 Broderson Awards</span></h1>
+  <h1><span class="highlight">Winners of the 2025 Broderson&nbsp;Awards</span></h1>
 </div>
 
 {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
@@ -30,31 +30,32 @@ permalink: /brodersons/2025/winners/
           {% assign level_winners = category_winners | where: 'winning_level', level %}
           {% for winner in level_winners %}
             {% assign winner_assets = site.data.winner_assets[winner.submission_id] %}
-            {% assign thumbnail = winner_assets.thumbnails.first %}
+            {% assign thumbnails = winner_assets.thumbnails %}
+            {% assign thumbnail = thumbnails.first %}
             
-            <div class="winner-card {{ level | downcase }}">
-              {% if thumbnail %}
-                <div class="winner-thumbnail">
-                  <a href="{{ winner.url }}">
+            <a href="{{ winner.url }}" class="winner-card-link">
+              <div class="winner-card {{ level | downcase }}">
+                {% if thumbnail %}
+                  <div class="winner-thumbnail" {% if thumbnails.size > 1 %}data-thumbnails="{{ thumbnails | jsonify | xml_escape }}"{% endif %}>
                     <img src="{{ thumbnail }}" alt="{{ winner.title | xml_escape }}">
-                  </a>
-                </div>
-              {% endif %}
-              
-              <div class="winner-info">
-                <div class="winner-level">
-                  <div class="award-icon">
-                    {% include svg/award.svg %}
                   </div>
-                  <span>{{ level }}</span>
-                </div>
-                <h4><a href="{{ winner.url }}">{{ winner.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</a></h4>
-                <p class="winner-name">{{ winner.name }}</p>
-                {% if winner.company_name and winner.company_name != '' %}
-                  <p class="winner-company">{{ winner.company_name }}</p>
                 {% endif %}
+                
+                <div class="winner-info">
+                  <div class="winner-level">
+                    <div class="award-icon">
+                      {% include svg/award.svg %}
+                    </div>
+                    <span>{{ level }}</span>
+                  </div>
+                  <h4>{{ winner.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h4>
+                  <p class="winner-name">{{ winner.name }}</p>
+                  {% if winner.company_name and winner.company_name != '' %}
+                    <p class="winner-company">{{ winner.company_name }}</p>
+                  {% endif %}
+                </div>
               </div>
-            </div>
+            </a>
           {% endfor %}
         {% endfor %}
       </div>
@@ -63,3 +64,72 @@ permalink: /brodersons/2025/winners/
   {% endfor %}
 </div>
 {% endfor %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize thumbnail rotation for winners with multiple thumbnails
+  const thumbnailContainers = document.querySelectorAll('.winner-thumbnail[data-thumbnails]');
+  
+  thumbnailContainers.forEach(container => {
+    const img = container.querySelector('img');
+    const thumbnailsData = container.getAttribute('data-thumbnails');
+    
+    if (!img || !thumbnailsData) return;
+    
+    let thumbnails;
+    try {
+      // Parse the JSON data (it's HTML-escaped, so we need to decode it)
+      const textarea = document.createElement('textarea');
+      textarea.innerHTML = thumbnailsData;
+      thumbnails = JSON.parse(textarea.value);
+    } catch (e) {
+      console.error('Failed to parse thumbnails data:', e);
+      return;
+    }
+    
+    if (!thumbnails || thumbnails.length <= 1) return;
+    
+    let currentIndex = 0;
+    let rotationInterval;
+    let isHovering = false;
+    
+    // Function to rotate to next thumbnail
+    function rotateThumbnail() {
+      if (!isHovering) return;
+      
+      currentIndex = (currentIndex + 1) % thumbnails.length;
+      img.src = thumbnails[currentIndex];
+    }
+    
+    // Find the parent card link to attach hover events to the whole card
+    const cardLink = container.closest('.winner-card-link');
+    
+    // Start rotation on card hover
+    cardLink.addEventListener('mouseenter', function() {
+      isHovering = true;
+      // Start rotating after a brief delay
+      setTimeout(() => {
+        if (isHovering) {
+          rotationInterval = setInterval(rotateThumbnail, 500); // 500ms between rotations
+        }
+      }, 200); // 200ms delay before starting
+    });
+    
+    // Stop rotation and reset on card mouse leave
+    cardLink.addEventListener('mouseleave', function() {
+      isHovering = false;
+      clearInterval(rotationInterval);
+      
+      // Reset to first thumbnail
+      currentIndex = 0;
+      img.src = thumbnails[0];
+    });
+    
+    // Preload all thumbnails for smooth rotation
+    thumbnails.forEach(src => {
+      const preloadImg = new Image();
+      preloadImg.src = src;
+    });
+  });
+});
+</script>

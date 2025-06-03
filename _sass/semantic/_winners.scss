@@ -25,38 +25,48 @@
     margin-bottom: 2rem;
   }
   
+  .winner-card-link {
+    display: flex; // Changed from block to flex
+    text-decoration: none;
+    color: inherit;
+    height: 100%; // Ensure link takes full grid item height
+    
+    &:hover .winner-card {
+      transform: translate(-4px, -4px);
+      box-shadow: 4px 4px 0 0 var(--theme-ink);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    &:hover .winner-card.gold {
+      box-shadow: 4px 4px 0 0 #EECE5C;
+      border-color: #EECE5C;
+    }
+    
+    &:hover .winner-card.silver {
+      box-shadow: 4px 4px 0 0 #A1BAE1;
+      border-color: #A1BAE1;
+    }
+    
+    &:hover .winner-card.bronze {
+      box-shadow: 4px 4px 0 0 #D85E38;
+      border-color: #D85E38;
+    }
+    
+    &:hover .winner-card.student {
+      box-shadow: 4px 4px 0 0 var(--theme-link);
+      border-color: var(--theme-link);
+    }
+  }
+  
   .winner-card {
     border: 2px solid var(--theme-ink);
     border-radius: 0;
     overflow: hidden;
     transition: none;
     background-color: white;
-    
-    &:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 4px 4px 0 0 var(--theme-ink);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    &.gold:hover {
-      box-shadow: 4px 4px 0 0 #EECE5C;
-      border-color: #EECE5C;
-    }
-    
-    &.silver:hover {
-      box-shadow: 4px 4px 0 0 #A1BAE1;
-      border-color: #A1BAE1;
-    }
-    
-    &.bronze:hover {
-      box-shadow: 4px 4px 0 0 #D85E38;
-      border-color: #D85E38;
-    }
-    
-    &.student:hover {
-      box-shadow: 4px 4px 0 0 var(--theme-link);
-      border-color: var(--theme-link);
-    }
+    width: 100%; // Fill the link width
+    display: flex;
+    flex-direction: column;
     
     // Level colors for winner cards
     &.gold .winner-info .winner-level {
@@ -113,6 +123,7 @@
   
   .winner-info {
     padding: 1rem;
+    flex: 1; // Make winner-info grow to fill remaining space
     
     .winner-level {
       display: flex;
@@ -140,15 +151,6 @@
     h4 {
       margin: 0 0 0.5rem 0;
       font-size: 1.1rem;
-      
-      a {
-        text-decoration: none;
-        color: inherit;
-        
-        &:hover {
-          color: var(--theme-link);
-        }
-      }
     }
     
     .winner-name {
@@ -388,19 +390,76 @@
           margin-bottom: 0.25rem;
         }
         
+        .creative-team-wrapper {
+          position: relative;
+        }
+        
         .creative-team-content {
+          max-height: 4.5rem; // Approximately 3 lines
+          overflow: hidden;
+          transition: max-height 0.3s ease, mask 0.3s ease;
+          position: relative;
+          
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2rem; // Increased fade height for more aggressive effect
+            background: linear-gradient(transparent, rgba(var(--theme-page-rgb), 0.95)); // More opaque fade
+            pointer-events: none;
+            opacity: 0; // Hidden by default
+            transition: opacity 0.3s ease;
+          }
+          
+          &.truncated::after {
+            opacity: 1; // Only show fade when content is truncated
+          }
+          
+          &.expanded {
+            max-height: none;
+            
+            &::after {
+              opacity: 0;
+            }
+          }
+          
           p {
             margin: 0;
             line-height: 1.4;
+            font-size: 0.85rem; // Smaller text
           }
           
           ul, ol {
             margin: 0.25rem 0;
             padding-left: 1.2rem;
+            font-size: 0.85rem; // Smaller text
             
             li {
               margin-bottom: 0.1rem;
             }
+          }
+        }
+        
+        .creative-team-expand {
+          background: none;
+          border: none;
+          color: var(--theme-link);
+          font-size: 0.8rem;
+          font-weight: 500;
+          text-decoration: underline;
+          cursor: pointer;
+          padding: 0;
+          margin-top: 0.25rem;
+          
+          &:hover {
+            color: rgba(var(--theme-link-rgb), 0.8);
+          }
+          
+          &:focus {
+            outline: 1px dotted var(--theme-link);
+            outline-offset: 2px;
           }
         }
       }
@@ -502,16 +561,26 @@
         }
       }
       
-      .pdf-section {
+      .pdf-section,
+      .website-section {
         h3 {
           margin-bottom: 1rem;
           margin-top: 0;
         }
         
-        .pdf-link {
+        .pdf-link,
+        .website-link {
           margin-right: 0.5rem;
           margin-bottom: 0.5rem;
-          display: inline-block;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          
+          svg {
+            width: 1em;
+            height: 1em;
+            flex-shrink: 0;
+          }
         }
       }
     }
@@ -534,6 +603,7 @@
       width: 100%;
       max-width: 100%;
       height: auto;
+      max-height: 70vh; // Limit to 70% of viewport height for cushion
       margin-bottom: 1rem;
       border-radius: 0;
       border: 2px solid var(--theme-ink);

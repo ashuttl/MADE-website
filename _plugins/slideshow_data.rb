@@ -75,8 +75,6 @@ module Jekyll
               submission_id = winner.data['submission_id']
               winner_assets = site.data['winner_assets'] && site.data['winner_assets'][submission_id]
               
-              next unless winner_assets
-              
               # Collect all assets for this winner with portrait grouping
               assets = []
               
@@ -158,8 +156,8 @@ module Jekyll
                 end
               end
               
-              # Process images with dimension-based grouping
-              if winner_assets['images']
+              # Process images with dimension-based grouping (if we have assets)
+              if winner_assets && winner_assets['images']
                 images = winner_assets['images']
                 
                 # Filter out frame images if we have a corresponding video
@@ -303,8 +301,8 @@ module Jekyll
                 end
               end
               
-              # Add videos with their actual duration
-              if winner_assets['videos']
+              # Add videos with their actual duration (if we have assets)
+              if winner_assets && winner_assets['videos']
                 winner_assets['videos'].each do |video|
                   # Try to get actual video duration, fall back to config if unavailable
                   video_duration = get_video_duration(video) || 30000 # fallback to 30s
@@ -317,26 +315,29 @@ module Jekyll
                 end
               end
               
-              # Only add winner if they have assets to show
-              if assets.any?
-                # Process text through markdown for proper typography
-                title = winner.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['title']).strip.gsub(/<\/?p>/, '') : nil
-                name = winner.data['name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['name']).strip.gsub(/<\/?p>/, '') : nil
-                company = winner.data['company_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['company_name']).strip.gsub(/<\/?p>/, '') : nil
-                school = winner.data['school_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['school_name']).strip.gsub(/<\/?p>/, '') : nil
-                category_title = category_info.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(category_info.data['title']).strip.gsub(/<\/?p>/, '') : nil
-                
-                slideshow_data << {
-                  submission_id: submission_id,
-                  title: title,
-                  name: name,
-                  company: company,
-                  school: school,
-                  creative_team: winner.data['creative_team_members'],
-                  category: category_title,
-                  level: winner.data['winning_level'].downcase,
-                  assets: assets
-                }
+              # Always add winner to slideshow (they'll at least get an interstitial slide)
+              # Process text through markdown for proper typography
+              title = winner.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['title']).strip.gsub(/<\/?p>/, '') : nil
+              name = winner.data['name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['name']).strip.gsub(/<\/?p>/, '') : nil
+              company = winner.data['company_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['company_name']).strip.gsub(/<\/?p>/, '') : nil
+              school = winner.data['school_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['school_name']).strip.gsub(/<\/?p>/, '') : nil
+              category_title = category_info.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(category_info.data['title']).strip.gsub(/<\/?p>/, '') : nil
+              
+              slideshow_data << {
+                submission_id: submission_id,
+                title: title,
+                name: name,
+                company: company,
+                school: school,
+                creative_team: winner.data['creative_team_members'],
+                category: category_title,
+                level: winner.data['winning_level'].downcase,
+                assets: assets
+              }
+              
+              # Log when winners have no assets
+              if assets.empty?
+                puts "#{submission_id}: Winner has no assets, will show interstitial only"
               end
             end
           end
