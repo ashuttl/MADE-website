@@ -8,8 +8,7 @@ permalink: /brodersons/2025/winners/
 <div class="brodersons-stripes"></div>
 
 <div class="header-content">
-  <h1><span class="highlight">2025 Broderson Award Winners</span></h1>
-  <h2>Celebrating excellence in Maine's creative community</h2>
+  <h1><span class="highlight">Winners of the 2025 Broderson Awards</span></h1>
 </div>
 
 {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
