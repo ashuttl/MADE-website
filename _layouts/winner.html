@@ -75,7 +75,11 @@ class: broderson-page
     <div class="winner-header">
       {% assign current_category = site.categories | where: 'slug', page.category | first %}
       
-      <div class="title-with-badge">
+      <div class="winner-title">
+        <h1><span class="highlight">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</span></h1>
+      </div>
+      
+      <div class="badge-and-meta">
         <div class="winner-level-badge {{ page.winning_level | downcase }}">
           <div class="award-icon">
             {% include svg/award.svg %}
@@ -86,54 +90,76 @@ class: broderson-page
           </div>
         </div>
         
-        <h1><span class="highlight">{{ page.title }}</span></h1>
-      </div>
-      
-      <div class="winner-meta">
-        <div class="winner-name">{{ page.name }}</div>
-        {% if page.company_name and page.company_name != '' %}
-          <div class="winner-company">{{ page.company_name }}</div>
-        {% endif %}
-        {% if page.school_name and page.school_name != '' %}
-          <div class="winner-school">{{ page.school_name }}</div>
-        {% endif %}
-        {% if page.creative_team_members and page.creative_team_members != '' %}
-          <div class="creative-team">Creative Team: {{ page.creative_team_members }}</div>
-        {% endif %}
+        <div class="winner-meta">
+          <div class="winner-name">{{ page.name }}</div>
+          {% if page.company_name and page.company_name != '' %}
+            <div class="winner-company">{{ page.company_name }}</div>
+          {% endif %}
+          {% if page.school_name and page.school_name != '' %}
+            <div class="winner-school">{{ page.school_name }}</div>
+          {% endif %}
+          {% if page.creative_team_members and page.creative_team_members != '' %}
+            <div class="creative-team">
+              <div class="creative-team-label">Creative Team</div>
+              <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
+            </div>
+          {% endif %}
+        </div>
       </div>
     </div>
 
     {% comment %} Main Content Area with featured image and metadata {% endcomment %}
     {% if winner_assets %}
-      <div class="winner-main-content">
-        {% assign featured_image = winner_assets.images.first %}
-        {% if featured_image %}
+      {% assign featured_image = winner_assets.images.first %}
+      {% if featured_image %}
+        <div class="winner-main-content" data-featured-image="{{ featured_image }}">
           <div class="featured-image">
             <a href="{{ featured_image }}" class="glightbox" data-gallery="winner-gallery">
-              <img src="{{ featured_image }}" alt="{{ page.title }}">
+              <img src="{{ featured_image }}" alt="{{ page.title }}" onload="checkImageLayout(this)">
             </a>
           </div>
-        {% endif %}
-        
-        <div class="main-info">
-          {% if content and content != '' %}
-            <div class="winner-description">
-              {{ content }}
-            </div>
-          {% endif %}
           
-          {% if winner_assets.pdfs.size > 0 %}
-            <div class="pdf-section">
-              <h3>Downloads</h3>
-              {% for pdf in winner_assets.pdfs %}
-                <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
-                  View PDF
-                </a>
-              {% endfor %}
-            </div>
-          {% endif %}
+          <div class="main-info">
+            {% if content and content != '' %}
+              <div class="winner-description">
+                {{ content }}
+              </div>
+            {% endif %}
+            
+            {% if winner_assets.pdfs.size > 0 %}
+              <div class="pdf-section">
+                <h3>Downloads</h3>
+                {% for pdf in winner_assets.pdfs %}
+                  <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                    View PDF
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
         </div>
-      </div>
+      {% else %}
+        <div class="winner-main-content no-featured-image">
+          <div class="main-info">
+            {% if content and content != '' %}
+              <div class="winner-description">
+                {{ content }}
+              </div>
+            {% endif %}
+            
+            {% if winner_assets.pdfs.size > 0 %}
+              <div class="pdf-section">
+                <h3>Downloads</h3>
+                {% for pdf in winner_assets.pdfs %}
+                  <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                    View PDF
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
 
       {% comment %} Additional Assets Section {% endcomment %}
       {% assign additional_images = winner_assets.images | slice: 1, winner_assets.images.size %}

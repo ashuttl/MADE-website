@@ -57,6 +57,43 @@
       box-shadow: 4px 4px 0 0 var(--theme-link);
       border-color: var(--theme-link);
     }
+    
+    // Level colors for winner cards
+    &.gold .winner-info .winner-level {
+      color: #EECE5C;
+      font-weight: bold;
+      
+      .award-icon {
+        color: #EECE5C;
+      }
+    }
+    
+    &.silver .winner-info .winner-level {
+      color: #A1BAE1;
+      font-weight: bold;
+      
+      .award-icon {
+        color: #A1BAE1;
+      }
+    }
+    
+    &.bronze .winner-info .winner-level {
+      color: #D85E38;
+      font-weight: bold;
+      
+      .award-icon {
+        color: #D85E38;
+      }
+    }
+    
+    &.student .winner-info .winner-level {
+      color: var(--theme-link);
+      font-weight: bold;
+      
+      .award-icon {
+        color: var(--theme-link);
+      }
+    }
   }
   
   .winner-thumbnail {
@@ -68,6 +105,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0;
     }
   }
   
@@ -96,41 +136,6 @@
       }
     }
     
-    &.gold .winner-level {
-      color: #EECE5C;
-      font-weight: bold;
-      
-      .award-icon {
-        color: #EECE5C;
-      }
-    }
-    
-    &.silver .winner-level {
-      color: #A1BAE1;
-      font-weight: bold;
-      
-      .award-icon {
-        color: #A1BAE1;
-      }
-    }
-    
-    &.bronze .winner-level {
-      color: #D85E38;
-      font-weight: bold;
-      
-      .award-icon {
-        color: #D85E38;
-      }
-    }
-    
-    &.student .winner-level {
-      color: var(--theme-link);
-      font-weight: bold;
-      
-      .award-icon {
-        color: var(--theme-link);
-      }
-    }
     
     h4 {
       margin: 0 0 0.5rem 0;
@@ -163,6 +168,7 @@
   max-width: none;
   margin: 0;
   
+  
   .winner-top-navigation {
     margin: 2rem 0;
     position: sticky;
@@ -176,7 +182,11 @@
       gap: 1rem;
       max-width: 800px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 1rem;
+      background-color: rgba(var(--theme-page-rgb), 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 2rem;
       
       .nav-spacer {
         flex: 1;
@@ -204,7 +214,12 @@
     margin-right: auto;
     padding: 0 1rem;
     
-    .title-with-badge {
+    .winner-title {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .badge-and-meta {
       display: flex;
       align-items: flex-start;
       gap: 2rem;
@@ -320,27 +335,29 @@
       }
     }
     
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-      line-height: 1.1;
-      flex: 1;
-      
-      // Override the Brodersons highlight for better multi-line handling
-      .highlight {
-        background-color: var(--theme-ink);
-        color: white;
-        padding: 0.1em 0.3em;
-        padding-bottom: 0.15em;
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-        line-height: 1.15;
-        margin-left: -0.3em;
-        display: inline;
-      }
-      
-      @media (max-width: 768px) {
-        font-size: 1.75rem;
+    .winner-title {
+      h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        line-height: 1.1;
+        text-wrap: balance;
+        
+        // Override the Brodersons highlight for better multi-line handling
+        .highlight {
+          background-color: var(--theme-ink);
+          color: white;
+          padding: 0.1em 0.3em;
+          padding-bottom: 0.15em;
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+          line-height: 1.15;
+          margin-left: 0;
+          display: inline;
+        }
+        
+        @media (max-width: 768px) {
+          font-size: 2rem;
+        }
       }
     }
     
@@ -354,9 +371,38 @@
       }
       
       .winner-company, 
-      .winner-school, 
-      .creative-team {
+      .winner-school {
         margin-bottom: 0.25rem;
+      }
+      
+      .creative-team {
+        margin-top: 0.5rem;
+        margin-bottom: 0.25rem;
+        
+        .creative-team-label {
+          font-size: 0.8rem;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          opacity: 0.7;
+          margin-bottom: 0.25rem;
+        }
+        
+        .creative-team-content {
+          p {
+            margin: 0;
+            line-height: 1.4;
+          }
+          
+          ul, ol {
+            margin: 0.25rem 0;
+            padding-left: 1.2rem;
+            
+            li {
+              margin-bottom: 0.1rem;
+            }
+          }
+        }
       }
     }
   }
@@ -370,6 +416,32 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
+    
+    // Full-width layout for wide images
+    &.wide-featured-image {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      
+      .featured-image {
+        order: 1;
+      }
+      
+      .main-info {
+        order: 2;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    }
+    
+    // No featured image layout
+    &.no-featured-image {
+      grid-template-columns: 1fr;
+      
+      .main-info {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    }
     
     .featured-image {
       a.glightbox {
@@ -395,7 +467,6 @@
       .winner-description {
         margin-bottom: 2rem;
         padding: 2rem 2.5rem;
-        border-left: 6px solid var(--theme-ink);
         font-style: italic;
         position: relative;
         
@@ -575,6 +646,11 @@
       line-height: 1.6;
     }
   }
+}
+
+// Hide the global contact section on winner pages
+.broderson-page .footer-contact {
+  display: none;
 }
 
 @media (max-width: 768px) {

@@ -251,6 +251,30 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Check image layout for winner pages
+function checkImageLayout(img) {
+  const mainContent = img.closest('.winner-main-content');
+  if (!mainContent) return;
+  
+  // Wait for image to fully load
+  if (img.complete) {
+    adjustLayoutForImage(img, mainContent);
+  } else {
+    img.addEventListener('load', () => adjustLayoutForImage(img, mainContent));
+  }
+}
+
+function adjustLayoutForImage(img, mainContent) {
+  const aspectRatio = img.naturalWidth / img.naturalHeight;
+  
+  // If image is wider than it is tall (landscape with aspect ratio > 1.3)
+  if (aspectRatio > 1.3) {
+    mainContent.classList.add('wide-featured-image');
+  } else {
+    mainContent.classList.remove('wide-featured-image');
+  }
+}
+
 // Initialize GLightbox for winner galleries
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof GLightbox !== 'undefined') {
