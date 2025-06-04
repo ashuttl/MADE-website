@@ -31,6 +31,24 @@ permalink: /brodersons/2025/winners/
   <h1><span class="highlight">Winners of the 2025 Broderson Awards</span></h1>
 </div>
 
+<div class="winners-navigation">
+  <div class="jump-to-category">
+    <select id="categoryJumper" class="category-select cta">
+      <option value="">Jump to Category</option>
+      {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
+      {% for section in sections %}
+        {% assign section_categories = section.items | sort: 'order' %}
+        {% for category in section_categories %}
+          {% assign category_winners = site.winners | where: 'category', category.slug %}
+          {% if category_winners.size > 0 %}
+            <option value="{{ category.slug }}">{{ category.title }}</option>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </select>
+  </div>
+</div>
+
 {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
 {% assign level_order = 'Gold,Silver,Bronze,Student' | split: ',' %}
 
@@ -99,6 +117,25 @@ permalink: /brodersons/2025/winners/
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  // Handle category jumper dropdown
+  const categorySelect = document.getElementById('categoryJumper');
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function() {
+      const selectedCategory = this.value;
+      if (selectedCategory) {
+        // Navigate to category section with smooth scroll
+        const targetElement = document.getElementById('category-' + selectedCategory);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Update URL hash without triggering hashchange event
+          history.replaceState(null, null, '#category-' + selectedCategory);
+        }
+        // Reset the select to placeholder
+        this.value = '';
+      }
+    });
+  }
+
   // Handle fragment navigation for category jumping
   function scrollToCategory() {
     const hash = window.location.hash;
