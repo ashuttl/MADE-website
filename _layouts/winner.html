@@ -88,7 +88,7 @@ class: broderson-page
       {% assign current_category = site.categories | where: 'slug', page.category | first %}
       
       <div class="winner-title">
-        <h1><span class="highlight">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</span></h1>
+        <h1><span class="highlight">{{ page.title }}</span></h1>
       </div>
       
       <div class="badge-and-meta">
@@ -114,7 +114,7 @@ class: broderson-page
             <div class="creative-team">
               <div class="creative-team-label">Creative Team</div>
               <div class="creative-team-wrapper">
-                <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
+                <div class="creative-team-content">{{ page.creative_team_members | newline_to_br }}</div>
                 <button class="creative-team-expand" onclick="toggleCreativeTeam(this)" style="display: none;">Show More</button>
               </div>
             </div>
