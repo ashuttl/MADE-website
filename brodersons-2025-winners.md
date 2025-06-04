@@ -94,15 +94,6 @@ permalink: /brodersons/2025/winners/
                   {% if winner.school_name and winner.school_name != '' and winner.credited_winner != winner.school_name %}
                     <p class="winner-school">{{ winner.school_name }}</p>
                   {% endif %}
-                  {% assign show_submitter = false %}
-                  {% if winner.credited_winner and winner.name %}
-                    {% if winner.credited_winner == winner.company_name or winner.credited_winner == winner.school_name %}
-                      {% assign show_submitter = true %}
-                    {% endif %}
-                  {% endif %}
-                  {% if show_submitter %}
-                    <p class="winner-submitter">{{ winner.name }}</p>
-                  {% endif %}
                 </div>
               </div>
             </a>

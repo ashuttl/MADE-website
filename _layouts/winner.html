@@ -110,15 +110,6 @@ class: broderson-page
           {% if page.school_name and page.school_name != '' and page.credited_winner != page.school_name %}
             <div class="winner-school">{{ page.school_name }}</div>
           {% endif %}
-          {% assign show_submitter = false %}
-          {% if page.credited_winner and page.name %}
-            {% if page.credited_winner == page.company_name or page.credited_winner == page.school_name %}
-              {% assign show_submitter = true %}
-            {% endif %}
-          {% endif %}
-          {% if show_submitter %}
-            <div class="winner-submitter">{{ page.name }}</div>
-          {% endif %}
           {% if page.creative_team_members and page.creative_team_members != '' %}
             <div class="creative-team">
               <div class="creative-team-label">Creative Team</div>
