@@ -162,11 +162,19 @@
         background-color: #EECE5C;
         
         .award-icon {
-          color: #EECE5C;
+          color: #1a1a1a;
+          
+          circle {
+            fill: #EECE5C;
+          }
         }
         
         .award-text {
           color: #1a1a1a;
+          
+          .award-level {
+            color: #EECE5C;
+          }
         }
       }
       
@@ -176,11 +184,19 @@
         background-color: #A1BAE1;
         
         .award-icon {
-          color: #A1BAE1;
+          color: #1a1a1a;
+          
+          circle {
+            fill: #A1BAE1;
+          }
         }
         
         .award-text {
           color: #1a1a1a;
+          
+          .award-level {
+            color: #A1BAE1;
+          }
         }
       }
       
@@ -190,11 +206,19 @@
         background-color: #D85E38;
         
         .award-icon {
-          color: #D85E38;
+          color: #1a1a1a;
+          
+          circle {
+            fill: #D85E38;
+          }
         }
         
         .award-text {
           color: #1a1a1a;
+          
+          .award-level {
+            color: #D85E38;
+          }
         }
       }
       
@@ -204,11 +228,19 @@
         background-color: #4e5ca5;
         
         .award-icon {
-          color: #4e5ca5;
+          color: #1a1a1a;
+          
+          circle {
+            fill: #4e5ca5;
+          }
         }
         
         .award-text {
           color: white;
+          
+          .award-level {
+            color: #4e5ca5;
+          }
         }
       }
     }
@@ -300,18 +332,50 @@
     }
     
     .minimal-badge.gold .award-icon {
+      color: #1a1a1a;
+    }
+    
+    .minimal-badge.gold .award-icon circle {
+      fill: #EECE5C;
+    }
+    
+    .minimal-badge.gold .award-level {
       color: #EECE5C;
     }
     
     .minimal-badge.silver .award-icon {
+      color: #1a1a1a;
+    }
+    
+    .minimal-badge.silver .award-icon circle {
+      fill: #A1BAE1;
+    }
+    
+    .minimal-badge.silver .award-level {
       color: #A1BAE1;
     }
     
     .minimal-badge.bronze .award-icon {
+      color: #1a1a1a;
+    }
+    
+    .minimal-badge.bronze .award-icon circle {
+      fill: #D85E38;
+    }
+    
+    .minimal-badge.bronze .award-level {
       color: #D85E38;
     }
     
     .minimal-badge.student .award-icon {
+      color: #1a1a1a;
+    }
+    
+    .minimal-badge.student .award-icon circle {
+      fill: #4e5ca5;
+    }
+    
+    .minimal-badge.student .award-level {
       color: #4e5ca5;
     }
     
@@ -327,7 +391,6 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       line-height: 1;
-      color: #fff;
     }
     
     .minimal-badge .award-category {

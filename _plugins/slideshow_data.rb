@@ -129,6 +129,12 @@ module Jekyll
               
               # Helper function to get video duration in milliseconds
               def get_video_duration(video_path)
+                # For remote videos, we can't easily get duration without downloading
+                # Use the default duration for all videos
+                if video_path.start_with?('http')
+                  return nil # Fall back to default duration
+                end
+                
                 begin
                   # Convert relative path to absolute path
                   full_path = File.join(site.source, 'assets', 'winners', video_path)
@@ -166,7 +172,12 @@ module Jekyll
                   # Check if this image is a frame from a video we have
                   # Pattern: if video is "xyz-1.mp4", skip images like "xyz-1-f1.jpg", "xyz-1-f2.jpg", etc.
                   should_skip = videos.any? do |video|
-                    video_base = File.basename(video, File.extname(video)) # "xyz-1" from "xyz-1.mp4"
+                    # Handle both new object format and legacy string format
+                    video_url = video.is_a?(Hash) ? video['url'] : video
+                    
+                    # Handle both local and remote video paths
+                    video_filename = video_url.start_with?('http') ? File.basename(video_url) : File.basename(video_url)
+                    video_base = File.basename(video_filename, File.extname(video_filename)) # "xyz-1" from "xyz-1.mp4"
                     image_base = File.basename(image, File.extname(image)) # "xyz-1-f1" from "xyz-1-f1.jpg"
                     
                     # Skip if image looks like a frame from this video
@@ -304,11 +315,18 @@ module Jekyll
               # Add videos with their actual duration (if we have assets)
               if winner_assets && winner_assets['videos']
                 winner_assets['videos'].each do |video|
-                  # Try to get actual video duration, fall back to config if unavailable
-                  video_duration = get_video_duration(video) || 30000 # fallback to 30s
+                  if video.is_a?(Hash)
+                    # New format: video is an object with url and duration
+                    video_duration = video['duration'] || 30000 # fallback to 30s if no duration specified
+                    video_url = video['url']
+                  else
+                    # Legacy format: video is just a URL string
+                    video_url = video
+                    video_duration = get_video_duration(video) || 30000 # fallback to 30s
+                  end
                   
                   assets << {
-                    url: video,
+                    url: video_url,
                     type: 'video',
                     duration: video_duration
                   }

@@ -7,6 +7,40 @@ module Jekyll
       # Create a hash to store asset data for each winner
       site.data['winner_assets'] = {}
       
+      # First, process all winners to get their submission IDs and remote videos
+      site.collections['winners'].docs.each do |winner|
+        submission_id = winner.data['submission_id']
+        next unless submission_id
+        
+        # Initialize the winner's asset data
+        site.data['winner_assets'][submission_id] = {
+          'level' => winner.data['winning_level']&.downcase,
+          'images' => [],
+          'thumbnails' => [],
+          'videos' => [],
+          'pdfs' => [],
+          'audio' => []
+        }
+        
+        # Add remote videos from frontmatter if they exist
+        if winner.data['remote_videos'] && winner.data['remote_videos'].is_a?(Array)
+          winner.data['remote_videos'].each do |video_data|
+            if video_data.is_a?(Hash) && video_data['url']
+              site.data['winner_assets'][submission_id]['videos'] << {
+                'url' => video_data['url'],
+                'duration' => video_data['duration'] # duration in milliseconds
+              }
+            elsif video_data.is_a?(String)
+              # Backward compatibility: if it's just a string URL
+              site.data['winner_assets'][submission_id]['videos'] << {
+                'url' => video_data,
+                'duration' => nil
+              }
+            end
+          end
+        end
+      end
+      
       # Get the assets directory path
       assets_path = File.join(site.source, 'assets', 'winners')
       
@@ -26,15 +60,17 @@ module Jekyll
             submission_id = $1.upcase
             level = $2.downcase
             
-            # Initialize the winner's asset data
-            site.data['winner_assets'][submission_id] = {
-              'level' => level,
-              'images' => [],
-              'thumbnails' => [],
-              'videos' => [],
-              'pdfs' => [],
-              'audio' => []
-            }
+            # Make sure we have an entry for this winner (in case they don't have a markdown file)
+            unless site.data['winner_assets'][submission_id]
+              site.data['winner_assets'][submission_id] = {
+                'level' => level,
+                'images' => [],
+                'thumbnails' => [],
+                'videos' => [],
+                'pdfs' => [],
+                'audio' => []
+              }
+            end
             
             # Scan files in the winner directory
             Dir.glob(File.join(winner_dir, '*')).each do |file_path|
@@ -52,7 +88,8 @@ module Jekyll
                   site.data['winner_assets'][submission_id]['images'] << relative_path
                 end
               when '.mp4', '.mov', '.avi', '.webm'
-                site.data['winner_assets'][submission_id]['videos'] << relative_path
+                # Skip local video files - we're using remote videos from Cloudflare R2
+                # site.data['winner_assets'][submission_id]['videos'] << relative_path
               when '.pdf'
                 site.data['winner_assets'][submission_id]['pdfs'] << relative_path
               when '.mp3', '.wav', '.m4a'

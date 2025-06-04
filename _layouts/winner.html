@@ -208,8 +208,13 @@ class: broderson-page
           {% if winner_assets.videos.size > 0 %}
             <div class="video-section">
               {% for video in winner_assets.videos %}
+                {% if video.url %}
+                  {% assign video_url = video.url %}
+                {% else %}
+                  {% assign video_url = video %}
+                {% endif %}
                 <video controls>
-                  <source src="{{ video }}" type="video/mp4">
+                  <source src="{{ video_url }}" type="video/mp4">
                   Your browser does not support the video tag.
                 </video>
               {% endfor %}
