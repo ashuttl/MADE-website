@@ -28,5 +28,9 @@ if [ -f "_redirects" ]; then
     cp _redirects _site/_redirects
 fi
 
+# Handle large files (Cloudflare Pages 25MB limit)
+echo "🔧 Handling large files..."
+./handle_large_files.sh
+
 echo "✅ Cloudflare Pages build complete!"
 echo "📊 Site size: $(du -sh _site | cut -f1)"
