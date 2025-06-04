@@ -1079,6 +1079,85 @@
       console.log(`\n🌐 MEMORY MANAGEMENT:`);
       console.log(`   Unload distant slides: ${CONFIG.unloadDistantSlides ? 'ON (saves memory)' : 'OFF (better reliability)'}`);
       console.log(`   Preload distance: ${CONFIG.unloadDistantSlides ? '2 slides ahead' : 'all slides stay loaded'}`);
+      
+      // Show longest videos
+      const videoSlides = slides.filter(slide => slide.type === 'video');
+      if (videoSlides.length > 0) {
+        console.log(`\n🎬 LONGEST VIDEOS:`);
+        const sortedVideos = videoSlides
+          .map(slide => ({
+            submission_id: slide.winner.submission_id,
+            title: slide.winner.title,
+            name: slide.winner.name,
+            duration: slide.duration,
+            durationFormatted: `${Math.floor(slide.duration / 60000)}:${String(Math.floor((slide.duration % 60000) / 1000)).padStart(2, '0')}`
+          }))
+          .sort((a, b) => b.duration - a.duration)
+          .slice(0, 10); // Top 10 longest
+        
+        sortedVideos.forEach((video, index) => {
+          console.log(`   ${index + 1}. ${video.durationFormatted} - ${video.submission_id}: "${video.title}" by ${video.name}`);
+        });
+      }
+      
+      // Calculate total screen time by winner
+      const winnerScreenTime = {};
+      slides.forEach(slide => {
+        if (slide.type !== 'transition' && slide.winner) {
+          const submissionId = slide.winner.submission_id;
+          if (!winnerScreenTime[submissionId]) {
+            winnerScreenTime[submissionId] = {
+              submission_id: submissionId,
+              title: slide.winner.title,
+              name: slide.winner.name,
+              totalDuration: 0,
+              imageDuration: 0,
+              videoDuration: 0,
+              interstitialDuration: 0,
+              assetCount: 0
+            };
+          }
+          
+          winnerScreenTime[submissionId].totalDuration += slide.duration;
+          
+          if (slide.type === 'image' || slide.type === 'image_group') {
+            winnerScreenTime[submissionId].imageDuration += slide.duration;
+            winnerScreenTime[submissionId].assetCount++;
+          } else if (slide.type === 'video') {
+            winnerScreenTime[submissionId].videoDuration += slide.duration;
+            winnerScreenTime[submissionId].assetCount++;
+          } else if (slide.type === 'interstitial') {
+            winnerScreenTime[submissionId].interstitialDuration += slide.duration;
+          }
+        }
+      });
+      
+      const formatDuration = (ms) => `${Math.floor(ms / 60000)}:${String(Math.floor((ms % 60000) / 1000)).padStart(2, '0')}`;
+      
+      // Show winners with most total screen time
+      console.log(`\n⏱️  WINNERS BY TOTAL SCREEN TIME:`);
+      const sortedByTotal = Object.values(winnerScreenTime)
+        .sort((a, b) => b.totalDuration - a.totalDuration)
+        .slice(0, 10);
+      
+      sortedByTotal.forEach((winner, index) => {
+        console.log(`   ${index + 1}. ${formatDuration(winner.totalDuration)} - ${winner.submission_id}: "${winner.title}" by ${winner.name} (${winner.assetCount} assets)`);
+      });
+      
+      // Show winners with most image screen time
+      const winnersWithImages = Object.values(winnerScreenTime).filter(w => w.imageDuration > 0);
+      if (winnersWithImages.length > 0) {
+        console.log(`\n🖼️  WINNERS BY IMAGE SCREEN TIME:`);
+        const sortedByImages = winnersWithImages
+          .sort((a, b) => b.imageDuration - a.imageDuration)
+          .slice(0, 10);
+        
+        sortedByImages.forEach((winner, index) => {
+          const imageAssets = slides.filter(s => s.winner?.submission_id === winner.submission_id && (s.type === 'image' || s.type === 'image_group')).length;
+          console.log(`   ${index + 1}. ${formatDuration(winner.imageDuration)} - ${winner.submission_id}: "${winner.title}" by ${winner.name} (${imageAssets} image slides)`);
+        });
+      }
+      
       console.log('==================\n');
     }
   </script>

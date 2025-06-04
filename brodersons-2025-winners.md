@@ -160,12 +160,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start rotation on card hover
     cardLink.addEventListener('mouseenter', function() {
       isHovering = true;
-      // Start rotating after a brief delay
-      setTimeout(() => {
-        if (isHovering) {
-          rotationInterval = setInterval(rotateThumbnail, 500); // 500ms between rotations
-        }
-      }, 200); // 200ms delay before starting
+      // Start rotating immediately
+      rotationInterval = setInterval(rotateThumbnail, 500); // 500ms between rotations
     });
     
     // Stop rotation and reset on card mouse leave
