@@ -268,9 +268,8 @@
       position: absolute;
       bottom: 3rem;
       left: 3rem;
-      right: 3rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-end;
       transform: translateY(100%);
       opacity: 0;
@@ -291,17 +290,9 @@
       align-self: flex-end;
     }
     
-    .lower-third-right {
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(15px);
-      padding: 1rem 1.5rem;
-      text-align: right;
-      align-self: flex-end;
-    }
-    
     .minimal-badge {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.75rem;
     }
     
@@ -392,17 +383,19 @@
       color: #fff;
     }
     
-    .minimal-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-bottom: 0.25rem;
+    .minimal-badge .award-creator {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 0.25rem;
       line-height: 1.2;
       color: #fff;
     }
     
-    .minimal-creator {
-      font-size: 1rem;
-      opacity: 0.9;
+    .minimal-badge .award-organization {
+      font-size: 0.75rem;
+      font-weight: 400;
+      opacity: 0.8;
+      line-height: 1.2;
       color: #fff;
     }
     
@@ -638,12 +631,11 @@
                     <div class="award-text">
                       <div class="award-level">${winner.level}</div>
                       <div class="award-category">${winner.category}</div>
+                      <div class="award-creator">${winner.name}</div>
+                      ${winner.company ? `<div class="award-organization">${winner.company}</div>` : ''}
+                      ${winner.school ? `<div class="award-organization">${winner.school}</div>` : ''}
                     </div>
                   </div>
-                </div>
-                <div class="lower-third-right">
-                  <div class="minimal-title">${winner.title}</div>
-                  <div class="minimal-creator">${winner.name}</div>
                 </div>
               </div>
             </div>
