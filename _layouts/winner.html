@@ -52,7 +52,7 @@ class: broderson-page
       <div class="nav-links">
         {% if prev_winner %}
           <a href="{{ prev_winner.url }}" class="prev-winner cta" title="{{ prev_winner.title | xml_escape }}">
-            ← Previous
+            ← <span class="nav-text">Previous</span>
           </a>
         {% else %}
           <div class="nav-spacer"></div>
@@ -76,7 +76,7 @@ class: broderson-page
         
         {% if next_winner %}
           <a href="{{ next_winner.url }}" class="next-winner cta" title="{{ next_winner.title | xml_escape }}">
-            Next →
+            <span class="nav-text">Next</span> →
           </a>
         {% else %}
           <div class="nav-spacer"></div>
