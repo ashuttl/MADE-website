@@ -1,30 +1,22 @@
 #!/bin/bash
 
-# Cloudflare Pages build script for Jekyll
+# Simplified Cloudflare Pages build script
 set -e
 
-echo "🌐 Building for Cloudflare Pages..."
+echo "🌐 Building for Cloudflare Pages (production)..."
 
 # Set encoding environment variables
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export JEKYLL_ENV=production
 
-# Fix encoding issues before build
-echo "🔧 Fixing file encodings..."
-if command -v ruby >/dev/null 2>&1; then
-    ruby fix_encoding.rb
-else
-    ./encoding_fix.sh
-fi
-
 # Install dependencies
 echo "📦 Installing Ruby dependencies..."
 bundle install
 
-# Build the site with explicit encoding and production config
+# Build the site with just the main config (avoiding strict mode issues)
 echo "🔨 Building Jekyll site..."
-bundle exec jekyll build --config _config.yml,_config_production.yml --verbose
+bundle exec jekyll build --verbose
 
 # Copy Cloudflare-specific files
 echo "📋 Copying Cloudflare configuration files..."
