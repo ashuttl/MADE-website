@@ -16,6 +16,10 @@ fi
 # Set Jekyll environment for production
 export JEKYLL_ENV=production
 
+# Set UTF-8 encoding to prevent character encoding issues
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Clean previous build
 echo "🧹 Cleaning previous build..."
 rm -rf _site

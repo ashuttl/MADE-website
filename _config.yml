@@ -12,6 +12,7 @@ social:
 # Build settings
 markdown: kramdown
 permalink: pretty
+encoding: utf-8
 
 # Plugin settings
 plugins:
@@ -23,7 +24,10 @@ plugins:
 # Kramdown settings
 kramdown:
   input: GFM
-  smart_quotes: ["lsquo", "rsquo", "ldquo", "rdquo"]
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  entity_output: :as_char
+  syntax_highlighter_opts:
+    disable: true
 
 # Collections settings
 collections:
