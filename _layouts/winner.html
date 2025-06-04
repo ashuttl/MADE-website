@@ -88,7 +88,7 @@ class: broderson-page
       {% assign current_category = site.categories | where: 'slug', page.category | first %}
       
       <div class="winner-title">
-        <h1><span class="highlight">{{ page.title }}</span></h1>
+        <h1><span class="highlight">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</span></h1>
       </div>
       
       <div class="badge-and-meta">
@@ -103,18 +103,27 @@ class: broderson-page
         </div>
         
         <div class="winner-meta">
-          <div class="winner-name">{{ page.name }}</div>
-          {% if page.company_name and page.company_name != '' %}
+          <div class="winner-name">{{ page.credited_winner | default: page.name }}</div>
+          {% if page.company_name and page.company_name != '' and page.credited_winner != page.company_name %}
             <div class="winner-company">{{ page.company_name }}</div>
           {% endif %}
-          {% if page.school_name and page.school_name != '' %}
+          {% if page.school_name and page.school_name != '' and page.credited_winner != page.school_name %}
             <div class="winner-school">{{ page.school_name }}</div>
+          {% endif %}
+          {% assign show_submitter = false %}
+          {% if page.credited_winner and page.name %}
+            {% if page.credited_winner == page.company_name or page.credited_winner == page.school_name %}
+              {% assign show_submitter = true %}
+            {% endif %}
+          {% endif %}
+          {% if show_submitter %}
+            <div class="winner-submitter">{{ page.name }}</div>
           {% endif %}
           {% if page.creative_team_members and page.creative_team_members != '' %}
             <div class="creative-team">
               <div class="creative-team-label">Creative Team</div>
               <div class="creative-team-wrapper">
-                <div class="creative-team-content">{{ page.creative_team_members | newline_to_br }}</div>
+                <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
                 <button class="creative-team-expand" onclick="toggleCreativeTeam(this)" style="display: none;">Show More</button>
               </div>
             </div>

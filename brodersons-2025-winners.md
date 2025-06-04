@@ -28,7 +28,7 @@ permalink: /brodersons/2025/winners/
 </div>
 
 <div class="header-content">
-  <h1><span class="highlight">Winners of the 2025 Broderson&nbsp;Awards</span></h1>
+  <h1><span class="highlight">Winners of the 2025 Broderson Awards</span></h1>
 </div>
 
 {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
@@ -69,9 +69,21 @@ permalink: /brodersons/2025/winners/
                     <span>{{ level }}</span>
                   </div>
                   <h4>{{ winner.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h4>
-                  <p class="winner-name">{{ winner.name }}</p>
-                  {% if winner.company_name and winner.company_name != '' %}
+                  <p class="winner-name">{{ winner.credited_winner | default: winner.name }}</p>
+                  {% if winner.company_name and winner.company_name != '' and winner.credited_winner != winner.company_name %}
                     <p class="winner-company">{{ winner.company_name }}</p>
+                  {% endif %}
+                  {% if winner.school_name and winner.school_name != '' and winner.credited_winner != winner.school_name %}
+                    <p class="winner-school">{{ winner.school_name }}</p>
+                  {% endif %}
+                  {% assign show_submitter = false %}
+                  {% if winner.credited_winner and winner.name %}
+                    {% if winner.credited_winner == winner.company_name or winner.credited_winner == winner.school_name %}
+                      {% assign show_submitter = true %}
+                    {% endif %}
+                  {% endif %}
+                  {% if show_submitter %}
+                    <p class="winner-submitter">{{ winner.name }}</p>
                   {% endif %}
                 </div>
               </div>

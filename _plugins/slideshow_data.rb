@@ -349,9 +349,19 @@ module Jekyll
               # Always add winner to slideshow (they'll at least get an interstitial slide)
               # Process text through markdown for proper typography
               title = winner.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['title']).strip.gsub(/<\/?p>/, '') : nil
-              name = winner.data['name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['name']).strip.gsub(/<\/?p>/, '') : nil
-              company = winner.data['company_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['company_name']).strip.gsub(/<\/?p>/, '') : nil
-              school = winner.data['school_name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['school_name']).strip.gsub(/<\/?p>/, '') : nil
+              # Use credited_winner if available, otherwise fall back to name
+              credited_winner = winner.data['credited_winner'] || winner.data['name']
+              name = credited_winner ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(credited_winner).strip.gsub(/<\/?p>/, '') : nil
+              
+              # Only show company/school if different from credited_winner
+              company = (winner.data['company_name'] && winner.data['credited_winner'] != winner.data['company_name']) ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['company_name']).strip.gsub(/<\/?p>/, '') : nil
+              school = (winner.data['school_name'] && winner.data['credited_winner'] != winner.data['school_name']) ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['school_name']).strip.gsub(/<\/?p>/, '') : nil
+              
+              # Show submitter name if credited_winner matches company or school
+              submitter_name = nil
+              if winner.data['credited_winner'] && winner.data['name'] && (winner.data['credited_winner'] == winner.data['company_name'] || winner.data['credited_winner'] == winner.data['school_name'])
+                submitter_name = winner.data['name'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(winner.data['name']).strip.gsub(/<\/?p>/, '') : nil
+              end
               category_title = category_info.data['title'] ? site.find_converter_instance(Jekyll::Converters::Markdown).convert(category_info.data['title']).strip.gsub(/<\/?p>/, '') : nil
               
               slideshow_data << {
@@ -360,6 +370,7 @@ module Jekyll
                 name: name,
                 company: company,
                 school: school,
+                submitter_name: submitter_name,
                 creative_team: winner.data['creative_team_members'],
                 category: category_title,
                 level: winner.data['winning_level'].downcase,
