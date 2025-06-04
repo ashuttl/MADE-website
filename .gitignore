@@ -28,3 +28,7 @@ CLAUDE.md
 assets/winners/convert_csv_to_jekyll.py
 .gitignore
 assets/winners/winners_with_details.csv
+
+# Cloudflare/Wrangler files
+.wrangler/
+wrangler.toml.bak
