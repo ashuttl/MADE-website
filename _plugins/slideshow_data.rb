@@ -177,11 +177,24 @@ module Jekyll
                     
                     # Handle both local and remote video paths
                     video_filename = video_url.start_with?('http') ? File.basename(video_url) : File.basename(video_url)
-                    video_base = File.basename(video_filename, File.extname(video_filename)) # "xyz-1" from "xyz-1.mp4"
+                    video_base = File.basename(video_filename, File.extname(video_filename)) # "xyz-1" from "xyz-1.mp4" or "xyz-gold" from remote
                     image_base = File.basename(image, File.extname(image)) # "xyz-1-f1" from "xyz-1-f1.jpg"
                     
-                    # Skip if image looks like a frame from this video
-                    image_base.match(/^#{Regexp.escape(video_base)}-f\d+(-thumb)?$/)
+                    # For remote videos, extract just the submission ID part (before the level)
+                    if video_url.start_with?('http')
+                      # Remote video format: "abc-0006-gold.mp4" -> extract "abc-0006"
+                      video_submission_match = video_base.match(/^([a-z]+-\d+)-(gold|silver|bronze|student)$/i)
+                      if video_submission_match
+                        video_submission_id = video_submission_match[1].downcase
+                        # Check if image matches pattern: "abc-0006-X-f1" where X is asset number
+                        image_base.match(/^#{Regexp.escape(video_submission_id)}-\d+-f\d+(-thumb)?$/)
+                      else
+                        false
+                      end
+                    else
+                      # Local video format: keep original logic
+                      image_base.match(/^#{Regexp.escape(video_base)}-f\d+(-thumb)?$/)
+                    end
                   end
                   
                   if should_skip

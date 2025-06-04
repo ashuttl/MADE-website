@@ -106,7 +106,7 @@
     }
     
     .interstitial-content {
-      max-width: 800px;
+      max-width: 900px;
       animation: slideInUp 1s ease-out;
     }
     
@@ -115,10 +115,10 @@
       align-items: center;
       gap: 1rem;
       padding: 1.5rem 2rem;
-      border: 3px solid #1a1a1a;
+      border: 3px solid #fff;
       border-radius: 0;
       background-color: white;
-      box-shadow: 8px 8px 0 0 #1a1a1a;
+      box-shadow: 8px 8px 0 0 #fff;
       margin-bottom: 3rem;
       
       .award-icon {
@@ -157,10 +157,6 @@
       }
       
       &.gold {
-        border-color: #1a1a1a;
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-        background-color: #EECE5C;
-        
         .award-icon {
           color: #1a1a1a;
           
@@ -179,10 +175,6 @@
       }
       
       &.silver {
-        border-color: #1a1a1a;
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-        background-color: #A1BAE1;
-        
         .award-icon {
           color: #1a1a1a;
           
@@ -201,10 +193,6 @@
       }
       
       &.bronze {
-        border-color: #1a1a1a;
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-        background-color: #D85E38;
-        
         .award-icon {
           color: #1a1a1a;
           
@@ -223,10 +211,6 @@
       }
       
       &.student {
-        border-color: #1a1a1a;
-        box-shadow: 8px 8px 0 0 #1a1a1a;
-        background-color: #4e5ca5;
-        
         .award-icon {
           color: #1a1a1a;
           
@@ -236,7 +220,7 @@
         }
         
         .award-text {
-          color: white;
+          color: #1a1a1a;
           
           .award-level {
             color: #4e5ca5;
@@ -269,9 +253,14 @@
     
     .entry-creative-team {
       font-size: 1.2rem;
-      opacity: 0.6;
-      color: #fff;
+      color: rgba(255, 255, 255, 0.7);
       font-style: italic;
+      line-height: 1.4;
+      max-width: 700px;
+      margin: 0 auto;
+      
+      /* Format the creative team as a clean list */
+      white-space: pre-line;
     }
     
     /* Animated lower third for asset slides */
@@ -568,6 +557,13 @@
         // Add interstitial slide for each winner (these are lightweight, always create)
         const interstitialSlide = document.createElement('div');
         interstitialSlide.className = 'slide interstitial-slide';
+        // Format creative team for better display
+        const formatCreativeTeam = (team) => {
+          if (!team) return '';
+          // Convert markdown list to clean text with line breaks
+          return team.replace(/^[-*]\s*/gm, '').replace(/\n\s*\n/g, '\n').trim();
+        };
+        
         interstitialSlide.innerHTML = `
           <div class="interstitial-content">
             <div class="winner-level-badge ${winner.level}">
@@ -593,7 +589,7 @@
             <div class="entry-creator">${winner.name}</div>
             ${winner.company ? `<div class="entry-company">${winner.company}</div>` : ''}
             ${winner.school ? `<div class="entry-company">${winner.school}</div>` : ''}
-            ${winner.creative_team ? `<div class="entry-creative-team">${winner.creative_team}</div>` : ''}
+            ${winner.creative_team ? `<div class="entry-creative-team">${formatCreativeTeam(winner.creative_team)}</div>` : ''}
           </div>
         `;
         
