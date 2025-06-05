@@ -249,8 +249,9 @@
         display: none;
       }
       
-      .prev-winner,
-      .next-winner {
+      a.prev-winner,
+      a.next-winner,
+      a.back-to-all {
         flex: 0 0 auto;
         font-family: var(--font-mono);
         font-size: clamp(0.75rem, 2vw, 0.9rem);
@@ -265,6 +266,13 @@
             display: none;
           }
         }
+      }
+      
+      // Override the Brodersons universal font for navigation
+      .broderson-page & a.prev-winner,
+      .broderson-page & a.next-winner,
+      .broderson-page & a.back-to-all {
+        font-family: var(--font-mono);
       }
       
       .prev-winner {
