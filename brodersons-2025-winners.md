@@ -28,7 +28,8 @@ permalink: /brodersons/2025/winners/
 </div>
 
 <div class="header-content">
-  <h1><span class="highlight">Winners of the 2025 Broderson Awards</span></h1>
+  <h1><span class="highlight">Winning Work</span></h1>
+  <h2>2025 Broderson Awards</h2>
 </div>
 
 <div class="winners-navigation">

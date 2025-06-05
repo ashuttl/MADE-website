@@ -54,6 +54,7 @@
       border-bottom: 2px solid var(--color-primary);
       padding-bottom: 0.5rem;
       margin-bottom: 2rem;
+      font-family: var(--font-good-sans);
     }
   }
   
@@ -70,7 +71,7 @@
   
   .winners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
   }
