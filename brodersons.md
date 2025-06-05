@@ -319,6 +319,14 @@ Through our [Judgify platform](https://www.judgify.me/2025-Broderson-Awards). Cr
     </div>
   </div>
 
+  <div class="sponsor-tier award-contributors">
+    <h4>Award Contributors</h4>
+    <div class="sponsor-logos">
+      <img src="/assets/images/sponsors/next-nw.png" alt="NextNW">
+      <img src="/assets/images/sponsors/made-and-assembled.png" alt="Made and Assembled">
+    </div>
+  </div>
+
   <div class="sponsors-divider">
     <h4>& Friends of MADE</h4>
   </div>
