@@ -14,7 +14,7 @@ theme: harbor
   theme="harbor"
 %}
 
-{% include upcoming-events.html theme="harbor" %}
+<!-- include upcoming-events.html theme="harbor" -->
 
 
 
