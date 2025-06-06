@@ -21,9 +21,9 @@
   // No pseudo-element needed, we'll use an actual element
   
   // Apply Good Sans to everything on this page
-  * {
-    font-family: var(--font-good-sans);
-  }
+  // * {
+    // font-family: var(--font-good-sans);
+  // }
   
   // Top decorative stripe
   .brodersons-stripes {
@@ -141,7 +141,7 @@
     padding-bottom: 0.15em; // Slightly more padding at bottom to ensure no gaps
     box-decoration-break: clone;
     -webkit-box-decoration-break: clone;
-    margin-left: -0.3em; // Negative margin to align with content edge
+    margin-left: 0; // Remove negative margin for clean alignment
     line-height: 1.15; // Very tight line height to eliminate any gap
   }
   

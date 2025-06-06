@@ -1,0 +1,51 @@
+# Production-specific Jekyll configuration for Cloudflare Pages
+# This file extends the main _config.yml with encoding-specific settings
+
+# Force UTF-8 encoding
+encoding: "utf-8"
+
+# Liquid settings for better encoding handling
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Kramdown settings for robust UTF-8 handling
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: ["apos", "apos", "quot", "quot"]
+  syntax_highlighter_opts:
+    disable: true
+
+# Safe mode and incremental building
+safe: false
+incremental: false
+profile: false
+
+# Plugin settings
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+# Exclude additional files in production
+exclude:
+  - "asset sources"
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .gitignore
+  - fix_encoding.rb
+  - clean_encoding.sh
+  - handle_large_files.sh
+  - cf_build.sh
+  - build.sh
+  - wrangler.toml

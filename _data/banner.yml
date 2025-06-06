@@ -1,7 +1,7 @@
 ## Global banner configuration
 ## To disable the banner, set enabled to false
 enabled: true
-text: "Get the latest on the 2025 Brodersons ✨ June 5, 2025"
-url: "/brodersons"
+text: "2025 Broderson Award winners announced ✨ view the winning work"
+url: "/brodersons/2025/winners" # URL to link the banner to
 theme: "tomato" # Options: tomato, harbor, sunshine, neutral
-exclude_paths: "/brodersons,/brodersons/" # Comma-delimited list of paths where banner should not appear
+exclude_paths: "/brodersons/2025/winners" # Comma-delimited list of paths where banner should not appear

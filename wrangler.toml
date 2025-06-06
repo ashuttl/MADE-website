@@ -1,0 +1,14 @@
+name = "made-website"
+compatibility_date = "2023-12-01"
+
+# Cloudflare Pages configuration
+pages_build_output_dir = "_site"
+
+[env.production]
+compatibility_date = "2023-12-01"
+
+# Environment variables
+[env.production.vars]
+JEKYLL_ENV = "production"
+LANG = "en_US.UTF-8"
+LC_ALL = "en_US.UTF-8"

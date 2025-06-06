@@ -1,0 +1,56 @@
+# Headers for Cloudflare Pages
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Cache static assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache images but allow revalidation
+*.jpg
+  Cache-Control: public, max-age=2592000
+
+*.jpeg
+  Cache-Control: public, max-age=2592000
+
+*.png
+  Cache-Control: public, max-age=2592000
+
+*.svg
+  Cache-Control: public, max-age=2592000
+
+*.webp
+  Cache-Control: public, max-age=2592000
+
+# Cache videos
+*.mp4
+  Cache-Control: public, max-age=2592000
+
+*.mov
+  Cache-Control: public, max-age=2592000
+
+*.webm
+  Cache-Control: public, max-age=2592000
+
+# Cache fonts
+*.woff
+  Cache-Control: public, max-age=31536000
+
+*.woff2
+  Cache-Control: public, max-age=31536000
+
+*.otf
+  Cache-Control: public, max-age=31536000
+
+# Cache CSS and JS
+*.css
+  Cache-Control: public, max-age=2592000
+
+*.js
+  Cache-Control: public, max-age=2592000
+
+# HTML files - shorter cache
+*.html
+  Cache-Control: public, max-age=3600

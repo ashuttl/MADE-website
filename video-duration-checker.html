@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broderson Video Duration Checker</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .controls {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .button:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        .progress {
+            margin: 20px 0;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .video-item {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            background: #fafafa;
+        }
+        .video-item.loaded {
+            background: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .video-item.error {
+            background: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .video-filename {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+        .video-duration {
+            color: #28a745;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .video-error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+        video {
+            width: 100%;
+            max-height: 150px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .output-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #ddd;
+        }
+        .output-box {
+            width: 100%;
+            height: 400px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+            background: #f8f9fa;
+            resize: vertical;
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stat {
+            padding: 10px 15px;
+            background: #e9ecef;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+        .stat.success { background: #d4edda; }
+        .stat.error { background: #f8d7da; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Broderson Video Duration Checker</h1>
+        
+        <div class="controls">
+            <button id="checkBtn" class="button">Check All Video Durations</button>
+            <button id="copyBtn" class="button" disabled>Copy Results to Clipboard</button>
+            <button id="resetBtn" class="button">Reset</button>
+        </div>
+        
+        <div id="progress" class="progress" style="display: none;">
+            Checking videos: <span id="progressCount">0</span> / <span id="progressTotal">0</span>
+        </div>
+        
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat success">
+                Successful: <span id="successCount">0</span>
+            </div>
+            <div class="stat error">
+                Failed: <span id="failedCount">0</span>
+            </div>
+            <div class="stat">
+                Total Duration: <span id="totalDuration">0</span>s
+            </div>
+        </div>
+        
+        <div id="videoGrid" class="video-grid"></div>
+        
+        <div class="output-section">
+            <h2>Copy-Paste Results</h2>
+            <p>This output shows the slug (submission ID + level) and duration for each video:</p>
+            <textarea id="output" class="output-box" readonly placeholder="Click 'Check All Video Durations' to generate results..."></textarea>
+        </div>
+    </div>
+
+    <script>
+        const videos = [
+            'pbd-0010-gold.mp4',
+            'ani-0002-bronze.mp4',
+            'ani-0003-gold.mp4',
+            'ani-0006-silver.mp4',
+            'cdc-0007-bronze.mp4',
+            'cdc-0019-gold-2.mp4',
+            'cdc-0019-gold.mp4',
+            'dam-0003-silver-2.mp4',
+            'dam-0003-silver.mp4',
+            'dam-0010-gold.mp4',
+            'dam-0013-bronze-2.mp4',
+            'dam-0013-bronze.mp4',
+            'exp-0006-gold-2.mp4',
+            'exp-0006-gold.mp4',
+            'flm-0006-silver.mp4',
+            'fph-0011-gold.mov',
+            'ima-0012-silver-2.mp4',
+            'ima-0012-silver-3.mp4',
+            'ima-0012-silver.mp4',
+            'imb-0005-bronze-2.mp4',
+            'imb-0005-bronze.mp4',
+            'imb-0006-gold-2.mov',
+            'imb-0006-gold.mov',
+            'imb-0007-silver.mp4',
+            'oad-0007-gold.mp4',
+            'pac-0015-bronze-2.mp4',
+            'pac-0015-bronze-3.mp4',
+            'pac-0015-bronze.mp4',
+            'pac-0023-gold.mov',
+            'pbd-0010-gold-2.mp4',
+            'smc-0003-bronze.mp4',
+            'smc-0013-silver-2.mp4',
+            'smc-0013-silver-3.mp4',
+            'smc-0013-silver-4.mp4',
+            'smc-0013-silver.mp4',
+            'smc-0017-gold-2.mp4',
+            'smc-0017-gold-3.mp4',
+            'smc-0017-gold.mp4',
+            'spm-0004-gold.mp4',
+            'stu-0002-student.mov',
+            'stu-0010-student.mov',
+            'tvl-0003-bronze.mp4',
+            'tvl-0004-gold-2.mp4',
+            'tvl-0004-gold-3.mp4',
+            'tvl-0004-gold-4.mp4',
+            'tvl-0004-gold-5.mp4',
+            'tvl-0004-gold.mp4',
+            'tvl-0016-silver.mp4',
+            'tvs-0007-gold.mp4',
+            'tvs-0025-bronze.mp4'
+        ];
+
+        const baseUrl = 'https://broderson-assets.maineaddesign.com/';
+        let results = [];
+        let successCount = 0;
+        let failedCount = 0;
+        let totalDuration = 0;
+
+        function getSlugFromFilename(filename) {
+            // Convert filename like "ani-0002-bronze.mp4" to "ani-0002-bronze"
+            return filename.replace(/\.(mp4|mov)$/i, '');
+        }
+
+        function createVideoElement(filename) {
+            const videoItem = document.createElement('div');
+            videoItem.className = 'video-item';
+            videoItem.innerHTML = `
+                <div class="video-filename">${filename}</div>
+                <div class="video-duration" style="display: none;"></div>
+                <div class="video-error" style="display: none;"></div>
+                <video preload="metadata" style="display: none;"></video>
+            `;
+            return videoItem;
+        }
+
+        function checkVideo(filename, videoItem) {
+            return new Promise((resolve) => {
+                const video = videoItem.querySelector('video');
+                const durationDiv = videoItem.querySelector('.video-duration');
+                const errorDiv = videoItem.querySelector('.video-error');
+                
+                const timeout = setTimeout(() => {
+                    videoItem.className = 'video-item error';
+                    errorDiv.textContent = 'Timeout loading video';
+                    errorDiv.style.display = 'block';
+                    failedCount++;
+                    resolve({ filename, success: false, error: 'timeout' });
+                }, 15000); // 15 second timeout
+                
+                video.addEventListener('loadedmetadata', () => {
+                    clearTimeout(timeout);
+                    const duration = Math.round(video.duration * 1000); // Convert to milliseconds
+                    const slug = getSlugFromFilename(filename);
+                    
+                    videoItem.className = 'video-item loaded';
+                    durationDiv.textContent = `Duration: ${duration}ms (${video.duration.toFixed(1)}s)`;
+                    durationDiv.style.display = 'block';
+                    video.style.display = 'block';
+                    
+                    successCount++;
+                    totalDuration += video.duration;
+                    
+                    resolve({ 
+                        filename, 
+                        slug,
+                        success: true, 
+                        duration,
+                        durationSeconds: video.duration
+                    });
+                });
+                
+                video.addEventListener('error', () => {
+                    clearTimeout(timeout);
+                    videoItem.className = 'video-item error';
+                    errorDiv.textContent = `Error: ${video.error?.message || 'Failed to load video'}`;
+                    errorDiv.style.display = 'block';
+                    failedCount++;
+                    resolve({ filename, success: false, error: video.error?.message || 'load_error' });
+                });
+                
+                video.src = baseUrl + filename;
+            });
+        }
+
+        async function checkAllVideos() {
+            const checkBtn = document.getElementById('checkBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const progress = document.getElementById('progress');
+            const progressCount = document.getElementById('progressCount');
+            const progressTotal = document.getElementById('progressTotal');
+            const videoGrid = document.getElementById('videoGrid');
+            const output = document.getElementById('output');
+            const stats = document.getElementById('stats');
+            
+            // Reset state
+            results = [];
+            successCount = 0;
+            failedCount = 0;
+            totalDuration = 0;
+            
+            checkBtn.disabled = true;
+            copyBtn.disabled = true;
+            progress.style.display = 'block';
+            stats.style.display = 'none';
+            progressTotal.textContent = videos.length;
+            videoGrid.innerHTML = '';
+            output.value = '';
+            
+            // Create video elements
+            const videoElements = videos.map(filename => {
+                const element = createVideoElement(filename);
+                videoGrid.appendChild(element);
+                return { filename, element };
+            });
+            
+            // Check videos in batches of 5 to avoid overwhelming the browser
+            const batchSize = 5;
+            for (let i = 0; i < videoElements.length; i += batchSize) {
+                const batch = videoElements.slice(i, i + batchSize);
+                const promises = batch.map(({ filename, element }) => checkVideo(filename, element));
+                
+                const batchResults = await Promise.all(promises);
+                results.push(...batchResults);
+                
+                progressCount.textContent = results.length;
+                updateStats();
+                
+                // Small delay between batches
+                if (i + batchSize < videoElements.length) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+            
+            generateOutput();
+            checkBtn.disabled = false;
+            copyBtn.disabled = false;
+            progress.style.display = 'none';
+            stats.style.display = 'flex';
+        }
+
+        function updateStats() {
+            document.getElementById('successCount').textContent = successCount;
+            document.getElementById('failedCount').textContent = failedCount;
+            document.getElementById('totalDuration').textContent = totalDuration.toFixed(1);
+        }
+
+        function generateOutput() {
+            const output = document.getElementById('output');
+            const successfulResults = results.filter(r => r.success);
+            
+            // Group by slug (submission ID + level)
+            const groupedResults = {};
+            successfulResults.forEach(result => {
+                const slug = result.slug;
+                if (!groupedResults[slug]) {
+                    groupedResults[slug] = [];
+                }
+                groupedResults[slug].push(result);
+            });
+            
+            let outputText = '# Video durations for Broderson winners\n';
+            outputText += '# Format: slug => [url1: duration1, url2: duration2, ...]\n\n';
+            
+            Object.keys(groupedResults).sort().forEach(slug => {
+                const videos = groupedResults[slug];
+                outputText += `${slug}:\n`;
+                videos.forEach(video => {
+                    outputText += `  - url: "https://broderson-assets.maineaddesign.com/${video.filename}"\n`;
+                    outputText += `    duration: ${video.duration}\n`;
+                });
+                outputText += '\n';
+            });
+            
+            outputText += `\n# Summary: ${successfulResults.length} videos successfully checked`;
+            outputText += `\n# Total duration: ${totalDuration.toFixed(1)} seconds`;
+            
+            if (failedCount > 0) {
+                outputText += `\n# Failed videos: ${failedCount}`;
+                const failedResults = results.filter(r => !r.success);
+                failedResults.forEach(result => {
+                    outputText += `\n# FAILED: ${result.filename} (${result.error})`;
+                });
+            }
+            
+            output.value = outputText;
+        }
+
+        function copyToClipboard() {
+            const output = document.getElementById('output');
+            output.select();
+            document.execCommand('copy');
+            
+            const copyBtn = document.getElementById('copyBtn');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = 'Copied!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+
+        function reset() {
+            location.reload();
+        }
+
+        // Event listeners
+        document.getElementById('checkBtn').addEventListener('click', checkAllVideos);
+        document.getElementById('copyBtn').addEventListener('click', copyToClipboard);
+        document.getElementById('resetBtn').addEventListener('click', reset);
+    </script>
+</body>
+</html>

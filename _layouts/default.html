@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="/assets/images/favicons/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Maine Ad + Design" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="/assets/images/favicons/site.webmanifest" />
     
     <!-- Open Graph / Social Media Meta Tags -->
@@ -26,10 +27,11 @@
     <link rel="author" href="/humans.txt">
     
     <link rel="stylesheet" href="{{ '/assets/css/fonts.css' }}">
-    <link rel="stylesheet" href="{{ '/assets/css/main.css' }}">
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' }}?{{ site.time | date: '%Y%m%d%H%M%S' }}">
+    <link rel="stylesheet" href="{{ '/assets/css/glightbox.min.css' }}">
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml">
 </head>
-<body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}">
+<body class="{% if page.has_hero %}has-hero{% endif %}{% if page.class %} {{ page.class }}{% endif %}{% if page.theme %} theme-{{ page.theme }}{% endif %}{% if layout.class %} {{ layout.class }}{% endif %}">
     {% include banner.html %}
     <header>
         <div class="container">
@@ -127,6 +129,7 @@
         </div>
     </footer>
     
-    <script src="{{ '/assets/js/main.js' }}"></script>
+    <script src="{{ '/assets/js/glightbox.min.js' }}"></script>
+    <script src="{{ '/assets/js/main.js' }}?{{ site.time | date: '%Y%m%d%H%M%S' }}"></script>
 </body>
 </html>

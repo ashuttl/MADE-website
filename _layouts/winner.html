@@ -1,0 +1,308 @@
+---
+layout: default
+class: broderson-page
+---
+
+{% assign winner_assets = site.data.winner_assets[page.submission_id] %}
+{% assign all_winners = site.winners | sort: 'category' %}
+{% assign current_category_winners = all_winners | where: 'category', page.category %}
+{% assign level_order = 'Gold,Silver,Bronze,Student' | split: ',' %}
+
+<div class="brodersons-stripes"></div>
+
+<div class="container">
+  <article class="winner-page">
+    {% comment %} Top Navigation - Create ordered list of all winners {% endcomment %}
+    {% assign prev_winner = nil %}
+    {% assign next_winner = nil %}
+    {% assign found_current = false %}
+    {% assign all_ordered_winners = '' | split: '' %}
+    
+    {% comment %} Build ordered list of all winners by section, category, and level {% endcomment %}
+    {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
+    {% for section in sections %}
+      {% assign section_categories = section.items | sort: 'order' %}
+      {% for category in section_categories %}
+        {% assign category_winners = site.winners | where: 'category', category.slug %}
+        {% for level in level_order %}
+          {% assign level_winners = category_winners | where: 'winning_level', level %}
+          {% for winner in level_winners %}
+            {% assign all_ordered_winners = all_ordered_winners | push: winner %}
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    
+    {% comment %} Find previous and next winners {% endcomment %}
+    {% for winner in all_ordered_winners %}
+      {% if winner.submission_id == page.submission_id %}
+        {% assign found_current = true %}
+        {% if forloop.index0 > 0 %}
+          {% assign prev_index = forloop.index0 | minus: 1 %}
+          {% assign prev_winner = all_ordered_winners[prev_index] %}
+        {% endif %}
+        {% if forloop.index < all_ordered_winners.size %}
+          {% assign next_winner = all_ordered_winners[forloop.index] %}
+        {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    
+    <div class="winner-top-navigation">
+      <div class="nav-links">
+        {% if prev_winner %}
+          <a href="{{ prev_winner.url }}" class="prev-winner cta" title="{{ prev_winner.title | xml_escape }}">
+            ← <span class="nav-text">Previous</span>
+          </a>
+        {% else %}
+          <a href="/brodersons/2025/winners/" class="back-to-all cta">← All Winners</a>
+        {% endif %}
+        
+        <div class="jump-to-category">
+          <select id="categoryJumper" class="category-select cta">
+            <option value="">Jump to Category</option>
+            {% assign sections = site.categories | group_by: 'section' | sort: 'first.section_order' %}
+            {% for section in sections %}
+              {% assign section_categories = section.items | sort: 'order' %}
+              {% for category in section_categories %}
+                {% assign category_winners = site.winners | where: 'category', category.slug %}
+                {% if category_winners.size > 0 %}
+                  <option value="{{ category.slug }}" {% if category.slug == page.category %}selected{% endif %}>{{ category.title }}</option>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </select>
+        </div>
+        
+        {% if next_winner %}
+          <a href="{{ next_winner.url }}" class="next-winner cta" title="{{ next_winner.title | xml_escape }}">
+            <span class="nav-text">Next</span> →
+          </a>
+        {% else %}
+          <a href="/brodersons/2025/winners/" class="back-to-all cta">All Winners →</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="winner-header">
+      {% assign current_category = site.categories | where: 'slug', page.category | first %}
+      
+      <div class="winner-title">
+        <h1><span class="highlight">{{ page.title | markdownify | remove: '<p>' | remove: '</p>' }}</span></h1>
+      </div>
+      
+      <div class="badge-and-meta">
+        <div class="winner-level-badge {{ page.winning_level | downcase }}">
+          <div class="award-icon">
+            {% include svg/award.svg %}
+          </div>
+          <div class="award-text">
+            <div class="award-level">{{ page.winning_level }}</div>
+            <div class="award-category">{{ current_category.title }}</div>
+          </div>
+        </div>
+        
+        <div class="winner-meta">
+          <div class="winner-name">{{ page.credited_winner | default: page.name }}</div>
+          {% if page.company_name and page.company_name != '' and page.credited_winner != page.company_name %}
+            <div class="winner-company">{{ page.company_name }}</div>
+          {% endif %}
+          {% if page.school_name and page.school_name != '' and page.credited_winner != page.school_name %}
+            <div class="winner-school">{{ page.school_name }}</div>
+          {% endif %}
+          {% if page.creative_team_members and page.creative_team_members != '' %}
+            <div class="creative-team">
+              <div class="creative-team-label">Creative Team</div>
+              <div class="creative-team-wrapper">
+                <div class="creative-team-content">{{ page.creative_team_members | markdownify }}</div>
+                <button class="creative-team-expand" onclick="toggleCreativeTeam(this)" style="display: none;">Show More</button>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% comment %} Main Content Area with featured image and metadata {% endcomment %}
+    {% if winner_assets %}
+      {% assign featured_image = winner_assets.images.first %}
+      {% if featured_image %}
+        <div class="winner-main-content" data-featured-image="{{ featured_image }}">
+          <div class="featured-image">
+            <a href="{{ featured_image }}" class="glightbox" data-gallery="winner-gallery">
+              <img src="{{ featured_image }}" alt="{{ page.title | xml_escape }}" onload="checkImageLayout(this)">
+            </a>
+          </div>
+          
+          {% if content and content != '' or winner_assets.pdfs.size > 0 or page.website and page.website != '' %}
+            <div class="main-info">
+              {% if content and content != '' %}
+                <div class="winner-description">
+                  {{ content }}
+                </div>
+              {% endif %}
+              
+              {% if winner_assets.pdfs.size > 0 %}
+                <div class="pdf-section">
+                  <h3>Downloads</h3>
+                  {% for pdf in winner_assets.pdfs %}
+                    <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                      View PDF
+                    </a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              {% if page.website and page.website != '' %}
+                <div class="website-section">
+                  <h3>Website</h3>
+                  <a href="{{ page.website }}" target="_blank" class="cta website-link">
+                    {% include svg/external-link.svg %}
+                    Visit Website
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        {% if content and content != '' or winner_assets.pdfs.size > 0 or page.website and page.website != '' %}
+          <div class="winner-main-content no-featured-image">
+            <div class="main-info">
+              {% if content and content != '' %}
+                <div class="winner-description">
+                  {{ content }}
+                </div>
+              {% endif %}
+              
+              {% if winner_assets.pdfs.size > 0 %}
+                <div class="pdf-section">
+                  <h3>Downloads</h3>
+                  {% for pdf in winner_assets.pdfs %}
+                    <a href="{{ pdf }}" target="_blank" class="cta pdf-link">
+                      View PDF
+                    </a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+              
+              {% if page.website and page.website != '' %}
+                <div class="website-section">
+                  <h3>Website</h3>
+                  <a href="{{ page.website }}" target="_blank" class="cta website-link">
+                    {% include svg/external-link.svg %}
+                    Visit Website
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% comment %} Additional Assets Section {% endcomment %}
+      {% assign additional_images = winner_assets.images | slice: 1, winner_assets.images.size %}
+      {% if winner_assets.videos.size > 0 or additional_images.size > 0 or winner_assets.audio.size > 0 %}
+        <div class="additional-assets">
+          
+          {% if winner_assets.videos.size > 0 %}
+            <div class="video-section">
+              {% for video in winner_assets.videos %}
+                {% if video.url %}
+                  {% assign video_url = video.url %}
+                {% else %}
+                  {% assign video_url = video %}
+                {% endif %}
+                <video controls>
+                  <source src="{{ video_url }}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              {% endfor %}
+            </div>
+          {% endif %}
+          
+          {% if additional_images.size > 0 %}
+            <div class="additional-images">
+              {% for image in additional_images %}
+                <a href="{{ image }}" class="glightbox" data-gallery="winner-gallery">
+                  <img src="{{ image }}" alt="{{ page.title | xml_escape }}" loading="lazy">
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+          
+          {% if winner_assets.audio.size > 0 %}
+            <div class="audio-section">
+              {% for audio in winner_assets.audio %}
+                <audio controls>
+                  <source src="{{ audio }}" type="audio/mpeg">
+                  Your browser does not support the audio element.
+                </audio>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% else %}
+      {% comment %} No assets, just show content {% endcomment %}
+      {% if content and content != '' %}
+        <div class="winner-description">
+          <h3>About This Work</h3>
+          {{ content }}
+        </div>
+      {% endif %}
+    {% endif %}
+  </article>
+</div>
+
+<script>
+function toggleCreativeTeam(button) {
+  const content = button.parentElement.querySelector('.creative-team-content');
+  const isExpanded = content.classList.contains('expanded');
+  
+  if (isExpanded) {
+    content.classList.remove('expanded');
+    content.classList.add('truncated'); // Re-add truncated class to show fade
+    button.textContent = 'Show More';
+  } else {
+    content.classList.add('expanded');
+    content.classList.remove('truncated'); // Remove truncated class to hide fade
+    button.textContent = 'Show Less';
+  }
+}
+
+// Check if creative team needs expand button on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const creativeTeamContents = document.querySelectorAll('.creative-team-content');
+  
+  creativeTeamContents.forEach(content => {
+    const expandButton = content.parentElement.querySelector('.creative-team-expand');
+    
+    if (expandButton) {
+      // Temporarily remove max-height to measure actual height
+      const originalMaxHeight = content.style.maxHeight;
+      content.style.maxHeight = 'none';
+      const fullHeight = content.scrollHeight;
+      content.style.maxHeight = originalMaxHeight;
+      
+      // If content is taller than ~4.5rem (approximately 3 lines), show expand button and fade
+      if (fullHeight > 72) { // 4.5rem ≈ 72px
+        expandButton.style.display = 'block';
+        content.classList.add('truncated');
+      }
+    }
+  });
+
+  // Handle category jumper dropdown
+  const categorySelect = document.getElementById('categoryJumper');
+  if (categorySelect) {
+    categorySelect.addEventListener('change', function() {
+      const selectedCategory = this.value;
+      if (selectedCategory) {
+        // Navigate to winners page with category fragment
+        window.location.href = '/brodersons/2025/winners/#category-' + selectedCategory;
+      }
+    });
+  }
+});
+</script>
