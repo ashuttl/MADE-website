@@ -1,7 +1,7 @@
 ## Global banner configuration
 ## To disable the banner, set enabled to false
 enabled: true
-text: "Announcing the winners of the 2025 Broderson Awards ✨ view the winning work"
+text: "Congratulations to the winners of the 2025 Broderson Awards ✨ view the winning work"
 url: "/brodersons/2025/winners" # URL to link the banner to
 theme: "tomato" # Options: tomato, harbor, sunshine, neutral
 exclude_paths: "/brodersons/2025/winners" # Comma-delimited list of paths where banner should not appear
