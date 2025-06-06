@@ -71,5 +71,5 @@ Maine Ad + Design is a nonprofit professional organization that has been working
 
 [Students or educators can join free](https://made.memberful.com/checkout?plan=109068&coupon=Education) with coupon code `Education`.
 
-Need a different accommodation? [Contact our volunteer board](mailto:board@maineaddesign.com) and we'll get right in touch.
+Need a different accommodation? [Contact our volunteer board](mailto:hello@maineaddesign.com) and we'll get right in touch.
 </div>
