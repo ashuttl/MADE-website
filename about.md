@@ -112,11 +112,7 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
     <div class="board-member">
         <img src="/assets/images/board/devon.jpeg" alt="Devon Naylor">
         <h3>Devon Naylor</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/elsie.jpeg" alt="Elsie Widing">
-        <h3>Elsie Widing</h3>
-    </div>
+    </div>    
     <div class="board-member">
         <img src="/assets/images/board/helena.jpeg" alt="Helena Olson">
         <h3>Helena Olson</h3>
