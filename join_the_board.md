@@ -3,7 +3,8 @@ layout: page
 title: Join the MADE board
 theme: teal
 redirect_from:
-   - /join_the_board
+   - /board
+   - /about/board
    - /about/join_the_board
 ---
 # Join the MADE board
