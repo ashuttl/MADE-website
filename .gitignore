@@ -32,3 +32,6 @@ assets/winners/winners_with_details.csv
 # Cloudflare/Wrangler files
 .wrangler/
 wrangler.toml.bak
+
+# Brodersons assets
+assets/winners

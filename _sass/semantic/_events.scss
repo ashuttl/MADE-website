@@ -66,6 +66,17 @@
     width: 100%;
     overflow-x: hidden; /* Constrain horizontal overflow */
     overflow-y: visible; /* Allow vertical overflow for hover effects */
+    
+    // When there's only one event, simplify the layout
+    &[data-count="1"] {
+      .events-scroll-outer {
+        overflow-x: visible; /* Remove scrolling for single event */
+      }
+      
+      .events-scroll {
+        justify-content: center;
+      }
+    }
   }
   
   // Horizontal scrolling events for home page
@@ -78,6 +89,16 @@
     scrollbar-width: thin; // Firefox
     scroll-behavior: smooth; // For smooth scrolling
     box-sizing: border-box; /* Ensure padding is included in width calculation */
+    
+    // When there's only one event, remove scrolling behavior
+    .events-carousel[data-count="1"] & {
+      overflow-x: visible;
+      scrollbar-width: none;
+      
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
   
   // Scroll buttons styling
@@ -197,6 +218,12 @@
     padding: var(--space-xs) 0; /* Only keep minimal vertical padding for hover transform */
     margin-left: 0; /* Remove left margin */
     
+    // For single event, adjust the container
+    .events-carousel[data-count="1"] & {
+      width: 100%;
+      justify-content: center;
+    }
+    
     .event-card:first-child {
       margin-left: var(--space-xs); /* Space for hover effect on first card */
     }
@@ -206,13 +233,42 @@
     }
     
     // When there are 1-2 events, adapt to available space
-    &[data-count="1"], &[data-count="2"] {
+    &[data-count="1"] {
+      justify-content: center;
+      
+      .event-card {
+        flex: 0 0 auto;
+        min-width: 18rem;
+        max-width: 28rem;
+        width: 100%;
+        margin-left: 0; /* Remove left margin for single event */
+        margin-right: 0; /* Remove right margin for single event */
+        
+        @media (min-width: 48em) {
+          max-width: 30rem;
+        }
+        
+        @media (min-width: 64em) {
+          max-width: 32rem;
+        }
+      }
+      
+      .event-card:first-child {
+        margin-left: 0; /* Override the default margin for first child */
+      }
+      
+      .event-card:last-child {
+        margin-right: 0; /* Override the default margin for last child */
+      }
+    }
+    
+    &[data-count="2"] {
       justify-content: flex-start;
       
       .event-card {
         flex: 1 1 16rem;
         min-width: 14rem;
-        max-width: 16rem;
+        max-width: 18rem;
       }
     }
     

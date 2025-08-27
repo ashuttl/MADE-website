@@ -45,9 +45,10 @@
       </div>
       
       {% if has_events %}
-      <div class="events-carousel">
-        {% assign event_count = upcoming_events | size %}
+      <div class="events-carousel" data-count="{{ event_count }}">
+        {% if event_count > 1 %}
         <button class="scroll-button scroll-left" aria-label="Scroll left">&#10094;</button>
+        {% endif %}
         <div class="events-scroll-outer">
           <div class="events-scroll" data-count="{{ event_count }}">
             {% for event in upcoming_events %}
@@ -55,7 +56,9 @@
             {% endfor %}
           </div>
         </div>
+        {% if event_count > 1 %}
         <button class="scroll-button scroll-right" aria-label="Scroll right">&#10095;</button>
+        {% endif %}
       </div>
       {% else %}
         <div class="no-events">
