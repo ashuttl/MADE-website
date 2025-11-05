@@ -1,6 +1,6 @@
 ## Global banner configuration
 ## To disable the banner, set enabled to false
-enabled: true
+enabled: false
 text: "MADE iso like-minded fun-loving Maine creatives for board positions ✨ Learn more"
 url: "/join_the_board" # URL to link the banner to
 theme: "tomato" # Options: tomato, harbor, sunshine, neutral
