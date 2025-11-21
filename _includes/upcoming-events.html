@@ -33,8 +33,10 @@
 
 {% assign all_upcoming_events = all_upcoming_events | sort: 'date' %}
 {% assign upcoming_events = all_upcoming_events | slice: 0, limit %}
-{% assign has_events = upcoming_events | size > 0 %}
+{% assign event_count = upcoming_events | size %}
+{% assign has_events = event_count > 0 %}
 
+{% if has_events %}
 <section class="events-section panel panel-{{ theme }}">
   <div class="container">
     <div class="events-container">
@@ -43,8 +45,6 @@
         <h2 class="headline">What’s coming up?</h2>
         <p>Some ways to spend time IRL with friends and strangers. (It’s good for the soul.)</p>
       </div>
-      
-      {% if has_events %}
       <div class="events-carousel" data-count="{{ event_count }}">
         {% if event_count > 1 %}
         <button class="scroll-button scroll-left" aria-label="Scroll left">&#10094;</button>
@@ -60,11 +60,7 @@
         <button class="scroll-button scroll-right" aria-label="Scroll right">&#10095;</button>
         {% endif %}
       </div>
-      {% else %}
-        <div class="no-events">
-          <p>No upcoming events at this time. Check back soon!</p>
-        </div>
-      {% endif %}
     </div>
   </div>
 </section>
+{% endif %}
