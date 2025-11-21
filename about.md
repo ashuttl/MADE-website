@@ -74,59 +74,47 @@ Maine Ad + Design is dedicated to fostering creativity, supporting professional 
 
 <div class="board-members">
     <div class="board-member">
-        <img src="/assets/images/board/dustyn.jpeg" alt="Dustyn Bailey">
-        <h3>Dustyn Bailey</h3>
-        <p>President<br><a href="https://www.linkedin.com/in/dustyn-bailey-b45655109/" target="_blank" class="external">LinkedIn {% include icon.html name="external-link" %}</a></p>
+        <img src="/assets/images/board/JSmith.jpg" alt="Jameson Smith">
+        <h3>Jameson Smith</h3>
+        <p>President</p>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/stanzi.jpeg" alt="Stanzi Littlefield">
-        <h3>Stanzi Littlefield</h3>
+        <img src="/assets/images/board/AWalter.jpg" alt="Anna Walter">
+        <h3>Anna Walter</h3>
         <p>Vice President</p>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/gerrit.jpeg" alt="Gerrit Petersons">
-        <h3>Gerrit Petersons</h3>
+        <img src="/assets/images/board/BJoseph.jpg" alt="Ben Joseph">
+        <h3>Ben Joseph</h3>
         <p>Treasurer</p>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/abby.jpeg" alt="Abby Lank">
-        <h3>Abby Lank</h3>
+        <img src="/assets/images/board/EPierce.jpg" alt="Emma Pierce">
+        <h3>Emma Pierce</h3>
         <p>Secretary</p>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/alphan.jpeg" alt="Alphan Günaydın">
-        <h3>Alphan Günaydın</h3>
+        <img src="/assets/images/board/DNaylor.jpg" alt="Devon Naylor">
+        <h3>Devon Naylor</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/andrew.jpeg" alt="Andrew Shuttleworth Fowler">
-        <h3>Andrew Shuttleworth Fowler</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/anna.jpeg" alt="Anna McDonough">
-        <h3>Anna McDonough</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/christine.jpeg" alt="Christine Puopolo">
+        <img src="/assets/images/board/CPuopolo.jpg" alt="Christine Puopolo">
         <h3>Christine Puopolo</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/devon.jpeg" alt="Devon Naylor">
-        <h3>Devon Naylor</h3>
-    </div>    
-    <div class="board-member">
-        <img src="/assets/images/board/helena.jpeg" alt="Helena Olson">
-        <h3>Helena Olson</h3>
+        <img src="/assets/images/board/AGunyardin.jpg" alt="Alphan Günaydın">
+        <h3>Alphan Günaydın</h3>
     </div>
     <div class="board-member">
-        <img src="/assets/images/board/jameson.jpeg" alt="Jameson Smith">
-        <h3>Jameson Smith</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/kes.jpeg" alt="Kes Lavoie">
-        <h3>Kes Lavoie</h3>
-    </div>
-    <div class="board-member">
-        <img src="/assets/images/board/mel.jpeg" alt="Mel Andrel">
+        <img src="/assets/images/board/MAndrel.jpg" alt="Mel Andrel">
         <h3>Mel Andrel</h3>
     </div>    
+    <div class="board-member">
+        <img src="/assets/images/board/SCarey.jpg" alt="Stevie Carey">
+        <h3>Stevie Carey</h3>
+    </div>
+    <div class="board-member">
+        <img src="/assets/images/board/DStevens.jpg" alt="Delaney Stevens">
+        <h3>Delaney Stevens</h3>
+    </div>
 </div>
