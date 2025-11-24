@@ -20,9 +20,13 @@ This is the website for Maine Ad + Design, (maybe) the oldest advertising club i
    2. [Install Homebrew](https://brew.sh) if you don't already have it.
    3. Use Homebrew to install this site's dependencies. Run this in your Terminal: `brew install ruby node`
    4. Run `bundle install` to install dependencies
-   5. Run `bundle exec jekyll serve` to start the development server
-   6. Visit `http://localhost:4000` to see the website served from your own computer. Make changes to the files, and the site will automatically refresh in your browser.
+   5. Run `bundle exec jekyll serve` to start the development server whenever you want to make and test changes.
+   6. Leave that Terminal window open, and visit `http://localhost:4000` to see the website served from your own computer. Make changes to the files, and the site will automatically refresh in your browser.
    7. Happy with your changes? Commit them and push back to GitHub.
+
+## Troubleshooting
+
+Even if you follow these steps, you might occasionally find that your pushed changes aren't reflected on the live site. If this happens, there's probably a problem with Cloudflare's build process. If that's the case, you'll need to check the build logs at dash.cloudflare.com to see what went wrong. If you're not sure how to do that, or if you need help or access, get in touch with Andrew Shuttleworth.
 
 ## Structure
 

@@ -1,0 +1,15 @@
+# Navigation links for the site header.
+# You can change order or add new items here without touching layout code.
+header:
+  - label: "About"
+    url: "/about"
+    active_when:
+      equals: "/about/"
+  - label: "Join"
+    url: "/membership"
+    active_when:
+      equals: "/membership/"
+  - label: "Brodersons"
+    url: "/brodersons"
+    active_when:
+      contains: "/brodersons/"

@@ -1,0 +1,27 @@
+{% comment %}
+  Home page Instagram embed. The actual grid is injected by Behold's script
+  using the feed ID below. If the embed ever needs to be replaced, update the
+  `behold-widget` element and leave the script loader intact.
+{% endcomment %}
+<section class="instagram">
+  <div class="container">
+    <h2>Stay in the loop</h2>
+    <div class="instagram-follow">
+      <a href="https://www.instagram.com/MaineAdDesign" target="_blank" class="cta cta-harbor">
+        Follow us on Instagram
+      </a>
+    </div>
+    <behold-widget feed-id="TwvbmjtgKDpsUvUDxaua"></behold-widget>
+    <script>
+      (() => {
+        const src = "https://w.behold.so/widget.js";
+        if (!document.querySelector(`script[src="${src}"]`)) {
+          const script = document.createElement("script");
+          script.type = "module";
+          script.src = src;
+          document.head.append(script);
+        }
+      })();
+    </script>
+  </div>
+</section>
